@@ -70,14 +70,14 @@ index_generator:
 # Category & Tag
 default_category: uncategorized
 category_map:
-     程序设计: programme
-     网络安全: cyberscurity
+   程序设计: programme
+   网络安全: cyberscurity
   CTF: ctf
   ACM: acm
-     美术作品: art
-     游戏设计: gamedesign
-     留学语言: english
-     体育: pe
+   美术作品: art
+   游戏设计: gamedesign
+   留学语言: english
+   体育: pe
 tag_map:
 
 # Metadata elements

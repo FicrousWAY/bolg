@@ -20,36 +20,36 @@ font:
 #   `family: Times New Roman`. Without any quotes.
 #  `size: x.x`. Use `em` as unit. Default: 1 (16px)
 
-  # Global font settings used for all elements inside <body>.
+# Global font settings used for all elements inside <body>.
   global:
     external: true
     family: Mulish
     size:
 
-  # Font settings for alternate title.
+# Font settings for alternate title.
   logo:
     external: true
     family: Fredericka the Great
     size: 3.5
 
-  # Font settings for site title.
+# Font settings for site title.
   title:
     external: true
     family: Noto Serif JP
     size: 2.5
 
-  # Font settings for headlines (<h1> to <h6>).
+# Font settings for headlines (<h1> to <h6>).
   headings:
     external: true
     family: Noto Serif SC
     size:
 
-  # Font settings for posts.
+# Font settings for posts.
   posts:
     external: true
     family:
 
-  # Font settings for <code> and code blocks.
+# Font settings for <code> and code blocks.
   codes:
     external: true
     family: Inconsolata
@@ -83,15 +83,15 @@ social:
 #  #skype: skype:yourname?call|chat || skype
 #  #douban: https://www.douban.com/people/yourname/ || douban
 sidebar:
-  # Sidebar Position.
+# Sidebar Position.
   position: left
   position: right
-  # Replace the default avatar image and set the url here.
+# Replace the default avatar image and set the url here.
   avatar: avatar.jpg
 widgets:
   random_posts: false # 显示随机文章
   recent_comments: true # 显示最近评论
-  # 页尾全站统计
+# 页尾全站统计
 footer:
   since: 2010
   count: true
