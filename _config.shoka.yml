@@ -84,7 +84,7 @@ social:
 #  #douban: https://www.douban.com/people/yourname/ || douban
 sidebar:
 # Sidebar Position.
-  position: left
+#  position: left
   position: right
 # Replace the default avatar image and set the url here.
   avatar: avatar.jpg

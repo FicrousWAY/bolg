@@ -8,7 +8,7 @@ subtitle: ''
 description: ''
 keywords:
 author: John Doe
-language: en
+language: zh-CN
 timezone: ''
 
 # URL
@@ -72,8 +72,8 @@ default_category: uncategorized
 category_map:
    程序设计: programme
    网络安全: cyberscurity
-  CTF: ctf
-  ACM: acm
+   CTF: ctf
+   ACM: acm
    美术作品: art
    游戏设计: gamedesign
    留学语言: english
@@ -183,7 +183,7 @@ algolia:
     - gallery
     - photos
     - tags
-keywords: ficrousway
+#keywords: 
 feed:
     limit: 20
     order_by: "-date"
