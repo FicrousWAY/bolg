@@ -1,42 +1,26 @@
 <?xml version="1.0"?>
 <rss version="2.0">
     <channel>
-        <title>FicrousWAY&#39;hall of honor</title>
+        <title>FicrousWAY&#39;s Hall of Honor</title>
         <subtitle></subtitle>
         <icon>http://example.com/images/favicon.ico</icon>
         <link>http://example.com</link>
         <author>
-          <name>John Doe</name>
+          <name>FicrousWAY</name>
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Fri, 11 Jul 2025 13:55:22 -0400</pubDate>
-        <lastBuildDate>Fri, 11 Jul 2025 13:55:22 -0400</lastBuildDate>
+        <pubDate>Tue, 15 Jul 2025 06:13:21 -0400</pubDate>
+        <lastBuildDate>Tue, 15 Jul 2025 06:13:21 -0400</lastBuildDate>
         <item>
-            <guid isPermalink="true">http://example.com/test/</guid>
-            <title>test</title>
-            <link>http://example.com/test/</link>
-            <pubDate>Fri, 11 Jul 2025 13:55:22 -0400</pubDate>
-            <description><![CDATA[  ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">http://example.com/hello-world/</guid>
-            <title>Hello World</title>
-            <link>http://example.com/hello-world/</link>
-            <pubDate>Fri, 11 Jul 2025 13:50:18 -0400</pubDate>
-            <description><![CDATA[ &lt;p&gt;Welcome to &lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&#34;https://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;https://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;Quick-Start&#34;&gt;&lt;a href=&#34;#Quick-Start&#34; class=&#34;headerlink&#34; title=&#34;Quick Start&#34;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&#34;Create-a-new-post&#34;&gt;&lt;a href=&#34;#Create-a-new-post&#34; class=&#34;headerlink&#34; title=&#34;Create a new post&#34;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo new &lt;span class=&#34;string&#34;&gt;&amp;quot;My New Post&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/writing.html&#34;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;Run-server&#34;&gt;&lt;a href=&#34;#Run-server&#34; class=&#34;headerlink&#34; title=&#34;Run server&#34;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/server.html&#34;&gt;Server&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;Generate-static-files&#34;&gt;&lt;a href=&#34;#Generate-static-files&#34; class=&#34;headerlink&#34; title=&#34;Generate static files&#34;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/generating.html&#34;&gt;Generating&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;Deploy-to-remote-sites&#34;&gt;&lt;a href=&#34;#Deploy-to-remote-sites&#34; class=&#34;headerlink&#34; title=&#34;Deploy to remote sites&#34;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/one-command-deployment.html&#34;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+            <guid isPermalink="true">http://example.com/%E8%87%B4%E6%AF%8F%E4%B8%80%E4%B8%AA%E6%96%B0%E8%AE%BF%E5%AE%A2/</guid>
+            <title>致每一个打开此网站的人</title>
+            <link>http://example.com/%E8%87%B4%E6%AF%8F%E4%B8%80%E4%B8%AA%E6%96%B0%E8%AE%BF%E5%AE%A2/</link>
+            <pubDate>Tue, 15 Jul 2025 06:13:21 -0400</pubDate>
+            <description><![CDATA[ &lt;p&gt;想必能在此时看到这个网站的人也都是内测玩家了，因此我将在这里介绍一下此网站的用途&lt;/p&gt;
+&lt;p&gt;这是一个个人博客网站，仅作个人用途，正如该网站的名字一样 &amp;quot;FicrousWAY&#39;hall of honor&amp;quot;，这里将用来记录我未来可能会取得的各项成就以及个人作品，&lt;s class=&#34;danger&#34;&gt;然后以后参加面试的时候面试官看的也方便一些&lt;/s&gt;，我装 b 也方便一些，我已创建了一些分类但是并不能确定将来是否会将其填满（管他有没有的先写上再说！）&lt;/p&gt;
+&lt;p&gt;该网站目前仍在不断的完善和更新，目前这个网站大多数图片仍是主题默认的框架，比如那个打赏的二维码还不是我的，&lt;mark&gt;所以不要打钱哦&lt;/mark&gt;！！！&lt;/p&gt;
+&lt;p&gt;目前第一篇作品我正在写，大概会是游戏设计分类里的文章，是一篇关于《双影奇境》的游戏拆解案，静待更新吧，下次更新的时候我会去把那个二维码换成我的收款码的。&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
