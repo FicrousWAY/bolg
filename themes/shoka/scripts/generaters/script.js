@@ -41,7 +41,12 @@ hexo.extend.generator.register('script', function(locals){
     }
   };
 
-  if(config.algolia) {
+  const hasAlgoliaConfig = config.algolia
+    && config.algolia.appId
+    && config.algolia.apiKey
+    && config.algolia.indexName;
+
+  if(hasAlgoliaConfig) {
     siteConfig.search = {
       appID    : config.algolia.appId,
       apiKey   : config.algolia.apiKey,

@@ -103,40 +103,58 @@ const siteRefresh = function (reload) {
 
 const siteInit = function () {
 
-  domInit()
+  // Failsafe: avoid endless loading overlay on runtime failures.
+  setTimeout(function() {
+    if(!BODY.hasClass('loaded')) {
+      Loader.vanish();
+    }
+  }, 4000);
 
-  pjax = new Pjax({
-            selectors: [
-              'head title',
-              '.languages',
-              '.pjax',
-              'script[data-config]'
-            ],
-            analytics: false,
-            cacheBust: false
-          })
+  try {
+    domInit()
 
-  CONFIG.quicklink.ignores = LOCAL.ignores
-  quicklink.listen(CONFIG.quicklink)
+    if(typeof Pjax !== 'undefined') {
+      pjax = new Pjax({
+                selectors: [
+                  'head title',
+                  '.languages',
+                  '.pjax',
+                  'script[data-config]'
+                ],
+                analytics: false,
+                cacheBust: false
+              })
+    }
 
-  visibilityListener()
-  themeColorListener()
+    CONFIG.quicklink.ignores = LOCAL.ignores
+    if(typeof quicklink !== 'undefined' && quicklink && typeof quicklink.listen === 'function') {
+      quicklink.listen(CONFIG.quicklink)
+    }
 
-  algoliaSearch(pjax)
+    visibilityListener()
+    themeColorListener()
 
-  window.addEventListener('scroll', scrollHandle)
+    if(typeof instantsearch !== 'undefined' && typeof algoliasearch !== 'undefined') {
+      algoliaSearch(pjax)
+    }
 
-  window.addEventListener('resize', resizeHandle)
+    window.addEventListener('scroll', scrollHandle)
+    window.addEventListener('resize', resizeHandle)
 
-  window.addEventListener('pjax:send', pjaxReload)
+    if(pjax) {
+      window.addEventListener('pjax:send', pjaxReload)
+      window.addEventListener('pjax:success', siteRefresh)
+    }
 
-  window.addEventListener('pjax:success', siteRefresh)
+    window.addEventListener('beforeunload', function() {
+      pagePosition()
+    })
 
-  window.addEventListener('beforeunload', function() {
-    pagePosition()
-  })
-
-  siteRefresh(1)
+    siteRefresh(1)
+  } catch(err) {
+    console.error('Theme init failed:', err);
+    Loader.vanish();
+  }
 }
 
 window.addEventListener('DOMContentLoaded', siteInit);

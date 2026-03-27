@@ -20,11 +20,13 @@ var oWinHeight = window.innerHeight;
 var oWinWidth = window.innerWidth;
 var LOCAL_HASH = 0, LOCAL_URL = window.location.href;
 var pjax;
-const lazyload = lozad('img, [data-background-image]', {
-    loaded: function(el) {
+const lazyload = typeof lozad === 'function'
+  ? lozad('img, [data-background-image]', {
+      loaded: function(el) {
         el.addClass('lozaded');
-    }
-})
+      }
+    })
+  : { observe: function() {} };
 
 const Loader = {
   timer: null,

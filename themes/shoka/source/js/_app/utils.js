@@ -95,7 +95,12 @@ const pageScroll = function(target, offset, complete) {
       complete && complete()
     }
   }
-  anime(opt);
+  if(typeof anime === 'function') {
+    anime(opt);
+  } else {
+    opt.targets.scrollTop = opt.scrollTop;
+    opt.complete();
+  }
 }
 
 const transition = function(target, type, complete) {
@@ -158,14 +163,19 @@ const transition = function(target, type, complete) {
       display = type.display
     break;
   }
-  anime(Object.assign({
-    targets: target,
-    duration: 200,
-    easing: 'linear'
-  }, animation)).finished.then(function() {
-      target.display(display)
-      complete && complete()
-    });
+  if(typeof anime === 'function') {
+    anime(Object.assign({
+      targets: target,
+      duration: 200,
+      easing: 'linear'
+    }, animation)).finished.then(function() {
+        target.display(display)
+        complete && complete()
+      });
+  } else {
+    target.display(display);
+    complete && complete();
+  }
 }
 
 const store = {
