@@ -2,7 +2,7 @@
 {%- set cover = url_for(theme.statics + item.slug + '/cover.jpg') %}
 {%- set itemname = item.name %}
 <section class="item">
-  <div class="cover"{%- if cover %} data-background-image="{{ cover }}"{% endif %}>
+  <div class="cover"{%- if cover %} style="background-image: url('{{ cover }}')"{%- endif %}>
     <h2 class="title">{{ itemname }}</h2>
     {%- if item.top.name %}
     <span>{{item.top.name}}</span>

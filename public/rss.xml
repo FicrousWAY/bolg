@@ -202,12 +202,20 @@
 &lt;td&gt;体育&lt;/td&gt;
 &lt;td&gt;&lt;code&gt;pe/cover.jpg&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;生活杂项&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;life/cover.jpg&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;学术科研&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;research/cover.jpg&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;&lt;strong&gt;多级分类&lt;/strong&gt; 若 slug 为  &lt;code&gt;父slug/子slug&lt;/code&gt; ，则路径为： &lt;code&gt;source/_posts/父slug/子slug/cover.jpg&lt;/code&gt; 。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：Hexo 里只有&lt;strong&gt;至少出现过一篇文章&lt;/strong&gt;的分类才会存在；没有文章的分类不会出现，也不会显示封面位。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;编写语法（路径示意，非 Markdown）&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption data-lang=&#34;text&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;博客根目录/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  source/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    _posts/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      programme/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        cover.jpg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      cyberscurity/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        cover.jpg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;主题已使用站点根目录下的  &lt;code&gt;source_dir&lt;/code&gt;  绝对路径检测文件；若仍无图，请核对文件夹名是否与上表 slug &lt;strong&gt;完全一致&lt;/strong&gt;（含拼写，如  &lt;code&gt;cyberscurity&lt;/code&gt; ）。&lt;/p&gt;
+&lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption data-lang=&#34;text&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;博客根目录/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  source/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    _posts/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      programme/cover.jpg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      cyberscurity/cover.jpg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      life/          （可先只放 .gitkeep，日后加 cover.jpg）&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      research/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;主题已使用站点根目录下的  &lt;code&gt;source_dir&lt;/code&gt;  绝对路径检测文件；若仍无图，请核对文件夹名是否与上表 slug &lt;strong&gt;完全一致&lt;/strong&gt;（含拼写，如  &lt;code&gt;cyberscurity&lt;/code&gt; ）。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2 id=&#34;一-front-matter-常用项&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一-front-matter-常用项&#34;&gt;#&lt;/a&gt; 一、Front Matter 常用项&lt;/h2&gt;
 &lt;h3 id=&#34;效果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#效果&#34;&gt;#&lt;/a&gt; 效果&lt;/h3&gt;
@@ -350,9 +358,9 @@ const sum &amp;#x3D; a + b + c;&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
 &lt;figure class=&#34;highlight markdown&#34;&gt;&lt;figcaption data-lang=&#34;markdown&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token code&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;```&lt;/span&gt;&lt;span class=&#34;token code-language&#34;&gt;mermaid&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token code-block language-mermaid&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;graph&lt;/span&gt; LR&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  A &lt;span class=&#34;token arrow operator&#34;&gt;--&gt;&lt;/span&gt; B&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;```&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;hr /&gt;
 &lt;h2 id=&#34;十-frappe-charts须-chart-true&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#十-frappe-charts须-chart-true&#34;&gt;#&lt;/a&gt; 十、Frappe Charts（须  &lt;code&gt;chart: true&lt;/code&gt; ）&lt;/h2&gt;
 &lt;h3 id=&#34;效果-10&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#效果-10&#34;&gt;#&lt;/a&gt; 效果&lt;/h3&gt;
-&lt;div id=&#34;chart9a5837c9a6df454d959f35f57c2e56da&#34;&gt;&lt;/div&gt;
+&lt;div id=&#34;chartc6f22f2da5b34f2ab185703fa00bf039&#34;&gt;&lt;/div&gt;
             &lt;script type=&#34;text/javascript&#34;&gt;
-                var chart9a5837c9a6df454d959f35f57c2e56da = new frappe.Chart(document.getElementById(&#39;chart9a5837c9a6df454d959f35f57c2e56da&#39;), {
+                var chartc6f22f2da5b34f2ab185703fa00bf039 = new frappe.Chart(document.getElementById(&#39;chartc6f22f2da5b34f2ab185703fa00bf039&#39;), {
   &#34;data&#34;: {
     &#34;labels&#34;: [&#34;一月&#34;, &#34;二月&#34;, &#34;三月&#34;, &#34;四月&#34;],
     &#34;datasets&#34;: [
@@ -364,7 +372,7 @@ const sum &amp;#x3D; a + b + c;&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
   &#34;colors&#34;: [&#34;#7cd6fd&#34;]
 });
                 window.addEventListener(&#39;pjax:send&#39;, function() {
-                    chart9a5837c9a6df454d959f35f57c2e56da.destroy()
+                    chartc6f22f2da5b34f2ab185703fa00bf039.destroy()
                 });
             &lt;/script&gt;&lt;h3 id=&#34;编写语法-10&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#编写语法-10&#34;&gt;#&lt;/a&gt; 编写语法&lt;/h3&gt;
 &lt;p&gt;文首： &lt;code&gt;chart: true&lt;/code&gt;&lt;/p&gt;
