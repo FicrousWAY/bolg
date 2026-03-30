@@ -10,15 +10,337 @@
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Tue, 15 Jul 2025 07:42:12 +0800</pubDate>
-        <lastBuildDate>Tue, 15 Jul 2025 07:42:12 +0800</lastBuildDate>
+        <pubDate>Sat, 28 Mar 2026 01:15:00 +0800</pubDate>
+        <lastBuildDate>Sat, 28 Mar 2026 01:15:00 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://www.ficrousway.top/hexo-shoka-loading-incident-report/</guid>
+            <title>Hexo+Shoka 无限转圈故障复盘（Windows迁移后）</title>
+            <link>https://www.ficrousway.top/hexo-shoka-loading-incident-report/</link>
+            <category term="网络安全" scheme="https://www.ficrousway.top/categories/cyberscurity/" />
+            <pubDate>Sat, 28 Mar 2026 01:15:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#背景&#34;&gt;#&lt;/a&gt; 背景&lt;/h2&gt;
+&lt;p&gt;博客从 Linux 环境迁移到 Windows 后，线上与本地同时出现了同一个问题：页面打开后一直显示 Shoka 的 loading 动画，主内容无法正常进入。&lt;/p&gt;
+&lt;p&gt;由于本地  &lt;code&gt;hexo server&lt;/code&gt;  也能稳定复现，第一时间可以排除 Netlify、域名解析、CDN 回源等服务端因素，问题范围收敛到：&lt;strong&gt;前端初始化链路被阻塞或中断&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;故障现象&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#故障现象&#34;&gt;#&lt;/a&gt; 故障现象&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;首页打开后一直转圈，不进入正文&lt;/li&gt;
+&lt;li&gt;本地环境同样复现&lt;/li&gt;
+&lt;li&gt;页面并非白屏，说明 HTML 本体可达，但初始化 JS 没有完整执行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;排查思路&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#排查思路&#34;&gt;#&lt;/a&gt; 排查思路&lt;/h2&gt;
+&lt;p&gt;这次排查采用了 “先链路后功能” 的策略：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;先验证 Hexo 构建是否可完成，排除纯构建失败导致的假象&lt;/li&gt;
+&lt;li&gt;检查 Shoka 结束 loading 的关键逻辑触发条件&lt;/li&gt;
+&lt;li&gt;优先排查首屏同步脚本（同步脚本最容易造成卡死）&lt;/li&gt;
+&lt;li&gt;回看配置项与主题脚本是否一致（尤其 Algolia / Prism /syntax highlighter）&lt;/li&gt;
+&lt;li&gt;增加运行时容灾，避免单点依赖异常导致 “永久转圈”&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;根因分析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#根因分析&#34;&gt;#&lt;/a&gt; 根因分析&lt;/h2&gt;
+&lt;h3 id=&#34;根因一首屏存在高风险同步外链阻塞后续脚本执行&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#根因一首屏存在高风险同步外链阻塞后续脚本执行&#34;&gt;#&lt;/a&gt; 根因一：首屏存在高风险同步外链，阻塞后续脚本执行&lt;/h3&gt;
+&lt;p&gt;在  &lt;code&gt;themes/shoka/layout/_partials/layout.njk&lt;/code&gt;  中，首屏阶段存在同步外链脚本加载：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;https://cdn.polyfill.io/v2/polyfill.js&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;#123;&amp;#123; _vendor_js() &amp;#125;&amp;#125;&lt;/code&gt; （生成 jsdelivr combine 脚本）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这类同步脚本一旦网络抖动、被拦截或响应异常，会直接阻塞后续  &lt;code&gt;app.js&lt;/code&gt;  执行。&lt;br /&gt;
+而 Shoka 的 loading 退出依赖  &lt;code&gt;Loader.hide()/Loader.vanish()&lt;/code&gt; ，如果主初始化逻辑没跑到，loading 就会一直存在。&lt;/p&gt;
+&lt;h3 id=&#34;根因二algolia-配置不完整仍被初始化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#根因二algolia-配置不完整仍被初始化&#34;&gt;#&lt;/a&gt; 根因二：Algolia 配置不完整仍被初始化&lt;/h3&gt;
+&lt;p&gt;原逻辑只判断  &lt;code&gt;if(config.algolia)&lt;/code&gt; ，即使  &lt;code&gt;appId/apiKey/indexName&lt;/code&gt;  都是空值也会注入搜索配置，导致前端搜索初始化存在中断风险。&lt;/p&gt;
+&lt;h3 id=&#34;根因三主题初始化对依赖缺失不够健壮&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#根因三主题初始化对依赖缺失不够健壮&#34;&gt;#&lt;/a&gt; 根因三：主题初始化对依赖缺失不够健壮&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Pjax&lt;/code&gt; 、 &lt;code&gt;quicklink&lt;/code&gt; 、 &lt;code&gt;lozad&lt;/code&gt; 、 &lt;code&gt;anime&lt;/code&gt;  等对象默认 “必定存在”，一旦 CDN 或脚本加载失败，容易在初始化阶段抛错中断。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;具体修改&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#具体修改&#34;&gt;#&lt;/a&gt; 具体修改&lt;/h2&gt;
+&lt;h3 id=&#34;1站点配置修复&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1站点配置修复&#34;&gt;#&lt;/a&gt; 1）站点配置修复&lt;/h3&gt;
+&lt;p&gt;文件： &lt;code&gt;_config.yml&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;url: http://example.com&lt;/code&gt;  -&amp;gt;  &lt;code&gt;url: https://www.ficrousway.top&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;syntax_highlighter: highlight.js&lt;/code&gt;  -&amp;gt;  &lt;code&gt;syntax_highlighter:&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;新增  &lt;code&gt;prism_plugin&lt;/code&gt;  配置：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mode: preprocess&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;theme: default&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;line_number: false&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;no_assets: true&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;文件： &lt;code&gt;_config.shoka.yml&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;修复邮箱链接：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;email: 316...@qq.com&lt;/code&gt;  -&amp;gt;  &lt;code&gt;email: mailto:316...@qq.com&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2模板层去阻塞&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2模板层去阻塞&#34;&gt;#&lt;/a&gt; 2）模板层去阻塞&lt;/h3&gt;
+&lt;p&gt;文件： &lt;code&gt;themes/shoka/layout/_partials/layout.njk&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;移除  &lt;code&gt;polyfill.io&lt;/code&gt;  同步脚本&lt;/li&gt;
+&lt;li&gt;移除首屏同步  &lt;code&gt;&amp;#123;&amp;#123; _vendor_js() &amp;#125;&amp;#125;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;保留  &lt;code&gt;&amp;#123;&amp;#123; _js(&#39;app.js&#39;) &amp;#125;&amp;#125;&lt;/code&gt;  作为核心初始化入口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3主题脚本容灾增强&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3主题脚本容灾增强&#34;&gt;#&lt;/a&gt; 3）主题脚本容灾增强&lt;/h3&gt;
+&lt;p&gt;文件： &lt;code&gt;themes/shoka/scripts/generaters/script.js&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Algolia 仅在  &lt;code&gt;appId/apiKey/indexName&lt;/code&gt;  全部存在时启用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;文件： &lt;code&gt;themes/shoka/source/js/_app/global.js&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;lozad&lt;/code&gt;  增加兜底：缺失时提供空  &lt;code&gt;observe()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;文件： &lt;code&gt;themes/shoka/source/js/_app/pjax.js&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;siteInit&lt;/code&gt;  增加  &lt;code&gt;try/catch&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;增加 loading failsafe（4 秒超时强制退出）&lt;/li&gt;
+&lt;li&gt;对  &lt;code&gt;Pjax&lt;/code&gt;  /  &lt;code&gt;quicklink&lt;/code&gt;  /  &lt;code&gt;instantsearch&lt;/code&gt;  /  &lt;code&gt;algoliasearch&lt;/code&gt;  增加存在性检测后再调用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;文件： &lt;code&gt;themes/shoka/source/js/_app/utils.js&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;anime&lt;/code&gt;  缺失时降级为无动画直接执行，保证流程不断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;验证结果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#验证结果&#34;&gt;#&lt;/a&gt; 验证结果&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;hexo clean &amp;amp;&amp;amp; hexo generate&lt;/code&gt;  可稳定完成&lt;/li&gt;
+&lt;li&gt;生成产物中不再出现  &lt;code&gt;polyfill.io&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;生成产物中不再出现  &lt;code&gt;example.com&lt;/code&gt;  占位域名&lt;/li&gt;
+&lt;li&gt;本地服务可正常启动并进入页面，不再出现无限转圈&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;安全与稳定性经验总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安全与稳定性经验总结&#34;&gt;#&lt;/a&gt; 安全与稳定性经验总结&lt;/h2&gt;
+&lt;p&gt;从网络安全与工程稳定性的角度，这次问题本质是 “前端单点依赖导致可用性丢失”：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不要在首屏关键路径依赖不可控第三方同步脚本&lt;/li&gt;
+&lt;li&gt;任何 loading 动画都必须有超时兜底&lt;/li&gt;
+&lt;li&gt;主题初始化必须具备 “依赖缺失可降级” 能力&lt;/li&gt;
+&lt;li&gt;配置项必须做完整性校验，不能只判断对象存在&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这次修复后，博客从 “依赖全部正常才可用” 升级为 “部分依赖失败也能阅读”，可用性与抗风险能力明显提升。&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://www.ficrousway.top/acm/test/</guid>
-            <title>test</title>
+            <title>博文 Markdown 语法写作指南（Shoka 全效果展示）</title>
             <link>https://www.ficrousway.top/acm/test/</link>
-            <category term="网络安全" scheme="https://www.ficrousway.top/categories/cyberscurity/" />
+            <category term="程序设计" scheme="https://www.ficrousway.top/categories/programme/" />
+            <category term="Hexo" scheme="https://www.ficrousway.top/tags/Hexo/" />
+            <category term="Shoka" scheme="https://www.ficrousway.top/tags/Shoka/" />
+            <category term="Markdown" scheme="https://www.ficrousway.top/tags/Markdown/" />
+            <category term="教程" scheme="https://www.ficrousway.top/tags/%E6%95%99%E7%A8%8B/" />
             <pubDate>Tue, 15 Jul 2025 07:42:12 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;这是个测试呢&lt;/p&gt;
+            <description><![CDATA[ &lt;p&gt;本站使用 &lt;strong&gt;Hexo&lt;/strong&gt; 与 &lt;strong&gt;Shoka&lt;/strong&gt; 主题，渲染器为  &lt;code&gt;hexo-renderer-multi-markdown-it&lt;/code&gt; 。下文在&lt;strong&gt;同一篇文章&lt;/strong&gt;中演示常用 Front Matter、标准 Markdown 与主题扩展语法；撰写新文时可复制对应段落按需删改。&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;一-front-matter-常用项&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一-front-matter-常用项&#34;&gt;#&lt;/a&gt; 一、Front Matter 常用项&lt;/h2&gt;
+&lt;p&gt;文章顶部  &lt;code&gt;---&lt;/code&gt;  之间为 YAML，常见字段包括：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字段&lt;/th&gt;
+&lt;th&gt;作用&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;title&lt;/code&gt;  /  &lt;code&gt;date&lt;/code&gt;  /  &lt;code&gt;updated&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;标题与时间&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;categories&lt;/code&gt;  /  &lt;code&gt;tags&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;分类与标签&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;cover&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;列表与分享用封面图&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;photos&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;文首相册（本页已演示两张图）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;math&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;  时启用下方 KaTeX 公式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;mermaid&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;  时启用 Mermaid 图&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;chart&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;  时启用 Frappe Charts 图&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;quiz&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;  时启用文末练习题样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;comment: false&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;若已接评论，可单篇关闭&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;分类可写单层或多层，例如： &lt;code&gt;categories: [父类, 子类, 系列名]&lt;/code&gt; 。本站  &lt;code&gt;_config.yml&lt;/code&gt;  中  &lt;code&gt;category_map&lt;/code&gt;  会把中文分类映射为 URL 中的英文 slug。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;二-标题与文字&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二-标题与文字&#34;&gt;#&lt;/a&gt; 二、标题与文字&lt;/h2&gt;
+&lt;h3 id=&#34;二级到六级标题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二级到六级标题&#34;&gt;#&lt;/a&gt; 二级到六级标题&lt;/h3&gt;
+&lt;p&gt;正文从  &lt;code&gt;##&lt;/code&gt;  起跳即可； &lt;code&gt;#&lt;/code&gt;  一级标题一般由主题用作文章标题，文中少用。&lt;/p&gt;
+&lt;h3 id=&#34;强调与行内代码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#强调与行内代码&#34;&gt;#&lt;/a&gt; 强调与行内代码&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;斜体&lt;/em&gt;、&lt;strong&gt;粗粗&lt;/strong&gt;、&lt;em&gt;&lt;strong&gt;粗斜&lt;/strong&gt;&lt;/em&gt;、 &lt;code&gt;行内代码&lt;/code&gt; 、&lt;s&gt;删除线&lt;/s&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;ins&gt;下划线&lt;/ins&gt;、&lt;ins class=&#34;wavy&#34;&gt;波浪线&lt;/ins&gt;、&lt;ins class=&#34;dot&#34;&gt;着重点&lt;/ins&gt;、&lt;mark&gt;荧光高亮&lt;/mark&gt;、&lt;s class=&#34;danger&#34;&gt;红色删除&lt;/s&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;rainbow&#34;&gt;赤橙黄绿青蓝紫&lt;/span&gt; &lt;span class=&#34;label success&#34;&gt;标签样式&lt;/span&gt; &lt;span class=&#34;label warning&#34;&gt;警告标签&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;快捷键示例：&lt;span class=&#34;kbd&#34;&gt;Ctrl&lt;/span&gt; + &lt;span class=&#34;kbd red&#34;&gt;C&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;下标与上标：H&lt;sub&gt;2&lt;/sub&gt;O、29&lt;sup&gt;th&lt;/sup&gt;&lt;/p&gt;
+&lt;h3 id=&#34;剧透与注音&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#剧透与注音&#34;&gt;#&lt;/a&gt; 剧透与注音&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;spoiler&#34; title=&#34;你知道得太多了&#34;&gt;鼠标悬停可见的剧透内容&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;spoiler bulr&#34; title=&#34;你知道得太多了&#34;&gt;选中可见的模糊剧透&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;注音示例：&lt;ruby&gt;汉&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;hàn&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt; 字&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;zì&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;、&lt;ruby&gt;東京&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;とうきょう&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;&lt;/p&gt;
+&lt;h3 id=&#34;emoji&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#emoji&#34;&gt;#&lt;/a&gt; Emoji&lt;/h3&gt;
+&lt;p&gt;😄 ❤️ 🚀 📝&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;三-列表与任务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#三-列表与任务&#34;&gt;#&lt;/a&gt; 三、列表与任务&lt;/h2&gt;
+&lt;p&gt;有序列表：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;第一项&lt;/li&gt;
+&lt;li&gt;第二项
+&lt;ul&gt;
+&lt;li&gt;嵌套无序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;第三项&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;无序列表：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;苹果&lt;/li&gt;
+&lt;li&gt;香蕉&lt;/li&gt;
+&lt;li&gt;橙子&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;任务列表（可在列表后用属性块改样式，&lt;strong&gt;中间空一行&lt;/strong&gt;）：&lt;/p&gt;
+&lt;ul class=&#34;task-list primary&#34;&gt;
+&lt;li class=&#34;task-list-item&#34;&gt;&lt;input type=&#34;checkbox&#34; id=&#34;cbx_0&#34; disabled=&#34;true&#34; /&gt;&lt;label for=&#34;cbx_0&#34;&gt; 待办事项&lt;/label&gt;&lt;/li&gt;
+&lt;li class=&#34;task-list-item&#34;&gt;&lt;input type=&#34;checkbox&#34; id=&#34;cbx_1&#34; checked=&#34;true&#34; disabled=&#34;true&#34; /&gt;&lt;label for=&#34;cbx_1&#34;&gt; 已完成&lt;/label&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;四-引用与分割线&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#四-引用与分割线&#34;&gt;#&lt;/a&gt; 四、引用与分割线&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;普通引用：这是一段引用文字。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;blockquote&gt;&lt;p&gt;书摘或名言可以写在 blockquote 标签内。&lt;/p&gt;
+&lt;footer&gt;&lt;strong&gt;作者名&lt;/strong&gt;&lt;cite&gt;《书名》&lt;/cite&gt;&lt;/footer&gt;&lt;/blockquote&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;五-链接与图片&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#五-链接与图片&#34;&gt;#&lt;/a&gt; 五、链接与图片&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;/archives/&#34;&gt;站内相对链接示例&lt;/a&gt;・&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3Mv&#34;&gt;外链示例&lt;/span&gt;・自动识别链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhv&#34;&gt;https://github.com/hexojs/hexo&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg&#34; alt=&#34;说明文字&#34; title=&#34;悬停标题&#34; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;六-表格含-multimd-扩展&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#六-表格含-multimd-扩展&#34;&gt;#&lt;/a&gt; 六、表格（含 multimd 扩展）&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;表头 A&lt;/th&gt;
+&lt;th&gt;表头 B&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;单元格&lt;/td&gt;
+&lt;td&gt;单元格&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;七-代码块与-prism-高亮&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#七-代码块与-prism-高亮&#34;&gt;#&lt;/a&gt; 七、代码块与 Prism 高亮&lt;/h2&gt;
+&lt;p&gt;行内说明：使用三个反引号包裹语言名。&lt;/p&gt;
+&lt;figure class=&#34;highlight plain&#34;&gt;&lt;figcaption data-lang=&#34;plain&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;无高亮纯文本块（语言名 plain）&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;figcaption data-lang=&#34;javascript&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;hello&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token parameter&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  console&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;Hello, &#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; name&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;带&lt;strong&gt;标题&lt;/strong&gt;与&lt;strong&gt;行高亮&lt;/strong&gt;（同一行写语言名后的参数，具体规则见主题文档）：&lt;/p&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;figcaption data-lang=&#34;javascript&#34;&gt;&lt;span&gt;示例：行高亮&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token parameter&#34;&gt;a&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; b&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr class=&#34;marked&#34;&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; a &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; b&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr class=&#34;marked&#34;&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;命令行提示符&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td data-command=&#34;[user@local ~]$&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;普通用户&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td data-command=&#34;&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td data-command=&#34;# &#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;whoami&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;Hexo 标签代码块（标题与标记行）：&lt;/p&gt;
+&lt;p&gt;&lt;pre&gt;&lt;code&gt;const a &amp;#x3D; 1;
+const b &amp;#x3D; 2;
+const c &amp;#x3D; 3;
+const sum &amp;#x3D; a + b + c;&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;八-数学公式math-true&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#八-数学公式math-true&#34;&gt;#&lt;/a&gt; 八、数学公式（ &lt;code&gt;math: true&lt;/code&gt; ）&lt;/h2&gt;
+&lt;p x^2+y^2=&#34;&#34;&gt;行内：\sqrt&lt;/p&gt;
+&lt;p&gt;块公式：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;katex-display&#34;&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msubsup&gt;&lt;mo&gt;∫&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/msubsup&gt;&lt;msup&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mfrac&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\int_0^1 x^2 \, dx = \frac{1}{3}
+&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:2.4759580000000003em;vertical-align:-0.9119499999999999em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mop&#34;&gt;&lt;span class=&#34;mop op-symbol large-op&#34; style=&#34;margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;&#34;&gt;∫&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t vlist-t2&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:1.5640080000000003em;&#34;&gt;&lt;span style=&#34;top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;top:-3.8129000000000004em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-s&#34;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.9119499999999999em;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.16666666666666666em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8641079999999999em;&#34;&gt;&lt;span style=&#34;top:-3.113em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.16666666666666666em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:2.00744em;vertical-align:-0.686em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mopen nulldelimiter&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mfrac&#34;&gt;&lt;span class=&#34;vlist-t vlist-t2&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:1.32144em;&#34;&gt;&lt;span style=&#34;top:-2.314em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:3em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord&#34;&gt;3&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;top:-3.23em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:3em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;frac-line&#34; style=&#34;border-bottom-width:0.04em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;top:-3.677em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:3em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord&#34;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-s&#34;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.686em;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose nulldelimiter&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;九-mermaidmermaid-true&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#九-mermaidmermaid-true&#34;&gt;#&lt;/a&gt; 九、Mermaid（ &lt;code&gt;mermaid: true&lt;/code&gt; ）&lt;/h2&gt;
+&lt;figure class=&#34;highlight mermaid&#34;&gt;&lt;figcaption data-lang=&#34;mermaid&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;graph&lt;/span&gt; LR&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  A&lt;span class=&#34;token text string&#34;&gt;[开始]&lt;/span&gt; &lt;span class=&#34;token arrow operator&#34;&gt;--&gt;&lt;/span&gt; B&lt;span class=&#34;token text string&#34;&gt;&amp;#123;判断&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  B &lt;span class=&#34;token arrow operator&#34;&gt;--&gt;&lt;/span&gt;&lt;span class=&#34;token label property&#34;&gt;|是|&lt;/span&gt; C&lt;span class=&#34;token text string&#34;&gt;[结果一]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  B &lt;span class=&#34;token arrow operator&#34;&gt;--&gt;&lt;/span&gt;&lt;span class=&#34;token label property&#34;&gt;|否|&lt;/span&gt; D&lt;span class=&#34;token text string&#34;&gt;[结果二]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;figure class=&#34;highlight mermaid&#34;&gt;&lt;figcaption data-lang=&#34;mermaid&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;sequenceDiagram&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token keyword&#34;&gt;participant&lt;/span&gt; 读者&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token keyword&#34;&gt;participant&lt;/span&gt; 博客&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  读者&lt;span class=&#34;token arrow operator&#34;&gt;-&gt;&gt;&lt;/span&gt;博客&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; 打开文章&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  博客&lt;span class=&#34;token arrow operator&#34;&gt;--&gt;&gt;&lt;/span&gt;读者&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; 渲染完成&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;hr /&gt;
+&lt;h2 id=&#34;十-图表-frappe-chartschart-true&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#十-图表-frappe-chartschart-true&#34;&gt;#&lt;/a&gt; 十、图表 Frappe Charts（ &lt;code&gt;chart: true&lt;/code&gt; ）&lt;/h2&gt;
+&lt;div id=&#34;chart4edcad96b31345c393da132fce181599&#34;&gt;&lt;/div&gt;
+            &lt;script type=&#34;text/javascript&#34;&gt;
+                var chart4edcad96b31345c393da132fce181599 = new frappe.Chart(document.getElementById(&#39;chart4edcad96b31345c393da132fce181599&#39;), {
+  &#34;data&#34;: {
+    &#34;labels&#34;: [&#34;一月&#34;, &#34;二月&#34;, &#34;三月&#34;, &#34;四月&#34;],
+    &#34;datasets&#34;: [
+      { &#34;name&#34;: &#34;访问量&#34;, &#34;type&#34;: &#34;line&#34;, &#34;values&#34;: [12, 18, 9, 22] }
+    ]
+  },
+  &#34;type&#34;: &#34;axis-mixed&#34;,
+  &#34;height&#34;: 240,
+  &#34;colors&#34;: [&#34;#7cd6fd&#34;]
+});
+                window.addEventListener(&#39;pjax:send&#39;, function() {
+                    chart4edcad96b31345c393da132fce181599.destroy()
+                });
+            &lt;/script&gt;&lt;hr /&gt;
+&lt;h2 id=&#34;十一-提示框container&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#十一-提示框container&#34;&gt;#&lt;/a&gt; 十一、提示框（container）&lt;/h2&gt;
+&lt;div class=&#34;note default&#34;&gt;
+&lt;p&gt;默认提示框&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;note primary&#34;&gt;
+&lt;p&gt;primary 强调&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;info 说明&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;note success&#34;&gt;
+&lt;p&gt;success 成功&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;note warning&#34;&gt;
+&lt;p&gt;warning 警告&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;note danger&#34;&gt;
+&lt;p&gt;danger 危险&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;note danger no-icon&#34;&gt;
+&lt;p&gt;无图标危险块&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;十二-标签卡与折叠&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#十二-标签卡与折叠&#34;&gt;#&lt;/a&gt; 十二、标签卡与折叠&lt;/h2&gt;
+&lt;div class=&#34;tab&#34; data-id=&#34;demo&#34; data-title=&#34;说明&#34;&gt;
+&lt;p&gt;这里是&lt;strong&gt;第一个&lt;/strong&gt;标签页，可放列表、代码等。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;tab&#34; data-id=&#34;demo&#34; data-title=&#34;代码示例&#34;&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;Hello from tab&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
+&lt;details&gt;&lt;summary&gt;折叠：默认风格&lt;/summary&gt;&lt;div&gt;
+&lt;p&gt;折叠内可以写普通 Markdown。&lt;/p&gt;
+&lt;/div&gt;&lt;/details&gt;
+&lt;details class=&#34;primary&#34;&gt;&lt;summary&gt;折叠：带风格&lt;/summary&gt;&lt;div&gt;
+&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;折叠里的提示框&lt;/p&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;列表项一&lt;/li&gt;
+&lt;li&gt;列表项二&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;/details&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;十三-pullquote-侧栏引文&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#十三-pullquote-侧栏引文&#34;&gt;#&lt;/a&gt; 十三、Pullquote 侧栏引文&lt;/h2&gt;
+&lt;p&gt;正文段落与 pullquote 搭配时，引文会突出在某一侧（左右各演示一次）。&lt;/p&gt;
+&lt;p&gt;&lt;blockquote class=&#34;pullquote left&#34;&gt;&lt;p&gt;这是 &lt;strong&gt;pullquote left&lt;/strong&gt;：适合强调摘要或金句。&lt;/p&gt;
+&lt;/blockquote&gt;&lt;/p&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet，consectetur adipiscing elit。多写几句方便看出 pullquote 与正文混排时的版式：静态博客的排版依赖主题 CSS，若某端显示异常，可对照  &lt;code&gt;themes/shoka/example/source/_posts/tag-plugins.md&lt;/code&gt;  调整 surrounding 段落长度。&lt;/p&gt;
+&lt;p&gt;&lt;blockquote class=&#34;pullquote right&#34;&gt;&lt;p&gt;这是 &lt;strong&gt;pullquote right&lt;/strong&gt;：同样用于突出引用块。&lt;/p&gt;
+&lt;/blockquote&gt;&lt;/p&gt;
+&lt;p&gt;Maecenas tempus molestie arcu，et fringilla mauris placerat ac。再补一段正文，避免 pullquote 紧贴文末影响观感；实际写作时按内容自然分段即可。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;十四-多媒体-media音频列表示例&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#十四-多媒体-media音频列表示例&#34;&gt;#&lt;/a&gt; 十四、多媒体  &lt;code&gt;media&lt;/code&gt; （音频列表示例）&lt;/h2&gt;
+&lt;p&gt;下列标签由主题提供，适合在文中嵌入网易云歌单 / 单曲等（需网络可访问对应服务）。&lt;/p&gt;
+&lt;p&gt;&lt;div class=&#34;media-container&#34;&gt;&lt;div class=&#34;player&#34; data-type=&#34;audio&#34; data-src=&#39;[{&#34;title&#34;:&#34;演示（单曲）&#34;,&#34;list&#34;:[&#34;https://music.163.com/#/song?id=29732235&#34;]}]&#39;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;视频同理可使用 `&lt;/p&gt;
  ]]></description>
         </item>
         <item>
