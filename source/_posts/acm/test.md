@@ -3,7 +3,7 @@ title: 博文 Markdown 语法写作指南（Shoka 全效果展示）
 date: 2025-07-15 07:42:12
 updated: 2026-03-31 12:00:00
 categories:
-  - [程序设计]
+  - 生活杂项
 tags:
   - Hexo
   - Shoka
@@ -18,7 +18,7 @@ photos:
   - https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/favicon.png
 ---
 
-本站使用 **Hexo** 与 **Shoka** 主题，渲染器为 `hexo-renderer-multi-markdown-it`。下文每项先给**效果**，再给**编写语法（可复制）**；分类封面路径规则见第一节。
+本站使用 **Hexo** 与 **Shoka** 主题，渲染器为 `hexo-renderer-multi-markdown-it`。下文每项先给**效果**，再给**编写语法（可复制）**；分类封面路径规则见第一节。本文分类为 **生活杂项**；文件仍位于 `source/_posts/acm/test.md`，故 URL 仍为 `/acm/test/`。
 
 <!-- more -->
 
@@ -95,7 +95,7 @@ title: 文章标题
 date: 2026-03-31 12:00:00
 updated: 2026-03-31 18:00:00
 categories:
-  - [程序设计]
+  - 生活杂项
 tags:
   - Hexo
   - Shoka

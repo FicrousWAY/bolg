@@ -8,7 +8,256 @@
     <author>
       <name>FicrousWAY</name>
     </author>
-    <updated>2026-03-27T17:15:00.000Z</updated>
+    <updated>2026-03-31T15:00:00.000Z</updated>
+    <entry>
+        <id>https://www.ficrousway.top/life/blog-global-config-cheatsheet/</id>
+        <title>FicrousWAY 博客全局配置指南（速查）</title>
+        <link rel="alternate" href="https://www.ficrousway.top/life/blog-global-config-cheatsheet/"/>
+        <content type="html">&lt;p&gt;本文在仓库根目录  &lt;code&gt;BLOG_GUIDE.md&lt;/code&gt;  与近期主题定制的基础上，把「改哪里、管什么」收成一篇速查；写具体语法与插件细节仍以  &lt;code&gt;BLOG_GUIDE.md&lt;/code&gt;  与官方文档为准。&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;一-根目录里该看哪些文件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一-根目录里该看哪些文件&#34;&gt;#&lt;/a&gt; 一、根目录里该看哪些文件&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;作用&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;_config.yml&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;站点标题、作者、 &lt;code&gt;url&lt;/code&gt; 、 &lt;code&gt;permalink&lt;/code&gt; 、&lt;strong&gt;分类映射  &lt;code&gt;category_map&lt;/code&gt; &lt;/strong&gt;、Markdown 渲染器、Prism、 &lt;code&gt;feed&lt;/code&gt; 、Algolia 等。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;_config.shoka.yml&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;合并进主题的配置：&lt;strong&gt;菜单、社交、侧栏、字体、加载动画、烟花&lt;/strong&gt;等；未写明的项继承  &lt;code&gt;themes/shoka/_config.yml&lt;/code&gt; 。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;package.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;依赖与  &lt;code&gt;hexo&lt;/code&gt; / &lt;code&gt;hexo server&lt;/code&gt; / &lt;code&gt;hexo generate&lt;/code&gt;  等脚本。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;source/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;除  &lt;code&gt;_posts&lt;/code&gt;  外的页面与静态资源（如  &lt;code&gt;about/&lt;/code&gt; 、 &lt;code&gt;images/&lt;/code&gt; ）；构建后映射到站点根路径。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;source/_posts/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;所有博文；可用子目录整理，&lt;strong&gt;分类以 Front Matter 为准&lt;/strong&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;BLOG_GUIDE.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;站内维护用长文档：目录结构、分类封面、 &lt;code&gt;_cover&lt;/code&gt;  顺序、书写语法等。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;构建命令（项目根）：&lt;/p&gt;
+&lt;pre class=&#34; language-language-bash&#34;&gt;&lt;code class=&#34;language-language-bash&#34;&gt;npx hexo clean &amp;&amp; npx hexo generate
+npx hexo server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;二-站点信息与-url_configyml&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二-站点信息与-url_configyml&#34;&gt;#&lt;/a&gt; 二、站点信息与 URL（ &lt;code&gt;_config.yml&lt;/code&gt; ）&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;title&lt;/code&gt;  /  &lt;code&gt;subtitle&lt;/code&gt;  /  &lt;code&gt;description&lt;/code&gt;  /  &lt;code&gt;keywords&lt;/code&gt;  /  &lt;code&gt;author&lt;/code&gt;  /  &lt;code&gt;language&lt;/code&gt; &lt;/strong&gt;：全站元数据与页头展示。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;url&lt;/code&gt; &lt;/strong&gt;：须与线上地址一致（含  &lt;code&gt;https&lt;/code&gt; ），否则 Feed、绝对链接、部分脚本判断会错。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;permalink&lt;/code&gt; &lt;/strong&gt;：当前为  &lt;code&gt;:title/&lt;/code&gt; ； &lt;code&gt;:title&lt;/code&gt;  表示相对  &lt;code&gt;source/_posts/&lt;/code&gt;  的路径（无扩展名）。若用 &lt;strong&gt; &lt;code&gt;permalink:&lt;/code&gt; &lt;/strong&gt; 强行改成与现有 &lt;strong&gt; &lt;code&gt;source/_posts/某段/&lt;/code&gt; &lt;/strong&gt; 资源目录同路径（例如已有  &lt;code&gt;acm/cover.jpg&lt;/code&gt;  时又设  &lt;code&gt;permalink: acm/test&lt;/code&gt; ），可能与静态产物冲突导致构建失败；&lt;strong&gt;优先通过文件路径表达 URL&lt;/strong&gt;，必要时再单独评估  &lt;code&gt;permalink&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;category_map&lt;/code&gt; &lt;/strong&gt;：把中文分类名映射成英文 &lt;strong&gt;slug&lt;/strong&gt;（URL 片段），并决定分类封面目录名（见下文）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;三-顶栏背景图首页-imgs-六张轮播&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#三-顶栏背景图首页-imgs-六张轮播&#34;&gt;#&lt;/a&gt; 三、顶栏背景图（首页  &lt;code&gt;#imgs&lt;/code&gt;  六张轮播）&lt;/h2&gt;
+&lt;p&gt;逻辑在主题里通过 &lt;strong&gt; &lt;code&gt;_cover(page, 6)&lt;/code&gt; &lt;/strong&gt; 调用（见  &lt;code&gt;themes/shoka/layout/_partials/layout.njk&lt;/code&gt; ）。&lt;/p&gt;
+&lt;p&gt;优先级概要：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;当前页有 &lt;strong&gt; &lt;code&gt;cover&lt;/code&gt;  /  &lt;code&gt;photos&lt;/code&gt; &lt;/strong&gt; 时优先用其凑图；&lt;/li&gt;
+&lt;li&gt;否则用主题 &lt;strong&gt; &lt;code&gt;image_list&lt;/code&gt; &lt;/strong&gt; 随机抽 6 张；&lt;/li&gt;
+&lt;li&gt;可在站点 &lt;strong&gt; &lt;code&gt;source/_data/images.yml&lt;/code&gt; &lt;/strong&gt; 提供字符串数组作为自定义池（&lt;strong&gt;至少 6 条&lt;/strong&gt;）；&lt;/li&gt;
+&lt;li&gt;或在主题配置里设 &lt;strong&gt; &lt;code&gt;image_server&lt;/code&gt; &lt;/strong&gt;，走随机接口 URL。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;默认未配置时，使用主题内置图床 ID 列表（ &lt;code&gt;themes/shoka/_images.yml&lt;/code&gt; ）。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;四-浏览器顶栏主题色theme-color&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#四-浏览器顶栏主题色theme-color&#34;&gt;#&lt;/a&gt; 四、浏览器顶栏主题色（ &lt;code&gt;theme-color&lt;/code&gt; ）&lt;/h2&gt;
+&lt;p&gt;Shoka 在 &lt;strong&gt; &lt;code&gt;themes/shoka/layout/_partials/head/head.njk&lt;/code&gt; &lt;/strong&gt; 中有：&lt;/p&gt;
+&lt;figure class=&#34;highlight html&#34;&gt;&lt;figcaption data-lang=&#34;HTML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;meta&lt;/span&gt; &lt;span class=&#34;token attr-name&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;token attr-value&#34;&gt;&lt;span class=&#34;token punctuation attr-equals&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&#34;&lt;/span&gt;theme-color&lt;span class=&#34;token punctuation&#34;&gt;&#34;&lt;/span&gt;&lt;/span&gt; &lt;span class=&#34;token attr-name&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;token attr-value&#34;&gt;&lt;span class=&#34;token punctuation attr-equals&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&#34;&lt;/span&gt;#FFF&lt;span class=&#34;token punctuation&#34;&gt;&#34;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;需要改移动端浏览器地址栏颜色时，直接改这里的 &lt;strong&gt; &lt;code&gt;content&lt;/code&gt; &lt;/strong&gt; 为目标色值（如暗色主题可用深灰背景色）。升级主题后若被覆盖，需重新合并该修改。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;五-侧栏头像&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#五-侧栏头像&#34;&gt;#&lt;/a&gt; 五、侧栏头像&lt;/h2&gt;
+&lt;p&gt;在 &lt;strong&gt; &lt;code&gt;_config.shoka.yml&lt;/code&gt; &lt;/strong&gt; 的 &lt;strong&gt; &lt;code&gt;sidebar.avatar&lt;/code&gt; &lt;/strong&gt; 填写文件名（当前为  &lt;code&gt;avatar.jpg&lt;/code&gt; ）。&lt;/p&gt;
+&lt;p&gt;图片须能通过站点 URL 访问：常见做法是放到 &lt;strong&gt; &lt;code&gt;source/images/avatar.jpg&lt;/code&gt; &lt;/strong&gt;（文中引用 &lt;strong&gt; &lt;code&gt;/images/avatar.jpg&lt;/code&gt; &lt;/strong&gt;），或与主题静态目录一致的路径；以你部署后浏览器能打开的地址为准。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;六-favicon-与-apple-触摸图标&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#六-favicon-与-apple-触摸图标&#34;&gt;#&lt;/a&gt; 六、Favicon 与 Apple 触摸图标&lt;/h2&gt;
+&lt;p&gt;主题默认在 &lt;strong&gt; &lt;code&gt;themes/shoka/_config.yml&lt;/code&gt; &lt;/strong&gt; 的 &lt;strong&gt; &lt;code&gt;favicon&lt;/code&gt; &lt;/strong&gt; 段配置路径，例如  &lt;code&gt;apple_touch_icon&lt;/code&gt;  等。可在 &lt;strong&gt; &lt;code&gt;_config.shoka.yml&lt;/code&gt; &lt;/strong&gt; 中覆盖同名键。&lt;/p&gt;
+&lt;p&gt;文件放在 &lt;strong&gt; &lt;code&gt;source/&lt;/code&gt; &lt;/strong&gt; 下对应路径（如  &lt;code&gt;source/images/favicon.ico&lt;/code&gt; ），保证构建后位于站点根或你配置的路径下。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;七-打赏图片&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#七-打赏图片&#34;&gt;#&lt;/a&gt; 七、打赏图片&lt;/h2&gt;
+&lt;p&gt;主题默认 &lt;strong&gt; &lt;code&gt;themes/shoka/_config.yml&lt;/code&gt; &lt;/strong&gt; 中 &lt;strong&gt; &lt;code&gt;reward&lt;/code&gt; &lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;reward.enable&lt;/code&gt; &lt;/strong&gt;：是否默认在文章页显示打赏。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;reward.account.wechatpay&lt;/code&gt;  /  &lt;code&gt;alipay&lt;/code&gt;  /  &lt;code&gt;paypal&lt;/code&gt; &lt;/strong&gt;：图片路径，如  &lt;code&gt;/wechatpay.png&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在 &lt;strong&gt; &lt;code&gt;_config.shoka.yml&lt;/code&gt; &lt;/strong&gt; 增加  &lt;code&gt;reward:&lt;/code&gt;  段即可覆盖；把 &lt;strong&gt; &lt;code&gt;wechatpay.png&lt;/code&gt; 、 &lt;code&gt;alipay.png&lt;/code&gt; &lt;/strong&gt; 等放到 &lt;strong&gt; &lt;code&gt;source/&lt;/code&gt; &lt;/strong&gt; 根目录或你配置的路径下（与路径字符串一致）。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;八-菜单-社交-字体与动效_configshokayml&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#八-菜单-社交-字体与动效_configshokayml&#34;&gt;#&lt;/a&gt; 八、菜单、社交、字体与动效（ &lt;code&gt;_config.shoka.yml&lt;/code&gt; ）&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;配置块&lt;/th&gt;
+&lt;th&gt;用途&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt; &lt;code&gt;alternate&lt;/code&gt; &lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;角标 / 副品牌名等展示用文案。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt; &lt;code&gt;statics&lt;/code&gt; &lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;静态资源 URL 前缀；&lt;strong&gt;建议保持  &lt;code&gt;/&lt;/code&gt; &lt;/strong&gt;，以免分类封面等本站生成资源被错误指到 CDN。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt; &lt;code&gt;loader&lt;/code&gt; &lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;首屏与 Tab 切换是否显示 loading 猫。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt; &lt;code&gt;fireworks&lt;/code&gt; &lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;点击烟花效果与颜色列表。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt; &lt;code&gt;darkmode&lt;/code&gt;  /  &lt;code&gt;auto_scroll&lt;/code&gt; &lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;深色模式与自动滚动位置（留空可走主题默认）。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt; &lt;code&gt;font.*&lt;/code&gt; &lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;全局 / 标题 / 正文 / 代码字体与是否从外链加载。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt; &lt;code&gt;iconfont&lt;/code&gt; &lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;阿里 iconfont 项目 id。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt; &lt;code&gt;menu&lt;/code&gt; &lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;导航项： &lt;code&gt;路径 || 图标名&lt;/code&gt; 。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt; &lt;code&gt;social&lt;/code&gt; &lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;名称: 完整URL || 图标 || 颜色&lt;/code&gt; ；注意 YAML 引号成对。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt; &lt;code&gt;sidebar.position&lt;/code&gt; &lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;侧栏左 / 右。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt; &lt;code&gt;widgets&lt;/code&gt;  /  &lt;code&gt;footer&lt;/code&gt;  /  &lt;code&gt;post&lt;/code&gt; &lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;侧栏小工具、页脚年份与统计、文章字数等。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;九-分类封面与文章列表缩略图&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#九-分类封面与文章列表缩略图&#34;&gt;#&lt;/a&gt; 九、分类封面与文章列表缩略图&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;文件位置&lt;/strong&gt;： &lt;code&gt;source/_posts/&amp;lt;slug&amp;gt;/cover.jpg&lt;/code&gt; （ &lt;code&gt;&amp;lt;slug&amp;gt;&lt;/code&gt;  来自  &lt;code&gt;category_map&lt;/code&gt; ，不是中文分类名）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;首页分类卡片&lt;/strong&gt;：依赖上述文件存在；模板使用本站路径 &lt;strong&gt; &lt;code&gt;/&amp;lt;slug&amp;gt;/cover.jpg&lt;/code&gt; &lt;/strong&gt;，并带 &lt;strong&gt; &lt;code&gt;?v=mtime&lt;/code&gt; &lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文章列表 / 导航缩略图&lt;/strong&gt;：由主题 &lt;strong&gt; &lt;code&gt;_cover&lt;/code&gt; &lt;/strong&gt; 按 &lt;strong&gt; &lt;code&gt;cover&lt;/code&gt;  → 分类封面（深→浅）→  &lt;code&gt;photos[0]&lt;/code&gt;  → 空&lt;/strong&gt; 顺序解析；无图时为灰底占位。列表区已改为 &lt;strong&gt;CSS  &lt;code&gt;background-image&lt;/code&gt; &lt;/strong&gt;，不依赖懒加载脚本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;单篇若写了 &lt;strong&gt; &lt;code&gt;cover:&lt;/code&gt; &lt;/strong&gt;，会跳过分类封面；希望显示分类图时请去掉 &lt;strong&gt; &lt;code&gt;cover&lt;/code&gt; &lt;/strong&gt;。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;十-单篇文章里常改的项&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#十-单篇文章里常改的项&#34;&gt;#&lt;/a&gt; 十、单篇文章里常改的项&lt;/h2&gt;
+&lt;p&gt;在对应 &lt;strong&gt; &lt;code&gt;source/_posts/...md&lt;/code&gt; &lt;/strong&gt; 的 Front Matter：&lt;strong&gt; &lt;code&gt;title&lt;/code&gt; 、 &lt;code&gt;date&lt;/code&gt; 、 &lt;code&gt;categories&lt;/code&gt; 、 &lt;code&gt;tags&lt;/code&gt; 、 &lt;code&gt;cover&lt;/code&gt; 、 &lt;code&gt;photos&lt;/code&gt; 、 &lt;code&gt;sticky&lt;/code&gt; 、以及  &lt;code&gt;math&lt;/code&gt;  /  &lt;code&gt;mermaid&lt;/code&gt;  /  &lt;code&gt;chart&lt;/code&gt;  /  &lt;code&gt;quiz&lt;/code&gt;  等开关&lt;/strong&gt;。摘要分隔使用正文中的 &lt;strong&gt; &lt;code&gt;&amp;lt;!-- more --&amp;gt;&lt;/code&gt; &lt;/strong&gt;。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;十一-延伸阅读&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#十一-延伸阅读&#34;&gt;#&lt;/a&gt; 十一、延伸阅读&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;仓库内 &lt;strong&gt; &lt;code&gt;BLOG_GUIDE.md&lt;/code&gt; &lt;/strong&gt;（完整书写与插件说明）。&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv&#34;&gt;Hexo 文档&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==&#34;&gt;Shoka 主题仓库&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;配置以你当前  &lt;code&gt;_config.yml&lt;/code&gt;  与  &lt;code&gt;_config.shoka.yml&lt;/code&gt;  为准；升级主题后请核对本文涉及的模板与脚本是否仍需手工合并。&lt;/em&gt;&lt;/p&gt;
+</content>
+        <category term="生活杂项" scheme="https://www.ficrousway.top/categories/life/" />
+        <category term="Hexo" scheme="https://www.ficrousway.top/tags/Hexo/" />
+        <category term="Shoka" scheme="https://www.ficrousway.top/tags/Shoka/" />
+        <category term="配置" scheme="https://www.ficrousway.top/tags/%E9%85%8D%E7%BD%AE/" />
+        <updated>2026-03-31T15:00:00.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://www.ficrousway.top/life/theme-tech-changelog-2026-03/</id>
+        <title>站点与 Shoka 主题技术修改报告（2026 年 3 月）</title>
+        <link rel="alternate" href="https://www.ficrousway.top/life/theme-tech-changelog-2026-03/"/>
+        <content type="html">&lt;p&gt;本文汇总本轮对 Hexo 站点与  &lt;code&gt;themes/shoka&lt;/code&gt;  的定制修改，便于日后升级主题或换机时做 diff 合并。细节实现以仓库内文件为准。&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;一-构建与站点配置&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一-构建与站点配置&#34;&gt;#&lt;/a&gt; 一、构建与站点配置&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项目&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;package.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Windows 下若全局未安装  &lt;code&gt;hexo&lt;/code&gt; ，脚本改为  &lt;code&gt;node ./node_modules/hexo/bin/hexo&lt;/code&gt; ，保证  &lt;code&gt;npm run build&lt;/code&gt;  可用。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;_config.yml&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;修正  &lt;code&gt;url&lt;/code&gt; 、关闭冲突的  &lt;code&gt;syntax_highlighter&lt;/code&gt;  默认项、配置  &lt;code&gt;prism_plugin&lt;/code&gt; （与主题 Prism 资源配合）。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;_config.shoka.yml&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;修正社交里  &lt;code&gt;mailto:&lt;/code&gt;  等链接；&lt;strong&gt;保持  &lt;code&gt;statics: /&lt;/code&gt; &lt;/strong&gt;，避免分类封面被错误拼到 CDN 前缀。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;二-首屏加载与无限转圈修复&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二-首屏加载与无限转圈修复&#34;&gt;#&lt;/a&gt; 二、首屏加载与「无限转圈」修复&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;现象&lt;/strong&gt;：页面长期停在 Shoka loading，主内容不显示。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方向&lt;/strong&gt;：去掉首屏阻塞型同步外链；Algolia 等能力在配置不完整时不初始化；核心初始化加 try/catch 与超时兜底；第三方对象（ &lt;code&gt;lozad&lt;/code&gt; 、 &lt;code&gt;anime&lt;/code&gt; 、 &lt;code&gt;Pjax&lt;/code&gt;  等）先检测再调用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;涉及文件（节选）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;themes/shoka/layout/_partials/layout.njk&lt;/code&gt; ：移除  &lt;code&gt;polyfill.io&lt;/code&gt; 、首屏同步  &lt;code&gt;_vendor_js()&lt;/code&gt;  等高风险阻塞。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;themes/shoka/scripts/generaters/script.js&lt;/code&gt; ：仅当 Algolia  &lt;code&gt;appId&lt;/code&gt;  /  &lt;code&gt;apiKey&lt;/code&gt;  /  &lt;code&gt;indexName&lt;/code&gt;  齐全时注入搜索逻辑。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;themes/shoka/source/js/_app/pjax.js&lt;/code&gt; ： &lt;code&gt;siteInit&lt;/code&gt;  容错、loading 超时关闭。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;themes/shoka/source/js/_app/global.js&lt;/code&gt; ： &lt;code&gt;lozad&lt;/code&gt;  缺失时提供空实现。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;themes/shoka/source/js/_app/utils.js&lt;/code&gt; ： &lt;code&gt;anime&lt;/code&gt;  缺失时无动画降级。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;（故障背景与排查过程见同分类下《Hexo+Shoka 无限转圈故障复盘》一文。）&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;三-分类封面与文章缩略图_cover&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#三-分类封面与文章缩略图_cover&#34;&gt;#&lt;/a&gt; 三、分类封面与文章缩略图（ &lt;code&gt;_cover&lt;/code&gt; ）&lt;/h2&gt;
+&lt;h3 id=&#34;31-分类卡片-url&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#31-分类卡片-url&#34;&gt;#&lt;/a&gt; 3.1 分类卡片 URL&lt;/h3&gt;
+&lt;p&gt;分类区封面链接使用 &lt;strong&gt; &lt;code&gt;url_for(&#39;&amp;lt;slug&amp;gt;/cover.jpg&#39;)&lt;/code&gt; &lt;/strong&gt;，&lt;strong&gt;不再&lt;/strong&gt;与  &lt;code&gt;theme.statics&lt;/code&gt; （CDN）拼接，否则本地生成的  &lt;code&gt;public/&amp;lt;slug&amp;gt;/cover.jpg&lt;/code&gt;  无法命中。&lt;/p&gt;
+&lt;h3 id=&#34;32-磁盘检测路径&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#32-磁盘检测路径&#34;&gt;#&lt;/a&gt; 3.2 磁盘检测路径&lt;/h3&gt;
+&lt;p&gt;构建时检测  &lt;code&gt;cover.jpg&lt;/code&gt;  是否存在的逻辑，统一基于 &lt;strong&gt; &lt;code&gt;hexo.source_dir&lt;/code&gt; （或  &lt;code&gt;base_dir&lt;/code&gt;  +  &lt;code&gt;config.source_dir&lt;/code&gt; ）下的  &lt;code&gt;_posts/&amp;lt;slug&amp;gt;/cover.jpg&lt;/code&gt; &lt;/strong&gt;，避免工作目录或相对路径误判。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;相关脚本&lt;/strong&gt;： &lt;code&gt;themes/shoka/scripts/generaters/index.js&lt;/code&gt; 、 &lt;code&gt;themes/shoka/scripts/helpers/list_categories.js&lt;/code&gt; 。&lt;/p&gt;
+&lt;h3 id=&#34;33-_cover-解析顺序themesshokascriptshelpersenginejs&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#33-_cover-解析顺序themesshokascriptshelpersenginejs&#34;&gt;#&lt;/a&gt; 3.3  &lt;code&gt;_cover&lt;/code&gt;  解析顺序（ &lt;code&gt;themes/shoka/scripts/helpers/engine.js&lt;/code&gt; ）&lt;/h3&gt;
+&lt;p&gt;对&lt;strong&gt;单张&lt;/strong&gt;场景（文章列表、上下篇等，即未传  &lt;code&gt;num&lt;/code&gt;  或  &lt;code&gt;num ≤ 1&lt;/code&gt; ）：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;文章 Front Matter &lt;strong&gt; &lt;code&gt;cover&lt;/code&gt; &lt;/strong&gt;（写了则&lt;strong&gt;不再&lt;/strong&gt;用分类封面；不需要时请删除该字段）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分类封面&lt;/strong&gt;：从  &lt;code&gt;categories.toArray()&lt;/code&gt;  &lt;strong&gt;从最后一项向根&lt;/strong&gt;查找，第一个在磁盘存在  &lt;code&gt;cover.jpg&lt;/code&gt;  的分类生效；URL 带 &lt;strong&gt; &lt;code&gt;?v=文件 mtime&lt;/code&gt; &lt;/strong&gt; 作缓存刷新。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;photos&lt;/code&gt;  第一张&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;皆无则返回空字符串 ——&lt;strong&gt; 不再用随机图&lt;/strong&gt;；模板侧用灰底占位。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;仅 &lt;strong&gt; &lt;code&gt;_cover(page, 6)&lt;/code&gt; &lt;/strong&gt; 这类&lt;strong&gt;多张头图&lt;/strong&gt;（ &lt;code&gt;typeof num === &#39;number&#39; &amp;amp;&amp;amp; num &amp;gt; 1&lt;/code&gt; ）在无  &lt;code&gt;cover&lt;/code&gt; / &lt;code&gt;photos&lt;/code&gt;  时仍走主题随机图池或  &lt;code&gt;image_server&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;新增 / 注册辅助方法包括： &lt;code&gt;sourcePostsDir&lt;/code&gt; 、 &lt;code&gt;categoryCoverAbs&lt;/code&gt; 、 &lt;code&gt;categoryCoverPublicUrl&lt;/code&gt; 、 &lt;code&gt;resolvePostCategoryCoverUrl&lt;/code&gt; 、&lt;strong&gt; &lt;code&gt;_categoryCoverUrl&lt;/code&gt; &lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;34-首页文章列表懒加载改为背景图&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#34-首页文章列表懒加载改为背景图&#34;&gt;#&lt;/a&gt; 3.4 首页文章列表：懒加载改为背景图&lt;/h3&gt;
+&lt;p&gt;列表宏原先用  &lt;code&gt;&amp;lt;img data-src&amp;gt;&lt;/code&gt;  依赖 &lt;strong&gt;lozad&lt;/strong&gt;；若 PJAX / 懒加载未执行，缩略图表现为空白，而分类卡片因内联背景一直正常。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;修改&lt;/strong&gt;： &lt;code&gt;themes/shoka/layout/_macro/segment.njk&lt;/code&gt;  中  &lt;code&gt;.cover&lt;/code&gt;  使用与卡片一致的 &lt;strong&gt; &lt;code&gt;style=&amp;quot;background-image: url(...); background-size: cover; background-position: center&amp;quot;&lt;/code&gt; &lt;/strong&gt;，可点击区域为 &lt;strong&gt; &lt;code&gt;a.cover-hit&lt;/code&gt; &lt;/strong&gt;。样式配合  &lt;code&gt;themes/shoka/source/css/_common/components/pages/home.styl&lt;/code&gt; （含占位与 hover）。&lt;/p&gt;
+&lt;h3 id=&#34;35-随机头图池条目数&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#35-随机头图池条目数&#34;&gt;#&lt;/a&gt; 3.5 随机头图池条目数&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;themes/shoka/scripts/generaters/config.js&lt;/code&gt; ：自定义  &lt;code&gt;source/_data/images.yml&lt;/code&gt;  时，列表长度判断由「&lt;strong&gt;多于 6 条&lt;/strong&gt;」改为「&lt;strong&gt;不少于 6 条&lt;/strong&gt;」，与顶栏六张轮播需求一致。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;四-维护建议&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#四-维护建议&#34;&gt;#&lt;/a&gt; 四、维护建议&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;升级主题前&lt;/strong&gt;：对上述路径执行  &lt;code&gt;git diff&lt;/code&gt; ，逐项合并，避免覆盖加载安全与封面逻辑。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分类封面&lt;/strong&gt;：文件路径永远是 &lt;strong&gt; &lt;code&gt;source/_posts/&amp;lt;slug&amp;gt;/cover.jpg&lt;/code&gt; &lt;/strong&gt;， &lt;code&gt;slug&lt;/code&gt;  以  &lt;code&gt;_config.yml&lt;/code&gt;  的  &lt;code&gt;category_map&lt;/code&gt;  为准（例如本站「网络安全」→  &lt;code&gt;cyberscurity&lt;/code&gt; ）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文章归类&lt;/strong&gt;：仅改 Front Matter  &lt;code&gt;categories&lt;/code&gt;  即可；磁盘子目录（如  &lt;code&gt;life/&lt;/code&gt; ）主要用于整理源文件，默认永久链接仍由  &lt;code&gt;permalink&lt;/code&gt;  规则与可选的  &lt;code&gt;permalink:&lt;/code&gt;  字段决定。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;若与仓库实际代码不一致，以当前分支为准；本文仅作变更说明索引。&lt;/em&gt;&lt;/p&gt;
+</content>
+        <category term="生活杂项" scheme="https://www.ficrousway.top/categories/life/" />
+        <category term="Hexo" scheme="https://www.ficrousway.top/tags/Hexo/" />
+        <category term="Shoka" scheme="https://www.ficrousway.top/tags/Shoka/" />
+        <category term="运维" scheme="https://www.ficrousway.top/tags/%E8%BF%90%E7%BB%B4/" />
+        <updated>2026-03-31T14:30:00.000Z</updated>
+    </entry>
     <entry>
         <id>https://www.ficrousway.top/hexo-shoka-loading-incident-report/</id>
         <title>Hexo+Shoka 无限转圈故障复盘（Windows迁移后）</title>
@@ -116,14 +365,17 @@
 &lt;/ul&gt;
 &lt;p&gt;这次修复后，博客从 “依赖全部正常才可用” 升级为 “部分依赖失败也能阅读”，可用性与抗风险能力明显提升。&lt;/p&gt;
 </content>
-        <category term="网络安全" scheme="https://www.ficrousway.top/categories/cyberscurity/" />
+        <category term="生活杂项" scheme="https://www.ficrousway.top/categories/life/" />
+        <category term="Hexo" scheme="https://www.ficrousway.top/tags/Hexo/" />
+        <category term="Shoka" scheme="https://www.ficrousway.top/tags/Shoka/" />
+        <category term="故障排查" scheme="https://www.ficrousway.top/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" />
         <updated>2026-03-27T17:15:00.000Z</updated>
     </entry>
     <entry>
         <id>https://www.ficrousway.top/acm/test/</id>
         <title>博文 Markdown 语法写作指南（Shoka 全效果展示）</title>
         <link rel="alternate" href="https://www.ficrousway.top/acm/test/"/>
-        <content type="html">&lt;p&gt;本站使用 &lt;strong&gt;Hexo&lt;/strong&gt; 与 &lt;strong&gt;Shoka&lt;/strong&gt; 主题，渲染器为  &lt;code&gt;hexo-renderer-multi-markdown-it&lt;/code&gt; 。下文每项先给&lt;strong&gt;效果&lt;/strong&gt;，再给&lt;strong&gt;编写语法（可复制）&lt;/strong&gt;；分类封面路径规则见第一节。&lt;/p&gt;
+        <content type="html">&lt;p&gt;本站使用 &lt;strong&gt;Hexo&lt;/strong&gt; 与 &lt;strong&gt;Shoka&lt;/strong&gt; 主题，渲染器为  &lt;code&gt;hexo-renderer-multi-markdown-it&lt;/code&gt; 。下文每项先给&lt;strong&gt;效果&lt;/strong&gt;，再给&lt;strong&gt;编写语法（可复制）&lt;/strong&gt;；分类封面路径规则见第一节。本文分类为 &lt;strong&gt;生活杂项&lt;/strong&gt;；文件仍位于  &lt;code&gt;source/_posts/acm/test.md&lt;/code&gt; ，故 URL 仍为  &lt;code&gt;/acm/test/&lt;/code&gt; 。&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2 id=&#34;〇-首页分类卡片与封面图必读&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#〇-首页分类卡片与封面图必读&#34;&gt;#&lt;/a&gt; 〇、首页「分类」卡片与封面图（必读）&lt;/h2&gt;
@@ -242,7 +494,7 @@
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;编写语法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#编写语法&#34;&gt;#&lt;/a&gt; 编写语法&lt;/h3&gt;
-&lt;figure class=&#34;highlight yaml&#34;&gt;&lt;figcaption data-lang=&#34;YAML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;---&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; 文章标题&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;date&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token datetime number&#34;&gt;2026-03-31 12:00:00&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;updated&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token datetime number&#34;&gt;2026-03-31 18:00:00&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;categories&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;程序设计&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;tags&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; Hexo&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; Shoka&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;math&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;true&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;mermaid&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;true&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;chart&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;true&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;quiz&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;true&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;cover&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; https&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;//example.com/cover.jpg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;photos&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; /images/a.jpg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; /images/b.jpg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;comment&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;false&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;---&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;单层分类： &lt;code&gt;categories: [网络安全]&lt;/code&gt; 。多层： &lt;code&gt;categories: [父类, 子类, 系列]&lt;/code&gt; 。&lt;/p&gt;
+&lt;figure class=&#34;highlight yaml&#34;&gt;&lt;figcaption data-lang=&#34;YAML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;---&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; 文章标题&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;date&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token datetime number&#34;&gt;2026-03-31 12:00:00&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;updated&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token datetime number&#34;&gt;2026-03-31 18:00:00&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;categories&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; 生活杂项&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;tags&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; Hexo&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; Shoka&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;math&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;true&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;mermaid&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;true&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;chart&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;true&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;quiz&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;true&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;cover&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; https&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;//example.com/cover.jpg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;photos&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; /images/a.jpg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; /images/b.jpg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;comment&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;false&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;---&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;单层分类： &lt;code&gt;categories: [网络安全]&lt;/code&gt; 。多层： &lt;code&gt;categories: [父类, 子类, 系列]&lt;/code&gt; 。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2 id=&#34;二-标题与文字&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二-标题与文字&#34;&gt;#&lt;/a&gt; 二、标题与文字&lt;/h2&gt;
 &lt;h3 id=&#34;效果-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#效果-2&#34;&gt;#&lt;/a&gt; 效果&lt;/h3&gt;
@@ -350,9 +602,9 @@ const sum &amp;#x3D; a + b + c;&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
 &lt;figure class=&#34;highlight markdown&#34;&gt;&lt;figcaption data-lang=&#34;markdown&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token code&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;```&lt;/span&gt;&lt;span class=&#34;token code-language&#34;&gt;mermaid&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token code-block language-mermaid&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;graph&lt;/span&gt; LR&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  A &lt;span class=&#34;token arrow operator&#34;&gt;--&gt;&lt;/span&gt; B&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;```&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;hr /&gt;
 &lt;h2 id=&#34;十-frappe-charts须-chart-true&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#十-frappe-charts须-chart-true&#34;&gt;#&lt;/a&gt; 十、Frappe Charts（须  &lt;code&gt;chart: true&lt;/code&gt; ）&lt;/h2&gt;
 &lt;h3 id=&#34;效果-10&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#效果-10&#34;&gt;#&lt;/a&gt; 效果&lt;/h3&gt;
-&lt;div id=&#34;chart9b66acbb4ea547688683b20744eb5b98&#34;&gt;&lt;/div&gt;
+&lt;div id=&#34;chartce8d43b694794331957a3af1695e6c2a&#34;&gt;&lt;/div&gt;
             &lt;script type=&#34;text/javascript&#34;&gt;
-                var chart9b66acbb4ea547688683b20744eb5b98 = new frappe.Chart(document.getElementById(&#39;chart9b66acbb4ea547688683b20744eb5b98&#39;), {
+                var chartce8d43b694794331957a3af1695e6c2a = new frappe.Chart(document.getElementById(&#39;chartce8d43b694794331957a3af1695e6c2a&#39;), {
   &#34;data&#34;: {
     &#34;labels&#34;: [&#34;一月&#34;, &#34;二月&#34;, &#34;三月&#34;, &#34;四月&#34;],
     &#34;datasets&#34;: [
@@ -364,7 +616,7 @@ const sum &amp;#x3D; a + b + c;&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
   &#34;colors&#34;: [&#34;#7cd6fd&#34;]
 });
                 window.addEventListener(&#39;pjax:send&#39;, function() {
-                    chart9b66acbb4ea547688683b20744eb5b98.destroy()
+                    chartce8d43b694794331957a3af1695e6c2a.destroy()
                 });
             &lt;/script&gt;&lt;h3 id=&#34;编写语法-10&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#编写语法-10&#34;&gt;#&lt;/a&gt; 编写语法&lt;/h3&gt;
 &lt;p&gt;文首： &lt;code&gt;chart: true&lt;/code&gt;&lt;/p&gt;
@@ -471,7 +723,7 @@ const sum &amp;#x3D; a + b + c;&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;em&gt;若某项未渲染：检查 Front Matter 开关、 &lt;code&gt;_config.yml&lt;/code&gt;  中 markdown 插件；本站  &lt;code&gt;markdown.render.html: false&lt;/code&gt;  时不宜依赖文内原始 HTML。&lt;/em&gt;&lt;/p&gt;
 </content>
-        <category term="程序设计" scheme="https://www.ficrousway.top/categories/programme/" />
+        <category term="生活杂项" scheme="https://www.ficrousway.top/categories/life/" />
         <category term="Hexo" scheme="https://www.ficrousway.top/tags/Hexo/" />
         <category term="Shoka" scheme="https://www.ficrousway.top/tags/Shoka/" />
         <category term="Markdown" scheme="https://www.ficrousway.top/tags/Markdown/" />
