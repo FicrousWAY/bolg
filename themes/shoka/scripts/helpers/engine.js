@@ -119,16 +119,27 @@ hexo.extend.helper.register('_image_url', function(img, path = '') {
 })
 
 hexo.extend.helper.register('_cover', function(item, num) {
-  const { statics, js, image_server, image_list } = hexo.theme.config;
+  const { image_server, image_list } = hexo.theme.config;
 
-  if(item.cover) {
-    return this._image_url(item.cover, item.path)
-  } else if (item.photos && item.photos.length > 0) {
-    return this._image_url(item.photos[0], item.path)
-  } else {
-    return randomBG(num || 1, image_server, image_list);
+  if (item.cover) {
+    return this._image_url(item.cover, item.path);
   }
-
+  const cats = item.categories;
+  if (cats && cats.length) {
+    const arr = typeof cats.toArray === 'function' ? cats.toArray() : [];
+    const firstCat = arr[0];
+    if (firstCat && firstCat.slug) {
+      const slug = String(firstCat.slug);
+      const coverAbs = path.join(hexo.source_dir, '_posts', ...slug.split('/'), 'cover.jpg');
+      if (fs.existsSync(coverAbs)) {
+        return url_for.call(this, slug + '/cover.jpg');
+      }
+    }
+  }
+  if (item.photos && item.photos.length > 0) {
+    return this._image_url(item.photos[0], item.path);
+  }
+  return randomBG(num || 1, image_server, image_list);
 })
 
 hexo.extend.helper.register('_md5', function(path) {

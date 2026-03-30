@@ -52,6 +52,34 @@ bolg/
 
 ---
 
+## 二·一、首页顶栏背景图（`#imgs` 六张轮播）
+
+模板在 `themes/shoka/layout/_partials/layout.njk` 里调用 `_cover(page, 6)`：
+
+- 若当前页在 Front Matter 里配置了 **`cover` / `photos`**（且能解析出图），会优先用它们凑头图；
+- 否则从主题的 **`image_list`** 里随机抽 **6** 张，填进顶栏 `<ul><li data-background-image="…">`。
+
+**自定义随机池（推荐）**：在站点 `source/_data/` 下新建 **`images.yml`**，内容为**字符串数组**（与主题内置 `themes/shoka/_images.yml` 格式相同：可以是微博图床 ID，或 `http(s)://` 完整图片地址）。**至少 6 条**时，构建脚本会用你的列表覆盖默认池（已把主题里原来的「必须多于 6 条」改为「不少于 6 条」）。
+
+**另一方式**：在 `_config.shoka.yml`（或主题合并后的配置）里设置 **`image_server`** 为随机图 API URL，则走「每次带随机参数请求接口」的逻辑（见 `themes/shoka/scripts/helpers/engine.js` 里的 `randomBG`）。
+
+不改配置时，使用主题自带的 `themes/shoka/_images.yml` 列表（微博图床 ID，由主题拼成完整 URL）。
+
+---
+
+## 二·二、文章在列表/导航里的「封面图」（`_cover` 解析顺序）
+
+以下适用于首页文章列表、归档列表、上下篇导航等所有调用 `_cover(文章)` 的地方（`themes/shoka/scripts/helpers/engine.js`）：
+
+1. **`cover`**（Front Matter 自定义，最高优先级）——相对路径会按主题 `statics` 与 `post_asset_folder` 规则转成 URL；`http(s)://` 或 `//` 则原样使用。  
+2. **第一个分类的封面**——取 **`categories.toArray()[0]`**；若存在 **`source/_posts/<该分类 slug>/cover.jpg`**，则用站点上的 `/<slug>/cover.jpg`。  
+3. **`photos` 第一张**——未写 `cover`、且分类下没有 `cover.jpg` 时使用。  
+4. **以上都没有**——与首页头图相同，从 `image_list` / `image_server` 随机。
+
+首页「分类卡片」的背景仍只认 **`source/_posts/<slug>/cover.jpg`**，与上述文章 `_cover` 逻辑相互独立但共用同一份分类封面文件。
+
+---
+
 ## 三、站点主配置 `_config.yml`
 
 ### 3.1 站点信息与 URL
