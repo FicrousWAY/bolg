@@ -1,5 +1,5 @@
 {% macro render(item) %}
-{%- set cover = url_for(theme.statics + item.slug + '/cover.jpg') %}
+{%- set cover = url_for(item.slug + '/cover.jpg') %}
 {%- set itemname = item.name %}
 <section class="item">
   <div class="cover"{%- if cover %} style="background-image: url('{{ cover }}')"{%- endif %}>

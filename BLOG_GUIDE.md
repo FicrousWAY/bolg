@@ -47,7 +47,7 @@ bolg/
   - 若将来改为 `post_asset_folder: true`，`hexo new` 会为每篇文章建同名文件夹，图片与 md 同组。
 - **主题自带图**：`themes/shoka/source/images/`（例如默认 `avatar.jpg` 引用逻辑与主题一致）。
 - **侧栏头像**：在 `_config.shoka.yml` 里 `sidebar.avatar` 当前为 `avatar.jpg`；文件需能通过主题静态资源访问（主题示例为放在主题 `source/images/` 或按主题文档放置；你本地若以根目录静态资源为准，需与实际上线路径一致）。
-- **分类封面（首页六格等）**：主题逻辑会在 `source/_posts/<分类 slug>/cover.jpg` 查找分类封面；分类 slug 与 `category_map` 映射后的英文目录名一致（见下文「分类」一节）。
+- **分类封面（首页六格等）**：主题逻辑会在 `source/_posts/<分类 slug>/cover.jpg` 查找分类封面；分类 slug 与 `category_map` 映射后的英文目录名一致（见下文「分类」一节）。构建后输出为站点根下的 `<slug>/cover.jpg`；首页卡片链接已修正为 `url_for(slug + '/cover.jpg')`，**不要**再拼 `theme.statics`（若 `statics` 指向 jsDelivr 等 CDN，会去 CDN 拉图，变成主题默认图或 404）。
 - **打赏图**：主题默认配置指向 `/wechatpay.png`、`/alipay.png` 等；若启用打赏，应放在 `source/` 下对应路径。你当前 `_config.shoka.yml` 片段未展开 `reward` 时，以 `themes/shoka/_config.yml` 默认为准。
 
 ---
