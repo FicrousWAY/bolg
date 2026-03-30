@@ -5,8 +5,8 @@
 {%- set postText = item.title or item.link or __('post.untitled') %}
 {%- set thumb = _cover(item) %}
 <article class="item">
-  <div class="cover{{ ' is-empty' if not thumb else '' }}">
-    {{ _url(item.link or item.path, ('<img data-src="' + thumb + '">') if thumb else '<span class="cover-placeholder"></span>', {itemprop: 'url', title: postText}) }}
+  <div class="cover{{ ' is-empty' if not thumb else '' }}"{%- if thumb %} style="background-image: url('{{ thumb }}'); background-size: cover; background-position: center;"{%- endif %}>
+    {{ _url(item.link or item.path, ('<span class="cover-placeholder"></span>') if not thumb else '', {itemprop: 'url', title: postText, class: 'cover-hit'}) }}
   </div>
   <div class="info">
     {{postmeta.render(item)}}
