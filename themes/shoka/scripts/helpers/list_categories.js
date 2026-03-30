@@ -1,5 +1,6 @@
 'use strict';
 
+const nodePath = require('path');
 var fs = require('hexo-fs');
 
 const prepareQuery = (categories, parent) => {
@@ -78,7 +79,7 @@ hexo.extend.helper.register('_categories', function() {
 
   categories.forEach((cat, i) => {
     let child = prepareQuery(categories, cat._id);
-    let cover = 'source/_posts' + cat.path.replace(hexo.config.category_dir, '') + 'cover.jpg'
+    const cover = nodePath.join(hexo.source_dir, '_posts', ...String(cat.slug).split('/'), 'cover.jpg');
 
     if (fs.existsSync(cover)) {
       let className = cat.slug.split('/');
