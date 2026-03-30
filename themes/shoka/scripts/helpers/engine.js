@@ -10,6 +10,48 @@ const path = require('path');
 
 const randomServer = parseInt(Math.random()*4,10)+1
 
+function sourcePostsDir() {
+  const root = hexo.source_dir || path.join(hexo.base_dir, hexo.config.source_dir || 'source');
+  return path.join(root, '_posts');
+}
+
+function categoryCoverAbs(slug) {
+  return path.join(sourcePostsDir(), ...String(slug).split('/'), 'cover.jpg');
+}
+
+/** 分类封面在站点上的 URL；带 ?v=mtime 减轻浏览器/CDN 强缓存旧图 */
+function categoryCoverPublicUrl(ctx, slug) {
+  const slugStr = String(slug);
+  const abs = categoryCoverAbs(slugStr);
+  if (!fs.existsSync(abs)) {
+    return '';
+  }
+  let v = '';
+  try {
+    v = '?v=' + fs.statSync(abs).mtimeMs;
+  } catch (e) { /* ignore */ }
+  return url_for.call(ctx, slugStr + '/cover.jpg') + v;
+}
+
+/** 从「最深层」分类向根回退，找到第一个存在 cover.jpg 的分类（与侧栏/文底常用 last 分类一致） */
+function resolvePostCategoryCoverUrl(ctx, cats) {
+  if (!cats || !cats.length) {
+    return '';
+  }
+  const arr = typeof cats.toArray === 'function' ? cats.toArray() : [];
+  for (let i = arr.length - 1; i >= 0; i--) {
+    const cat = arr[i];
+    if (!cat || !cat.slug) {
+      continue;
+    }
+    const u = categoryCoverPublicUrl(ctx, cat.slug);
+    if (u) {
+      return u;
+    }
+  }
+  return '';
+}
+
 const randomBG = function(count = 1, image_server = null, image_list = []) {
   if (image_server) {
     if(count && count > 1) {
@@ -118,28 +160,36 @@ hexo.extend.helper.register('_image_url', function(img, path = '') {
   }
 })
 
+hexo.extend.helper.register('_categoryCoverUrl', function(slug) {
+  return categoryCoverPublicUrl(this, slug);
+})
+
 hexo.extend.helper.register('_cover', function(item, num) {
   const { image_server, image_list } = hexo.theme.config;
+  // 仅 layout 头图 `_cover(page, 6)` 等多张场景走随机池；文章列表/上下篇不传或 num<=1 时不随机
+  const multiHeader = typeof num === 'number' && num > 1;
+
+  if (multiHeader) {
+    if (item.cover) {
+      return this._image_url(item.cover, item.path);
+    }
+    if (item.photos && item.photos.length > 0) {
+      return this._image_url(item.photos[0], item.path);
+    }
+    return randomBG(num, image_server, image_list);
+  }
 
   if (item.cover) {
     return this._image_url(item.cover, item.path);
   }
-  const cats = item.categories;
-  if (cats && cats.length) {
-    const arr = typeof cats.toArray === 'function' ? cats.toArray() : [];
-    const firstCat = arr[0];
-    if (firstCat && firstCat.slug) {
-      const slug = String(firstCat.slug);
-      const coverAbs = path.join(hexo.source_dir, '_posts', ...slug.split('/'), 'cover.jpg');
-      if (fs.existsSync(coverAbs)) {
-        return url_for.call(this, slug + '/cover.jpg');
-      }
-    }
+  const catUrl = resolvePostCategoryCoverUrl(this, item.categories);
+  if (catUrl) {
+    return catUrl;
   }
   if (item.photos && item.photos.length > 0) {
     return this._image_url(item.photos[0], item.path);
   }
-  return randomBG(num || 1, image_server, image_list);
+  return '';
 })
 
 hexo.extend.helper.register('_md5', function(path) {

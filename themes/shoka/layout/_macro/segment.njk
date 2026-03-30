@@ -3,9 +3,10 @@
   {%- set postTitleIcon = '<i class="ic i-link-alt"></i>' %}
 {%- endif %}
 {%- set postText = item.title or item.link or __('post.untitled') %}
+{%- set thumb = _cover(item) %}
 <article class="item">
-  <div class="cover">
-    {{ _url(item.link or item.path, '<img data-src="'+ _cover(item) +'">', {itemprop: 'url', title: postText}) }}
+  <div class="cover{{ ' is-empty' if not thumb else '' }}">
+    {{ _url(item.link or item.path, ('<img data-src="' + thumb + '">') if thumb else '<span class="cover-placeholder"></span>', {itemprop: 'url', title: postText}) }}
   </div>
   <div class="info">
     {{postmeta.render(item)}}

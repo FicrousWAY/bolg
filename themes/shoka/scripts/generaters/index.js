@@ -32,7 +32,8 @@ hexo.extend.generator.register('index', function(locals) {
 
   if (categories && categories.length) {
     categories.forEach((cat) => {
-      const cover = nodePath.join(hexo.source_dir, '_posts', ...String(cat.slug).split('/'), 'cover.jpg');
+      const srcRoot = hexo.source_dir || nodePath.join(hexo.base_dir, config.source_dir || 'source');
+      const cover = nodePath.join(srcRoot, '_posts', ...String(cat.slug).split('/'), 'cover.jpg');
 
       if (fs.existsSync(cover)) {
         covers.push({

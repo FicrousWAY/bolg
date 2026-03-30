@@ -21,6 +21,15 @@
       background-size: cover;
       position: relative;
 
+      &.post-nav-link--empty {
+        background-color: var(--grey-3);
+        color: var(--grey-7);
+
+        &::before {
+          opacity: .12;
+        }
+      }
+
       &::before {
         content: "";
         position: absolute;

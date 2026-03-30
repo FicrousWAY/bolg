@@ -13,7 +13,6 @@ math: true
 mermaid: true
 chart: true
 quiz: true
-cover: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
 photos:
   - https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
   - https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/favicon.png

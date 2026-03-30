@@ -79,7 +79,8 @@ hexo.extend.helper.register('_categories', function() {
 
   categories.forEach((cat, i) => {
     let child = prepareQuery(categories, cat._id);
-    const cover = nodePath.join(hexo.source_dir, '_posts', ...String(cat.slug).split('/'), 'cover.jpg');
+    const srcRoot = hexo.source_dir || nodePath.join(hexo.base_dir, hexo.config.source_dir || 'source');
+    const cover = nodePath.join(srcRoot, '_posts', ...String(cat.slug).split('/'), 'cover.jpg');
 
     if (fs.existsSync(cover)) {
       let className = cat.slug.split('/');

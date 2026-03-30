@@ -71,10 +71,10 @@ bolg/
 
 以下适用于首页文章列表、归档列表、上下篇导航等所有调用 `_cover(文章)` 的地方（`themes/shoka/scripts/helpers/engine.js`）：
 
-1. **`cover`**（Front Matter 自定义，最高优先级）——相对路径会按主题 `statics` 与 `post_asset_folder` 规则转成 URL；`http(s)://` 或 `//` 则原样使用。  
-2. **第一个分类的封面**——取 **`categories.toArray()[0]`**；若存在 **`source/_posts/<该分类 slug>/cover.jpg`**，则用站点上的 `/<slug>/cover.jpg`。  
-3. **`photos` 第一张**——未写 `cover`、且分类下没有 `cover.jpg` 时使用。  
-4. **以上都没有**——与首页头图相同，从 `image_list` / `image_server` 随机。
+1. **`cover`**（Front Matter 自定义，最高优先级）——只要写了该项，**不会再**用分类封面；不需要自定义时请删掉 `cover` 字段。相对路径会按主题 `statics` 与 `post_asset_folder` 规则转成 URL；`http(s)://` 或 `//` 则原样使用。  
+2. **分类封面（从深到浅回退）**——从 **`categories.toArray()` 的最后一项（通常是最内层/最具体分类）往前找**，第一个在磁盘上存在 **`source/_posts/<slug>/cover.jpg`** 的分类即采用，URL 为 `/<slug>/cover.jpg`；链接上会自动加 **`?v=文件修改时间`**，避免浏览器或 CDN 一直用旧的缓存图（与分辨率无关）。  
+3. **`photos` 第一张**——未写 `cover`、且所有相关分类都没有 `cover.jpg` 时使用。  
+4. **以上都没有**——列表缩略图与上下篇导航**不再使用随机图**，显示主题样式中的**灰底占位**；首页顶栏 `_cover(page, 6)` 仍使用随机图池。
 
 首页「分类卡片」的背景仍只认 **`source/_posts/<slug>/cover.jpg`**，与上述文章 `_cover` 逻辑相互独立但共用同一份分类封面文件。
 

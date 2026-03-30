@@ -8,7 +8,12 @@
   <h3>{{ postText }}</h3>
   {% endset %}
 
-  {{ _url(item.path, itemlink, {itemprop: 'url', rel: type, 'data-background-image': _cover(item), title: postText}) }}
+  {%- set navbg = _cover(item) %}
+  {%- if navbg %}
+  {{ _url(item.path, itemlink, {itemprop: 'url', rel: type, 'data-background-image': navbg, title: postText}) }}
+  {%- else %}
+  {{ _url(item.path, itemlink, {itemprop: 'url', rel: type, title: postText, class: 'post-nav-link--empty'}) }}
+  {%- endif %}
 {% endmacro %}
 
 <div class="post-nav">

@@ -359,9 +359,9 @@ const sum &amp;#x3D; a + b + c;&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
 &lt;figure class=&#34;highlight markdown&#34;&gt;&lt;figcaption data-lang=&#34;markdown&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token code&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;```&lt;/span&gt;&lt;span class=&#34;token code-language&#34;&gt;mermaid&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token code-block language-mermaid&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;graph&lt;/span&gt; LR&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  A &lt;span class=&#34;token arrow operator&#34;&gt;--&gt;&lt;/span&gt; B&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;```&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;hr /&gt;
 &lt;h2 id=&#34;十-frappe-charts须-chart-true&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#十-frappe-charts须-chart-true&#34;&gt;#&lt;/a&gt; 十、Frappe Charts（须  &lt;code&gt;chart: true&lt;/code&gt; ）&lt;/h2&gt;
 &lt;h3 id=&#34;效果-10&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#效果-10&#34;&gt;#&lt;/a&gt; 效果&lt;/h3&gt;
-&lt;div id=&#34;chartc7e443ca95b749c9a1eff02693fdb40f&#34;&gt;&lt;/div&gt;
+&lt;div id=&#34;chart9b66acbb4ea547688683b20744eb5b98&#34;&gt;&lt;/div&gt;
             &lt;script type=&#34;text/javascript&#34;&gt;
-                var chartc7e443ca95b749c9a1eff02693fdb40f = new frappe.Chart(document.getElementById(&#39;chartc7e443ca95b749c9a1eff02693fdb40f&#39;), {
+                var chart9b66acbb4ea547688683b20744eb5b98 = new frappe.Chart(document.getElementById(&#39;chart9b66acbb4ea547688683b20744eb5b98&#39;), {
   &#34;data&#34;: {
     &#34;labels&#34;: [&#34;一月&#34;, &#34;二月&#34;, &#34;三月&#34;, &#34;四月&#34;],
     &#34;datasets&#34;: [
@@ -373,7 +373,7 @@ const sum &amp;#x3D; a + b + c;&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
   &#34;colors&#34;: [&#34;#7cd6fd&#34;]
 });
                 window.addEventListener(&#39;pjax:send&#39;, function() {
-                    chartc7e443ca95b749c9a1eff02693fdb40f.destroy()
+                    chart9b66acbb4ea547688683b20744eb5b98.destroy()
                 });
             &lt;/script&gt;&lt;h3 id=&#34;编写语法-10&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#编写语法-10&#34;&gt;#&lt;/a&gt; 编写语法&lt;/h3&gt;
 &lt;p&gt;文首： &lt;code&gt;chart: true&lt;/code&gt;&lt;/p&gt;
