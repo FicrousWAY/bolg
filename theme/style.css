@@ -1,0 +1,26 @@
+/* 站点自定义样式，经 theme/client.ts 引入。 */
+
+/* 顶栏社交图标：TiO₂ 只自带 GitHub 图标，这里补上 Steam（用通用手柄图形）。 */
+.vpi-social-steam {
+    --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'%3E%3Crect x='2' y='7' width='20' height='11' rx='5.5'/%3E%3Cpath d='M7.5 10.5v4M5.5 12.5h4'/%3E%3Ccircle cx='15.5' cy='11.5' r='0.6' fill='black'/%3E%3Ccircle cx='18' cy='13.75' r='0.6' fill='black'/%3E%3C/svg%3E");
+}
+
+/* 分类页：板块名后附英文名，空板块给出占位。 */
+.vp-doc .index-category__head .section-english {
+    margin-left: 0.5em;
+    color: var(--vp-c-text-3);
+    font-family: var(--date-font-family);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+.index-category {
+    scroll-margin-top: calc(var(--vp-nav-height) + 24px);
+}
+
+.vp-doc .section-empty {
+    margin: 6px 0 0;
+    color: var(--vp-c-text-3);
+    font-size: 0.875rem;
+}

@@ -1,0 +1,114 @@
+# Netlify 构建与部署（覆盖 Netlify 后台里旧的 Hexo 构建设置）
+[build]
+  command = "npm run build"
+  publish = ".tio2-tmp/site"
+
+[build.environment]
+  NODE_VERSION = "22.22.3"
+
+# 旧 Hexo 站点的链接 → TiO₂ 新地址（301 永久重定向）
+
+[[redirects]]
+  from = "/test1"
+  to = "/posts/test1.html"
+  status = 301
+
+[[redirects]]
+  from = "/test1/*"
+  to = "/posts/test1.html"
+  status = 301
+
+[[redirects]]
+  from = "/acm/test"
+  to = "/posts/test.html"
+  status = 301
+
+[[redirects]]
+  from = "/acm/test/*"
+  to = "/posts/test.html"
+  status = 301
+
+[[redirects]]
+  from = "/hexo-shoka-loading-incident-report"
+  to = "/posts/hexo-shoka-loading-incident-report.html"
+  status = 301
+
+[[redirects]]
+  from = "/hexo-shoka-loading-incident-report/*"
+  to = "/posts/hexo-shoka-loading-incident-report.html"
+  status = 301
+
+[[redirects]]
+  from = "/life/blog-global-config-cheatsheet"
+  to = "/posts/blog-global-config-cheatsheet.html"
+  status = 301
+
+[[redirects]]
+  from = "/life/blog-global-config-cheatsheet/*"
+  to = "/posts/blog-global-config-cheatsheet.html"
+  status = 301
+
+[[redirects]]
+  from = "/life/theme-tech-changelog-2026-03"
+  to = "/posts/theme-tech-changelog-2026-03.html"
+  status = 301
+
+[[redirects]]
+  from = "/life/theme-tech-changelog-2026-03/*"
+  to = "/posts/theme-tech-changelog-2026-03.html"
+  status = 301
+
+[[redirects]]
+  from = "/archives"
+  to = "/pages/archives.html"
+  status = 301
+
+[[redirects]]
+  from = "/archives/*"
+  to = "/pages/archives.html"
+  status = 301
+
+[[redirects]]
+  from = "/categories"
+  to = "/pages/category.html"
+  status = 301
+
+[[redirects]]
+  from = "/categories/*"
+  to = "/pages/category.html"
+  status = 301
+
+[[redirects]]
+  from = "/tags"
+  to = "/pages/tags.html"
+  status = 301
+
+[[redirects]]
+  from = "/tags/*"
+  to = "/pages/tags.html"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/pages/about.html"
+  status = 301
+
+[[redirects]]
+  from = "/about/*"
+  to = "/pages/about.html"
+  status = 301
+
+[[redirects]]
+  from = "/page"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/page/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/rss.xml"
+  to = "/feed.xml"
+  status = 301

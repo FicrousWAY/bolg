@@ -1,0 +1,6 @@
+node_modules/
+.tio2-tmp/
+.DS_Store
+.env
+.env.*
+**/encryption-secrets.local.json

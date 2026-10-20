@@ -1,34 +1,19 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "build": "node ./node_modules/hexo/bin/hexo generate",
-    "clean": "node ./node_modules/hexo/bin/hexo clean",
-    "deploy": "node ./node_modules/hexo/bin/hexo deploy",
-    "server": "node ./node_modules/hexo/bin/hexo server",
-    "netlify": "npm run clean && npm run build"
-  },
-  "hexo": {
-    "version": "7.3.0"
-  },
-  "dependencies": {
-    "hexo": "^7.0.0",
-    "hexo-algoliasearch": "^2.0.1",
-    "hexo-autoprefixer": "^2.0.0",
-    "hexo-generator-archive": "^2.0.0",
-    "hexo-generator-category": "^2.0.0",
-    "hexo-generator-index": "^3.0.0",
-    "hexo-generator-tag": "^2.0.0",
-    "hexo-prism-plugin": "^2.3.0",
-    "hexo-renderer-ejs": "^2.0.0",
-    "hexo-renderer-multi-markdown-it": "^0.1.5",
-    "hexo-renderer-stylus": "^3.0.0",
-    "hexo-server": "^3.0.0",
-    "hexo-symbols-count-time": "^0.7.1",
-    "hexo-theme-landscape": "^1.0.0"
-  },
-  "devDependencies": {
-    "hexo-feed": "^1.1.2"
-  }
+    "name": "ficrousway-blog",
+    "private": true,
+    "type": "module",
+    "description": "FicrousWAY's Stone House 椰子鸡的石头屋 — built with TiO₂",
+    "scripts": {
+        "dev": "tio2 dev",
+        "build": "tio2 build",
+        "preview": "tio2 preview",
+        "cms": "tio2 cms",
+        "new": "tio2 new"
+    },
+    "engines": {
+        "node": ">=22.22.0 <23"
+    },
+    "dependencies": {
+        "tio2": "file:vendor/tio2-1.0.0-preview.1.tgz"
+    }
 }
