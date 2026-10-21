@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="240" viewBox="0 0 960 240" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="240" fill="#ffffff"/>
+  <g stroke="#2563eb" stroke-width="2.5" fill="#ffffff">
+    <rect x="40" y="70" width="220" height="100" rx="14"/>
+    <rect x="370" y="70" width="220" height="100" rx="14"/>
+    <rect x="700" y="70" width="220" height="100" rx="14"/>
+  </g>
+  <g stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow)">
+    <line x1="268" y1="120" x2="360" y2="120"/>
+    <line x1="598" y1="120" x2="690" y2="120"/>
+  </g>
+  <g text-anchor="middle" fill="#000000">
+    <text x="150" y="115" font-size="26" font-weight="700">Markdown</text>
+    <text x="150" y="148" font-size="18" fill="#6b7280">posts/*.md</text>
+    <text x="480" y="115" font-size="26" font-weight="700">tio2 build</text>
+    <text x="480" y="148" font-size="18" fill="#6b7280">公式 · 高亮 · 校验</text>
+    <text x="810" y="115" font-size="26" font-weight="700">静态页面</text>
+    <text x="810" y="148" font-size="18" fill="#6b7280">.tio2-tmp/site</text>
+  </g>
+</svg>

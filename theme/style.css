@@ -1,5 +1,30 @@
 /* 站点自定义样式，经 theme/client.ts 引入。 */
 
+/*
+ * 全站字体（字体文件由 theme/client.ts 从 @fontsource 引入，随站点自托管）
+ *   英文标题  Poppins
+ *   英文正文  Lora
+ *   中文标题  思源黑体 Bold（Noto Sans SC 700）
+ *   中文正文  思源宋体（Noto Serif SC，可变字重，TiO₂ 自带）
+ * 英文字体排在前面：拉丁字母用英文字体，英文字体里没有的汉字自动落到后面的中文字体。
+ * 用 :root:root 提高优先级，确保覆盖 TiO₂ 主题里同名的字体变量。
+ */
+:root:root {
+    --site-font-heading: 'Poppins', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --site-font-body:
+        'Lora', 'Noto Serif SC Variable', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'SimSun', serif;
+
+    --vp-font-family-base: var(--site-font-body);
+    --article-title-font-family: var(--site-font-heading);
+    --bt-logo-font-family: var(--site-font-heading);
+    --date-font-family: 'Lora', Georgia, serif;
+}
+
+/* TiO₂ 只给 h1、h2 设了标题字体，这里让文章里的 h3–h6 也用标题字体。 */
+.vp-doc :is(h3, h4, h5, h6) {
+    font-family: var(--site-font-heading);
+}
+
 /* 顶栏社交图标：TiO₂ 只自带 GitHub 图标，这里补上 Steam（用通用手柄图形）。 */
 .vpi-social-steam {
     --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'%3E%3Crect x='2' y='7' width='20' height='11' rx='5.5'/%3E%3Cpath d='M7.5 10.5v4M5.5 12.5h4'/%3E%3Ccircle cx='15.5' cy='11.5' r='0.6' fill='black'/%3E%3Ccircle cx='18' cy='13.75' r='0.6' fill='black'/%3E%3C/svg%3E");

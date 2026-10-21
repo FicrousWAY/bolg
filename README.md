@@ -69,7 +69,20 @@ description: 一句话摘要（可选，不写则自动截取正文开头）
 
 `category` 写成表外的名字会让构建直接报错，避免分类写错字悄悄多出一个板块。要改板块名称或顺序，编辑 `theme/sections.mjs`，并同步修改已有文章的 `category`。
 
+## 字体
+
+| 用途 | 字体 |
+| --- | --- |
+| 英文标题 | Poppins |
+| 英文正文 | Lora |
+| 中文标题 | 思源黑体 Bold（Noto Sans SC 700） |
+| 中文正文 | 思源宋体（Noto Serif SC，TiO₂ 自带） |
+
+字体文件来自 npm 上的 `@fontsource/*` 包，构建时打包进站点自托管，不依赖 Google Fonts。引入在 `theme/client.ts`，字体变量在 `theme/style.css` 开头；代码块仍用系统等宽字体。
+
 ## 写作语法
+
+完整的效果演示见站内文章《博文 Markdown 语法写作指南（TiO₂ 全效果展示）》（`posts/tio2-syntax-guide.md`）。
 
 TiO₂ 的 Markdown 支持：数学公式（`$...$`、`$$...$$`，构建期渲染）、代码高亮（Shiki，支持行高亮）、脚注（显示为页边注）、`::: tip / info / warning / danger / details` 容器、`::: fold` 折叠、`::: encrypt` 口令加密、`[[双链]]` 引用、`{.class}` 属性。图片可放在 `assets/images/` 下用 `/images/xxx.png` 引用，构建时自动生成 AVIF / WebP。
 

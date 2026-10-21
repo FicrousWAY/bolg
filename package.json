@@ -14,6 +14,9 @@
         "node": ">=22.22.0 <23"
     },
     "dependencies": {
+        "@fontsource/lora": "^5.0.0",
+        "@fontsource/noto-sans-sc": "^5.0.0",
+        "@fontsource/poppins": "^5.0.0",
         "tio2": "file:vendor/tio2-1.0.0-preview.1.tgz"
     }
 }
