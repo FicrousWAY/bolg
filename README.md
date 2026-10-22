@@ -73,12 +73,12 @@ description: 一句话摘要（可选，不写则自动截取正文开头）
 
 | 用途 | 字体 |
 | --- | --- |
-| 英文标题 | Source Serif 4 粗体（思源宋体的配套拉丁字体，标题字号自动用 Display 光学尺寸） |
+| 英文标题 | Poppins 粗体 |
 | 英文正文 | Lora |
-| 中文标题 | 思源宋体粗体（Noto Serif SC 700，大标题 900） |
+| 中文标题 | 霞鹜文楷粗体（LXGW WenKai Bold） |
 | 中文正文 | 思源宋体常规（Noto Serif SC 400，TiO₂ 自带） |
 
-标题和正文都是衬线体，靠字重区分：所有标题统一加粗，正文保持常规字重。字体文件来自 npm 上的 `@fontsource/*` 包，构建时打包进站点自托管，不依赖 Google Fonts。引入在 `theme/client.ts`，字体变量和标题字重在 `theme/style.css` 开头；代码块仍用系统等宽字体。
+所有标题统一加粗，正文保持常规字重。字体文件来自 npm 上的 `@fontsource/*` 与 `lxgw-wenkai-webfont` 包，构建时打包进站点自托管，不依赖 Google Fonts。引入在 `theme/client.ts`，字体变量和标题字重在 `theme/style.css` 开头；代码块仍用系统等宽字体。
 
 ## 写作语法
 

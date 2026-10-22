@@ -2,18 +2,17 @@
 
 /*
  * 全站字体（字体文件由 theme/client.ts 从 @fontsource 引入，随站点自托管）
- *   英文标题  Source Serif 4 粗体 —— 思源宋体的配套拉丁字体，可变光学尺寸，标题字号自动用 Display 字形
+ *   英文标题  Poppins 粗体
  *   英文正文  Lora
- *   中文标题  思源宋体粗体（Noto Serif SC 700/900）
+ *   中文标题  霞鹜文楷粗体（LXGW WenKai Bold）
  *   中文正文  思源宋体常规（Noto Serif SC 400，可变字重，TiO₂ 自带）
- * 标题与正文都是衬线体，靠粗细区分：所有标题统一加粗，正文保持常规字重。
+ * 所有标题统一加粗，正文保持常规字重。
  * 英文字体排在前面：拉丁字母用英文字体，英文字体里没有的汉字自动落到后面的中文字体。
  * 用 :root:root 提高优先级，确保覆盖 TiO₂ 主题里同名的字体变量。
  */
 :root:root {
     --site-font-heading:
-        'Source Serif 4 Variable', 'Source Serif 4', 'Noto Serif SC Variable', 'Noto Serif SC', 'Source Han Serif SC',
-        'Songti SC', 'STSong', 'SimSun', serif;
+        'Poppins', 'LXGW WenKai', 'Kaiti SC', 'STKaiti', 'KaiTi', 'Noto Serif SC Variable', 'Noto Serif SC', serif;
     --site-font-body:
         'Lora', 'Noto Serif SC Variable', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'SimSun', serif;
 
