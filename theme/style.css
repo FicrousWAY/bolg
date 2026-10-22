@@ -10,9 +10,32 @@
  * 英文字体排在前面：拉丁字母用英文字体，英文字体里没有的汉字自动落到后面的中文字体。
  * 用 :root:root 提高优先级，确保覆盖 TiO₂ 主题里同名的字体变量。
  */
+/*
+ * 标题里的数字用 Lora 的衬线数字：这个别名字体只包含 0–9（unicode-range），
+ * 排在标题字体最前面，所以标题里的数字走 Lora，字母仍是 Poppins、汉字仍是霞鹜文楷。
+ * 字体文件直接引用 @fontsource/lora 包里的文件，构建时打包。
+ */
+@font-face {
+    font-family: 'Site Serif Numerals';
+    font-style: normal;
+    font-weight: 100 599;
+    font-display: swap;
+    src: url('../node_modules/@fontsource/lora/files/lora-latin-400-normal.woff2') format('woff2');
+    unicode-range: U+0030-0039;
+}
+
+@font-face {
+    font-family: 'Site Serif Numerals';
+    font-style: normal;
+    font-weight: 600 900;
+    font-display: swap;
+    src: url('../node_modules/@fontsource/lora/files/lora-latin-700-normal.woff2') format('woff2');
+    unicode-range: U+0030-0039;
+}
+
 :root:root {
     --site-font-heading:
-        'Poppins', 'LXGW WenKai', 'Kaiti SC', 'STKaiti', 'KaiTi', 'Noto Serif SC Variable', 'Noto Serif SC', serif;
+        'Site Serif Numerals', 'Poppins', 'LXGW WenKai', 'Kaiti SC', 'STKaiti', 'KaiTi', 'Noto Serif SC Variable', 'Noto Serif SC', serif;
     --site-font-body:
         'Lora', 'Noto Serif SC Variable', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'SimSun', serif;
 
@@ -53,6 +76,13 @@
 .foundation-section__title,
 .foundations-intro h1,
 .foundations-empty h2 {
+    font-weight: 700 !important;
+}
+
+/* 标题旁的数字（文章 h2 前的章节序号、首页按年分隔的年份）同样用 Lora 粗体。 */
+.article-column main .vp-doc h2::before,
+.vp-doc .post-year {
+    font-family: var(--date-font-family);
     font-weight: 700 !important;
 }
 
