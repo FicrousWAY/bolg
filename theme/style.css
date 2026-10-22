@@ -2,15 +2,18 @@
 
 /*
  * 全站字体（字体文件由 theme/client.ts 从 @fontsource 引入，随站点自托管）
- *   英文标题  Poppins
+ *   英文标题  Source Serif 4 粗体 —— 思源宋体的配套拉丁字体，可变光学尺寸，标题字号自动用 Display 字形
  *   英文正文  Lora
- *   中文标题  思源黑体 Bold（Noto Sans SC 700）
- *   中文正文  思源宋体（Noto Serif SC，可变字重，TiO₂ 自带）
+ *   中文标题  思源宋体粗体（Noto Serif SC 700/900）
+ *   中文正文  思源宋体常规（Noto Serif SC 400，可变字重，TiO₂ 自带）
+ * 标题与正文都是衬线体，靠粗细区分：所有标题统一加粗，正文保持常规字重。
  * 英文字体排在前面：拉丁字母用英文字体，英文字体里没有的汉字自动落到后面的中文字体。
  * 用 :root:root 提高优先级，确保覆盖 TiO₂ 主题里同名的字体变量。
  */
 :root:root {
-    --site-font-heading: 'Poppins', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --site-font-heading:
+        'Source Serif 4 Variable', 'Source Serif 4', 'Noto Serif SC Variable', 'Noto Serif SC', 'Source Han Serif SC',
+        'Songti SC', 'STSong', 'SimSun', serif;
     --site-font-body:
         'Lora', 'Noto Serif SC Variable', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'SimSun', serif;
 
@@ -20,9 +23,43 @@
     --date-font-family: 'Lora', Georgia, serif;
 }
 
-/* TiO₂ 只给 h1、h2 设了标题字体，这里让文章里的 h3–h6 也用标题字体。 */
-.vp-doc :is(h3, h4, h5, h6) {
+/* TiO₂ 只给 h1、h2 设了标题字体，这里让文章里的 h3–h6 和归档页的年份标题也用标题字体。 */
+.vp-doc :is(h3, h4, h5, h6),
+.vp-doc .index-year__head h2 {
     font-family: var(--site-font-heading);
+}
+
+/* 所有标题统一加粗（TiO₂ 里不少标题是 600 或常规字重），与常规字重的正文区分开。 */
+.vp-doc :is(h1, h2, h3, h4, h5, h6),
+.VPNavBarTitle .title,
+.post-title,
+.post-feed__head h2,
+.article-header-title,
+.pagination-title,
+.index-head h1,
+.index-year__head h2,
+.index-category__head h2,
+.index-tag-heading,
+.topic-node__title,
+.encrypted-content__title,
+.comment-giscus__title,
+.reference-embed__title,
+.internal-ref__preview-title,
+.backlinks-panel__title,
+.VPLocalSearchBox .search-preview__title,
+.ledger-header h1,
+.ledger-verification h2,
+.ledger-proof__header h2,
+.foundation-header__title,
+.foundation-section__title,
+.foundations-intro h1,
+.foundations-empty h2 {
+    font-weight: 700 !important;
+}
+
+/* 分类、归档页顶部的大标题用最粗一档。 */
+.vp-doc .index-head h1 {
+    font-weight: 900 !important;
 }
 
 /* 顶栏社交图标：TiO₂ 只自带 GitHub 图标，这里补上 Steam（用通用手柄图形）。 */
