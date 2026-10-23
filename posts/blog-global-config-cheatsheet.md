@@ -1,5 +1,5 @@
 ---
-title: FicrousWAY 博客全局配置指南（速查）
+title: FicrousWAY 博客全局配置指南（速查）（旧版文章，不建议阅读）
 date: 2026-03-31 23:00:00
 category: 杂项
 tags:

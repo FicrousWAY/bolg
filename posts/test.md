@@ -1,5 +1,5 @@
 ---
-title: 博文 Markdown 语法写作指南（Shoka 全效果展示）
+title: 博文 Markdown 语法写作指南（Shoka 全效果展示）（旧版文章，不建议阅读）
 date: 2025-07-15 07:42:12
 lastUpdated: 2026-03-31 12:00:00
 category: 杂项

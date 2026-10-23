@@ -1,5 +1,5 @@
 ---
-title: Hexo+Shoka 无限转圈故障复盘（Windows迁移后）
+title: Hexo+Shoka 无限转圈故障复盘（Windows迁移后）（旧版文章，不建议阅读）
 date: 2026-03-28 01:15:00
 lastUpdated: 2026-03-31 22:00:00
 category: 杂项
