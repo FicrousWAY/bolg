@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f1ea"/>
+      <stop offset="1" stop-color="#e3ddd0"/>
+    </linearGradient>
+    <linearGradient id="hub" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eef1f6"/>
+    </linearGradient>
+    <marker id="ab" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#059669"/>
+    </marker>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#5b5446" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- faint grid, like squared notebook paper -->
+  <g stroke="#d8d1c2" stroke-width="1" opacity="0.6">
+    <path d="M0 150 H1600 M0 300 H1600 M0 450 H1600 M0 600 H1600 M0 750 H1600"/>
+    <path d="M200 0 V900 M400 0 V900 M600 0 V900 M800 0 V900 M1000 0 V900 M1200 0 V900 M1400 0 V900"/>
+  </g>
+
+  <!-- research loop (left, blue) -->
+  <g fill="none" stroke="#2563eb" stroke-width="16" stroke-linecap="round" opacity="0.92">
+    <path d="M800 470 C 700 250, 330 210, 300 450" marker-end="url(#ab)"/>
+    <path d="M300 470 C 330 700, 690 700, 790 520" marker-end="url(#ab)"/>
+  </g>
+  <!-- course loop (right, green) -->
+  <g fill="none" stroke="#059669" stroke-width="16" stroke-linecap="round" opacity="0.92">
+    <path d="M800 470 C 900 250, 1270 210, 1300 450" marker-end="url(#ag)"/>
+    <path d="M1300 470 C 1270 700, 910 700, 810 520" marker-end="url(#ag)"/>
+  </g>
+
+  <!-- research nodes: papers -->
+  <g filter="url(#sh)">
+    <g transform="translate(345 300) rotate(-8)">
+      <rect x="-55" y="-70" width="110" height="140" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="4"/>
+      <path d="M-35 -40 H35 M-35 -18 H35 M-35 4 H20 M-35 26 H30 M-35 48 H10" stroke="#93b4f5" stroke-width="7" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(260 610)">
+      <circle r="62" fill="#ffffff" stroke="#2563eb" stroke-width="4"/>
+      <circle cx="-8" cy="-8" r="24" fill="none" stroke="#2563eb" stroke-width="8"/>
+      <path d="M10 10 L32 32" stroke="#2563eb" stroke-width="10" stroke-linecap="round"/>
+    </g>
+  </g>
+  <!-- course nodes: slides and cards -->
+  <g filter="url(#sh)">
+    <g transform="translate(1270 250) rotate(7)">
+      <rect x="-80" y="-58" width="160" height="116" rx="10" fill="#ffffff" stroke="#059669" stroke-width="4"/>
+      <rect x="-58" y="-36" width="70" height="44" rx="5" fill="#a7e3cc"/>
+      <path d="M24 -30 H58 M24 -10 H58 M-58 26 H58" stroke="#6fcfa9" stroke-width="7" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(1345 610)">
+      <rect x="-62" y="-44" width="124" height="88" rx="10" fill="#ffffff" stroke="#059669" stroke-width="4" transform="rotate(-10) translate(14 -10)"/>
+      <rect x="-62" y="-44" width="124" height="88" rx="10" fill="#ffffff" stroke="#059669" stroke-width="4"/>
+      <text x="0" y="16" text-anchor="middle" font-size="44" font-weight="700" fill="#059669">Q&amp;A</text>
+    </g>
+  </g>
+
+  <!-- hub: the shared notebook -->
+  <g filter="url(#sh)">
+    <rect x="690" y="370" width="220" height="250" rx="18" fill="url(#hub)" stroke="#1f2937" stroke-width="5"/>
+    <rect x="690" y="370" width="34" height="250" rx="12" fill="#1f2937"/>
+    <path d="M752 425 H880 M752 460 H880 M752 495 H860 M752 530 H880 M752 565 H830" stroke="#9aa3b2" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <!-- two operators taking turns -->
+  <g filter="url(#sh)">
+    <rect x="655" y="190" width="130" height="64" rx="32" fill="#ffffff" stroke="#e8603c" stroke-width="4"/>
+    <rect x="815" y="190" width="130" height="64" rx="32" fill="#ffffff" stroke="#e8603c" stroke-width="4"/>
+  </g>
+  <g font-size="26" font-weight="700" fill="#1f2937" text-anchor="middle">
+    <text x="720" y="231">Codex</text>
+    <text x="880" y="231">Claude</text>
+  </g>
+  <path d="M790 222 H810" stroke="#e8603c" stroke-width="5" stroke-linecap="round"/>
+  <path d="M800 256 V362" stroke="#e8603c" stroke-width="5" stroke-dasharray="4 10" stroke-linecap="round"/>
+
+  <!-- output: the blog page below the hub -->
+  <g filter="url(#sh)">
+    <rect x="715" y="700" width="170" height="120" rx="12" fill="#ffffff" stroke="#1f2937" stroke-width="4"/>
+    <rect x="715" y="700" width="170" height="28" rx="12" fill="#1f2937"/>
+    <circle cx="735" cy="714" r="5" fill="#f4f1ea"/><circle cx="752" cy="714" r="5" fill="#f4f1ea"/><circle cx="769" cy="714" r="5" fill="#f4f1ea"/>
+    <path d="M738 755 H862 M738 780 H840 M738 805 H820" stroke="#9aa3b2" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <path d="M800 628 V690" stroke="#1f2937" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- title -->
+  <text x="80" y="118" font-size="66" font-weight="800" fill="#1f2937" letter-spacing="1">Research OS</text>
+  <text x="84" y="168" font-size="30" fill="#5b5446">科研与课程的两个闭环 · 两个可互换的 AI 执行者</text>
+</svg>
