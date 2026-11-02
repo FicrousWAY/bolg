@@ -1,7 +1,7 @@
 ---
 title: Research OS：用两个可互换的 AI 执行者搭一套科研与课程学习工作流
 date: 2026-11-02 23:55:00
-lastUpdated: 2026-11-03 00:28:00
+lastUpdated: 2026-11-03 00:54:00
 category: 杂项
 tags:
   - 科研工作流
@@ -462,6 +462,116 @@ claude mcp add semanticscholar -s user -- uvx semantic-scholar-fastmcp
 
 Zotero 10 的本地 API 支持写入（条目、分类），第一次写入时 Zotero 会弹窗，选 Always Allow 即可，不需要 Web API 密钥。Better BibTeX 的 JSON-RPC 接口则负责把引用键变成参考文献列表，博客文章的“参考文献”一节就是这样生成的，而不是靠模型回忆[^bbt]。
 
+### Zotero：从“能用”到“能被 AI 写入”
+
+Zotero 是科研闭环里唯一放论文的地方，也是唯一需要授权 AI 写入的外部软件。下面七步按顺序做，每一步都有一个能自己验证的检查。
+
+| 步骤 | 在哪里设置 | 设成什么 | 怎么确认 |
+|---|---|---|---|
+| 1. 开本地 API | 设置 → 高级 | 勾选 “Allow other applications on this computer to communicate with Zotero” | 下面的 `curl` 返回 JSON |
+| 2. 引用键规则 | 设置 → Better BibTeX → Citation keys | `auth.lower + year + shorttitle(1,1)`，例如 `wei2021Finetuned`；已有条目全选 → 右键 → Better BibTeX → Refresh BibTeX key | 新条目的引用键符合格式 |
+| 3. 自动导出 | 右键“我的文库” → 导出文库 | 格式 Better BibTeX，勾选 **Keep updated**，保存为 `~/ResearchOS/library.bib` | 加入一篇论文后，`.bib` 在约 10 秒内多出一条 |
+| 4. 分类 | 左栏新建分类 | `00 Inbox`、`20 <你的方向>`、`25 Machine Learning/…`、`30 Projects`、`90 Read`、`95 My outputs` | 每个分类都写进 `ops/collections.md` |
+| 5. 订阅源 | 文件 → 新建订阅 → 从 URL | 期刊、arXiv 分类和会议检索订阅（清单见 [[#九、扩展到任意研究方向]]） | 订阅面板里出现条目 |
+| 6. 写入授权 | 对执行者说 “Using zotero, check write capabilities and request local write access” | Zotero 弹窗里选 **Always Allow** | 再查一次，报告文库可写；不要建测试条目 |
+| 7. 浏览器插件（可选） | 安装 Zotero Connector | — | 在论文页面能一键保存 |
+
+```bash
+# 1. 本地 API 是否开着（Zotero 必须处于打开状态）
+curl -s 'http://localhost:23119/api/users/0/items?limit=1' | head -c 300; echo
+# 3. Better BibTeX 是否就绪：返回 Zotero 与 Better BibTeX 的版本号
+curl -s http://localhost:23119/better-bibtex/json-rpc -X POST \
+  -H 'Content-Type: application/json' -H 'Accept: application/json' \
+  --data-binary '{"jsonrpc":"2.0","id":1,"method":"api.ready","params":[]}'; echo
+```
+
+Zotero 10 的本地 API 除了读，还支持写入条目和分类；执行者通过 zotero-mcp 的授权工具拿到一把可重复使用的钥匙，所以不需要 Web API 密钥，论文也不经过任何云端中转[^zlocal]。分类、订阅源这些“结构性”的东西由人建，执行者只往已有分类里放论文。
+
+### Google 一侧：一个账号，四个入口
+
+Drive、Colab、Antigravity 和 Gemini 都用同一个持有 Google AI Pro 的账号。它们各自的登录方式不一样，这里是最容易卡住的地方。
+
+**Google Drive（`gws`）。** 用 `npm install -g @googleworkspace/cli` 安装，再运行 `gws auth setup --login` 跟着向导走。向导需要一个 Google Cloud 项目和其中的“桌面应用” OAuth 客户端：没有的话先在 Cloud 控制台随便建一个项目，**启用 Google Drive API**（第一次搭建就因为没启用而报“API disabled”），再让向导创建客户端，授权时只选 Drive 权限。
+
+```bash
+gws auth setup --login                          # 第一次登录
+gws auth login -s drive                         # 令牌缺少 Drive 权限时补一次
+gws drive files list --params '{"pageSize": 3}' # 检查：列出最多 3 个文件
+```
+
+然后在 My Drive 里建一个 `ResearchOS` 文件夹，把它的 ID 记进 `ops/drive-docs.json`，每门课的活文档都放在它下面。如果 Codex 在沙箱里调用 `gws` 时报只读错误，说明 `gws` 存放令牌的目录在工作区外，需要把它也加进 `writable_roots`。
+
+**Colab（Colab CLI）。** 用 `uv tool install google-colab-cli` 安装。登录用的是 Google Cloud 的应用默认凭据：
+
+```bash
+gcloud auth application-default login   # 用 AI Pro 账号登录一次
+colab --auth adc usage                  # 检查：显示计算单元余额与用量
+colab --auth adc sessions               # 检查：此时应为空
+```
+
+装好的版本默认走另一种登录方式（oauth2），和文档写的不一样，所以每条命令都显式写上 `--auth adc`。搭建阶段只查余额，绝不启动运行时。
+
+**Antigravity。** 把 Colab CLI 自带的 `colab-operator` skill 复制到 `~/ResearchOS/repro/.agents/skills/`，再在 Antigravity 里把 `~/ResearchOS/repro` 打开为工作区一次，确认它的智能体看得到这个 skill。这个工作区有自己的一份规则：
+
+::: details 展开 repro/AGENTS.md（Antigravity 读取）
+```markdown
+# Reproduction workspace (Antigravity)
+
+I drive you here. Each folder in this workspace is one reproduction, with a RUN.md
+written by Codex or Claude Code.
+
+- Follow RUN.md step by step, and tell me before each Colab step.
+- Use the colab-operator skill for every remote run. Start the smallest GPU that
+  RUN.md allows; ask me before anything larger than a T4, or a run you expect to
+  take more than an hour.
+- Run `colab usage` before and after. Always end with `colab stop`, also after an error.
+- Save outputs under runs/<YYYY-MM-DD>/ and fill results.md. Commit with git.
+- Do not touch ~/ResearchOS/vault, ~/ResearchOS/bridge or ~/GitHub/<blog>.
+```
+:::
+
+**Gemini（`agy`）。** Antigravity 的命令行 `agy` 装在 `~/.local/bin`。先交互式运行一次 `agy` 登录，无界面模式才有凭据可用：
+
+```bash
+agy -p "Reply with the single word OK" --output-format json < /dev/null   # 检查：JSON 里含 OK
+```
+
+**NotebookLM。** 每门课一个笔记本，名字和笔记库里的课程文件夹一致。等 `notebook-pack` 第一次在 Drive 里建好那两份活文档后，在笔记本里“添加来源 → Google Drive”把它们加进去，只需一次。
+
+### Obsidian：五个插件和它们的设置
+
+在 Obsidian 里把 `~/ResearchOS/vault` 打开为笔记库，打开社区插件开关。五个插件可以在应用里装，也可以在 Obsidian **关闭**时从各自的 GitHub Release 下载 `main.js`、`manifest.json`、`styles.css` 放进 `.obsidian/plugins/<插件 id>/`，再把 id 写进 `community-plugins.json`。
+
+| 插件 | 作用 | 关键设置 |
+|---|---|---|
+| Zotero Integration | 从 Zotero 导入带高亮的文献笔记（依赖 Better BibTeX） | 新建导入格式 `paper`：输出到 `20-Papers/@{{citekey}}.md`，模板 `90-Templates/paper.md`，图片放 `{{citekey}}/` |
+| Templater | 统一笔记模板 | 模板文件夹设为 `90-Templates` |
+| Dataview | 课程、项目索引页的自动目录 | 默认设置 |
+| Spaced Repetition | 复习问答卡片 | 卡片标签 `#flashcards`（课程卡片用 `#flashcards/<课程>`）；单行卡片分隔符 `::`，反向卡片 `:::` |
+| Git | 给笔记库兜底 | 每 30 分钟自动提交一次；自动推送关闭 |
+
+`90-Templates/` 里放四个模板，对应四类笔记，执行者写笔记时照着它们的结构填：
+
+| 模板 | 小节 |
+|---|---|
+| `paper.md` | 一句话结论 / 问题与动机 / 方法 / 关键结果 / 局限 / 我的高亮 / 相关概念与论文 / 可复现性 / 卡片 |
+| `review.md` | 问题与范围 / 主题 1–5 / 共识与分歧 / 方法对比表 / 开放问题 / 下一步阅读 |
+| `concept.md` | 定义 / 直觉 / 公式 / 出现在哪些课程与论文 / 常见混淆 |
+| `lecture.md` | 大纲 / 知识点 / 我的理解 / 疑问 / 卡片 |
+
+每门课、每个项目第一次用到时，执行者会建一个同名文件夹和一篇索引笔记，里面只有一段 Dataview 查询，之后新增的笔记会自动出现在目录里：
+
+````markdown
+```dataview
+TABLE unit, type, verified
+FROM "10-Courses/TEST101"
+WHERE file.name != this.file.name
+SORT unit ASC
+```
+````
+
+`verified` 这一列很有用：一眼就能看出哪些笔记还没被人核实过。
+
 ### 笔记的头部属性
 
 执行者写的每条笔记都带同一组头部属性，这是笔记库能被 Dataview 查询、也能被另一个执行者接手的基础：
@@ -597,6 +707,71 @@ https://export.arxiv.org/api/query?search_query=co:NeurIPS+AND+co:accepted&sortB
 
 搭完之后最大的体会是：**把流程设计成“文件 + 检查点”，比挑哪个模型更重要。** 模型会换、额度会用完，但只要每一步都落在文件里、每个不可逆操作前都有一个人点头，整个系统就能稳定地转下去。
 
+## 参考资料
+
+以下资料来自这套工作流的配套搭建指南（2026 年 10 月 29 日第 2 版，11 月 2 日第 3 版），按主题整理，链接于 2026 年 11 月 3 日逐个检查过。标 † 的网站拒绝了自动访问，没能自动确认，请以浏览器实际打开为准。
+
+**NotebookLM 与 Gemini**
+
+- [Google Workspace Updates：NotebookLM 更名为 Gemini Notebook](https://workspaceupdates.googleblog.com/2026/07/notebooklm-now-gemini-notebook.html)
+- [Google Workspace Updates：NotebookLM 抽认卡与测验（2026 年 3 月）](https://workspaceupdates.googleblog.com/2026/03/new-ways-to-customize-and-interact-with-your-content-in-NotebookLM.html)
+- [Google 博客：NotebookLM 支持音频和 YouTube 来源](https://blog.google/innovation-and-ai/products/notebooklm-audio-video-sources/)
+- [NotebookLM 帮助：创建笔记并导出到 Docs](https://support.google.com/notebooklm/answer/16262519?hl=en)
+- [Fast.io：NotebookLM 支持的文件类型](https://fast.io/resources/notebooklm-supported-file-types/)
+- [Fast.io：NotebookLM 与 Google Drive 同步](https://fast.io/resources/notebooklm-google-drive-sync/)
+- [Android Authority：Gemini Notebook 与 Gemini 应用同步笔记本](https://www.androidauthority.com/gemini-notebook-3688235/)
+- [App State：NotebookLM 来源与手动重新同步](https://confluence.appstate.edu/x/xoBGG)
+- [MakeUseOf（经 hlrnet 转载）：NotebookLM 导出变通方法](https://hlrnet.com/sites/ai/?p=16442) †
+- [Chrome 应用商店：NotebookLM Exporter](https://chromewebstore.google.com/detail/gejoojiehhghphimkfaccjmnmadahblc)
+- [PyPI：notebooklm-mcp-lisa（非官方，靠浏览器会话驱动，不建议使用）](https://pypi.org/project/notebooklm-mcp-lisa/)
+
+**Antigravity、Colab 与 Google Workspace CLI**
+
+- [Antigravity 文档：无界面模式（`agy -p`）](https://antigravity.google/docs/cli/headless)
+- [GitHub：Antigravity CLI issue #76，打印模式输出问题](https://github.com/google-antigravity/antigravity-cli/issues/76)
+- [Google Developers Blog：Google Colab CLI 发布](https://developers.googleblog.com/introducing-the-google-colab-cli/)
+- [GitHub：googlecolab/google-colab-cli](https://github.com/googlecolab/google-colab-cli)
+- [Google Developers Blog：Colab 纳入 Google AI 套餐](https://developers.googleblog.com/colab-is-now-part-of-your-google-ai-plan/)
+- [heise：Google 发布 Workspace CLI](https://heise.de/-11204302)
+- [DataCamp：Google Workspace CLI 教程](https://datacamp.com/tutorial/google-workspace-cli) †
+
+**Codex 与 Claude Code**
+
+- [ChatGPT Learn：Codex 的 AGENTS.md、skills 与 MCP](https://learn.chatgpt.com/docs/customization/overview)
+- [ChatGPT Learn：Codex 配置参考](https://learn.chatgpt.com/docs/config-file/config-reference.md)
+- [Reflex 文档：与 Claude Code 共享 AGENTS.md](https://reflex.dev/docs/ai/integrations/agents-md.md)
+- [Adobe AI repo harness 指南：.claude/skills 符号链接](https://opensource.adobe.com/ai-repo-harness-guide/skills/harness-setup/references/inventory/)
+- [Vincent Qiao：Claude Code settings.json 权限](https://blog.vincentqiao.com/en/posts/claude-code-settings-permissions/)
+- [Claude 帮助中心：在 Pro 计划中使用 Claude Code](https://support.claude.com/en/articles/11145838)
+
+**Zotero、Better BibTeX 与 MCP 服务器**
+
+- [Zotero 文档：本地 API，含写入请求（Zotero 10+）](https://www.zotero.org/support/dev/web_api/v3/local_api)
+- [Zotero 论坛：Zotero 10 发布公告](https://forums.zotero.org/discussion/133256/announcing-zotero-10)
+- [Zotero 论坛：本地 API 的写入支持](https://forums.zotero.org/discussion/132977/)
+- [Better BibTeX 文档：JSON-RPC](https://retorque.re/zotero-better-bibtex/exporting/json-rpc/)
+- [Zotero MCP Lite：开启本地 API](https://pypi.org/project/zotero-mcp-lite/)
+- [Obsidian 论坛：Zotero 引用键](https://forum.obsidian.md/t/zotero-plugin/111390/3)
+- [54yyyu/zotero-mcp](https://github.com/54yyyu/zotero-mcp)
+- [zotero-mcp：zotero_add_item 工具说明](https://glama.ai/mcp/servers/54yyyu/zotero-mcp/tools/zotero_add_item)
+- [arxiv-mcp-server](https://glama.ai/mcp/servers/blazickjp/arxiv-mcp-server)
+- [openreview-mcp](https://glama.ai/mcp/servers/OpenCodice-Research/openreview-mcp)
+- [openalex-research-mcp](https://github.com/oksure/openalex-research-mcp)
+- [Semantic Scholar FastMCP：推荐工具与速率限制](https://glama.ai/mcp/servers/@YUZongmin/semantic-scholar-fastmcp-mcp-server)
+
+**发布与 DOI**
+
+- [Rogue Scholar 文档](https://docs.rogue-scholar.org/)（指南原先引用的 DOI 注册页面已移走）
+
+**价格与额度**
+
+- [Zotero 存储价格](https://www.zotero.org/storage)
+- [Claude Market：Claude Pro 价格](https://claudemarket.ai/blog/claude-pro)
+- [Morph：ChatGPT 与 Claude 定价对比（2026）](https://www.morphllm.com/chatgpt-vs-claude) †
+- [Websnp：Google AI Pro 价格](https://www.websnp.com/google-ai-pro/price-nepal)
+- [GlobalGPT：新加坡 ChatGPT Plus 价格与消费税](https://www.glbgpt.com/hub/chatgpt-plus-subscription-price-in-singapore-2026-guide/)
+- [Pasquale Pillitteri：Plus 的 Codex 5 小时限额](https://pasqualepillitteri.it/en/news/12697/openai-5-hour-codex-chatgpt-work-limit-plus) †
+
 [^agent]: Codex（OpenAI）和 Claude Code（Anthropic）都是能在电脑上读写文件、运行命令的 AI 编程助手。这里把它们当作按规章干活的“执行者”，而不是聊天对象。
 [^log]: 日志就是 `ops/log.md`，每行一条：时间、哪个执行者、哪个 skill、动了哪些文件、下一步做什么。规则见 [[#共享规则：AGENTS.md]]。
 [^skill]: skill 是一份写给 AI 的 Markdown 操作说明书：一段描述决定什么时候用它，一串编号步骤规定怎么做。写法见 [[#Skill 的写法]]。
@@ -609,3 +784,4 @@ https://export.arxiv.org/api/query?search_query=co:NeurIPS+AND+co:accepted&sortB
 [^pitfalls]: 这次运行中遇到的其他问题，集中整理在 [[#十、第一次搭建踩过的坑]]。
 [^gws]: 执行者通过 Google 的 Workspace 命令行工具 `gws` 访问 Drive。它用你自己 Google Cloud 项目里的 OAuth 客户端登录，只申请 Drive 权限；Google 标注它为 “not officially supported”。
 [^idem]: 这种“做一次和做多次结果一样”的性质，工程上叫幂等（idempotent）。它是让自动化流程可以放心重试的前提。
+[^zlocal]: Zotero 10 起，本地 API 支持对条目、分类和保存的搜索做 POST、PUT、PATCH、DELETE。每个应用第一次写入都要用户在弹窗里同意，选 Always Allow 后得到可重复使用的密钥。
