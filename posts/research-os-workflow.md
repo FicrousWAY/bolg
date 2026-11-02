@@ -1,7 +1,7 @@
 ---
 title: Research OS：用两个可互换的 AI 执行者搭一套科研与课程学习工作流
 date: 2026-11-02 23:55:00
-lastUpdated: 2026-11-03 00:15:00
+lastUpdated: 2026-11-03 00:28:00
 category: 杂项
 tags:
   - 科研工作流
@@ -38,7 +38,7 @@ AI 工具并不缺。可每次打开一个新对话，都要从头交代背景�
 - **像医院交班一样靠“交班本”，不靠记忆。** 护士换班时靠的是交班记录，而不是“我记得 3 床好像说过……”。这里的两个 AI 每干完一件事就往日志里写一行[^log]，换人时说一句 “resume”，新来的就知道做到哪了。
 - **像转账前的“确认”按钮一样设检查点。** 加论文进文献库、往博客推送文章、删除文件，这些做了就不好撤销的事，AI 一律先停下来，等人看一眼再说 yes。
 
-接下来先讲它能做什么、日常怎么用，再讲整体怎么构建、怎么从零搭起来，最后是第一次搭建时踩过的坑和一份复现清单。只想照着搭的读者，可以直接跳到 [[#五、它是怎么构建的]]。
+接下来先讲它能做什么、日常怎么用；再讲东西怎么在各个端之间交接，以及整套系统靠哪几条原则协作；然后是怎么构建、怎么从零搭起来；最后是第一次搭建时踩过的坑和一份复现清单。只想照着搭的读者，可以直接跳到 [[#七、它是怎么构建的]]。
 
 ## 一、它能帮你做什么
 
@@ -86,7 +86,7 @@ AI 工具并不缺。可每次打开一个新对话，都要从头交代背景�
 
 橙色框之所以要亲手操作，是因为它们恰好是最需要人判断、或者根本没有接口的地方：在 Zotero 里决定哪篇论文值得留，在 NotebookLM[^nblm] 里上传课件并提问，在 Antigravity[^ag] 里盯着实验在 Colab GPU 上跑。其余的实线全部自动进行。
 
-把上面三个生活化的想法落成规则，就是四条设计原则：
+把上面三个生活化的想法落成规则，就是四条设计原则（它们背后更完整的协作原则，见 [[#六、协作原则：为什么这套系统能稳定地转]]）：
 
 1. **两个事实来源。** 论文只放 Zotero；“你知道的一切”只放 Obsidian 笔记库。课程资料只进 NotebookLM 和笔记库，从不进 Zotero。就像家里的证件永远放同一个抽屉。
 2. **一次一个执行者，哪个都行。** Codex 和 Claude Code 读同一套规则、同一套 skill、同样的 MCP 服务器[^mcp]和状态文件，中途可以换人。一个额度用完了，另一个接着干。
@@ -183,7 +183,126 @@ NotebookLM 没有面向个人账户的公开 API，所以上传、提问、导�
 
 一周大约五个小时，其中大部分是阅读和自测，真正花在“指挥 AI”上的时间很少。
 
-## 五、它是怎么构建的
+## 五、交接：东西怎么在各端之间流动
+
+前面几节说了“谁做什么”，这一节说“东西怎么递过去”。整套系统一共有七个端：两个执行者、Zotero、NotebookLM（经 Google Drive）、Gemini、Antigravity 与 Colab、博客。它们之间从不直接“对话”，而是靠**约定好格式的文件**交接，就像几个部门之间靠表单和快递单办事，而不是靠打电话。
+
+![各端之间的交接](/images/research-os-workflow/handoffs.svg "每一条线都是一个约定好格式的文件：谁写、写成什么样、谁来读，事先都说好了")
+
+每一条交接都要回答四个问题：谁写、写成什么格式、谁来读、出错或重复了怎么办。
+
+| 交接 | 方向 | 交接物 | 防重复 | 出错时的退路 |
+|---|---|---|---|---|
+| 论文入库 | 执行者 → Zotero | DOI 或 arXiv 链接 + 目标分类 | 已有条目只补分类，不新建 | 打印标识符，人用 Zotero 的“按标识符添加” |
+| 论文出库 | Zotero → 执行者 | 元数据、全文、高亮；`library.bib` 里的引用键 | 引用只认 Zotero 里的条目 | 工具失败就明说，不凭记忆补 |
+| 课程进来 | NotebookLM → Drive → 工作区 | 带桥头部的 Google 文档 → Markdown | 记录“文件 ID@修改时间”，拉过的不再拉 | 把回答手动粘贴进 `bridge/from-notebook/` |
+| 课程回流 | 工作区 → Drive → NotebookLM | 每门课两份活文档 | 记住文档 ID，永远原地改写同一份 | 手动上传 `bridge/to-notebook/` 里的文件 |
+| 第二意见 | 执行者 ⇄ Gemini | `<id>-request.md` / `<id>-answer.md` | 每个请求一个 ID | 把请求文件交给人，粘贴进 Gemini 应用 |
+| 实验 | 执行者 → Antigravity → Colab → 执行者 | `RUN.md` → `runs/<日期>/`、`results.md` | 每个复现一个 git 仓库 | 无论成败最后都 `colab stop` |
+| 发布 | 执行者 → 博客 → 网站 | `posts/*.md` 与图片 | 只暂存自己创建的文件 | 构建失败就不提交 |
+| 换班 | 执行者 → 执行者 | `ops/log.md` 的一行，以及它点名的文件 | 只追加，不改写 | 说 “resume”，从最后 20 行接着做 |
+
+下面挑几条最有讲究的展开说。
+
+### 课程资料的“快递单”：桥头部
+
+NotebookLM 的回答要变成笔记库里的笔记，最大的难题是“这份东西属于哪门课、哪一讲、是什么类型”。办法是让 NotebookLM **自己在回答开头写一张快递单**：每张提示单的最后一句都是“回答以这个头部块开头”。
+
+```yaml
+---
+bridge: from-notebook
+course: TEST101
+unit: L03
+kind: outline   # outline | knowledge | qa | confusions | check | quiz | notes
+notebook: TEST101 Computational Neuroscience
+date: 2026-10-29
+---
+```
+
+有了这张单子，`course-ingest` 不用猜就知道该放哪：
+
+| kind | 去向 |
+|---|---|
+| `outline` | `10-Courses/<课程>/Outlines/<讲次>.md`，并链接概念笔记 |
+| `knowledge` | `Knowledge/<讲次>.md`，同时往 `30-Concepts/` 追加内容（只追加，不覆盖人写的部分） |
+| `qa` | `Cards/<讲次>.md`，写成 `Question::Answer` 卡片 |
+| `quiz` | `Quizzes/<讲次>.md`，答案折叠起来 |
+| `check` | 把修正应用到对应笔记，记进错题本；如果那条笔记已经发布成文章，提醒需要重新发布 |
+| `notes` / `confusions` | `<讲次>-notes.md` |
+
+两个细节让它更结实：Google 文档导出时可能把 `---` 变成分隔线，所以解析时只认 `key: value` 这样的行；万一没有头部，就按 `<课程>_<讲次>_<类型>.md` 的文件名去猜，并先问人确认。
+
+`check` 这一类是课程闭环里最有意思的一环：每周把自己发布的讲解作为来源加进笔记本，让 NotebookLM 拿它和课件、教材逐句对比，列出错误、过度简化和漏掉的条件。回答同样带着桥头部回来，变成修正和错题。等于请了一位只看课本的助教，每周批改一次自己的讲义。
+
+### Google Drive 的两个方向
+
+Drive 是 NotebookLM 和工作区之间唯一的通道[^gws]。两个方向的做法刚好相反：
+
+- **拉进来（`drive_pull.sh`）：只拿新的。** 在 Drive 里搜索正文含 `from-notebook` 的 Google 文档，导出成 Markdown 放进 `bridge/from-notebook/`。每拉一份，就往 `ops/drive-pulled.txt` 记一行“文件 ID@修改时间”，下次跳过；导出后前 20 行里找不到桥头部的，挪到 `archive/not-bridge/`，不混进课程笔记。
+- **推出去（`drive_push.sh`）：永远改同一份。** 每门课在 Drive 的 `ResearchOS/<课程>/` 下只有两份文档：“我的已核实笔记”和“我的文章”。第一次创建时把文档 ID 记进 `ops/drive-docs.json`，之后每次都原地改写同一份。
+
+为什么回流一定要用“活文档”？因为 NotebookLM 对上传的 PDF 只存一份快照，永远不会更新；只有原生 Google 文档会定期从 Drive 重新同步。只要文档 ID 不变，NotebookLM 里那个来源就会自己跟着更新，不必每周重新上传。
+
+还有一条红线：脚本只碰 NotebookLM 的导出和自己创建的这两份文档，**绝不删除 Drive 里的任何东西**。也不要图省事去用第三方的 NotebookLM MCP 服务器：它们靠浏览器 cookie 驱动已登录的账号，风险落在整个 Google 账号上。
+
+### Gemini：文字进，文字出
+
+第三个模型家族的作用是“换一双眼睛”。交接方式非常朴素：执行者在 `bridge/gemini/` 写一份请求文件，写清问题、需要的原文摘录和想要的回答格式；`ask_gemini.sh` 用命令行 `agy -p` 把它发给 Gemini，回答落成同名的 `-answer.md`。
+
+命令行工具偶尔会返回空输出，甚至出错了还报告成功，所以 skill 从不只看退出码，而是去读回答里的状态字段；空回答就在伪终端里重试一次，还不行就老实说“这次没拿到”，把请求文件交给人，粘贴进 Gemini 应用。**宁可交出一个失败，也不编一个回答。**
+
+### 实验：计划和执行分开
+
+复现是唯一会花钱的环节，所以拆成三段，各由最合适的一方负责：
+
+1. **计划（执行者）。** `repro-plan` 写清要复现哪一张图或表、数据和许可、原文超参数、算力估计、预期数值与容差、三个可能出差别的地方，并搭好仓库和 `RUN.md`。
+2. **执行（人 + Antigravity）。** 人在 Antigravity 里打开仓库，让它的智能体照着 `RUN.md` 一步步做：先在本地 CPU 上用极小配置冒烟，再申请 GPU、上传代码、运行、下载结果、导出可重放的 notebook，最后一步无论成败都是 `colab stop`。人在旁边看着，随时可以叫停。
+3. **报告（执行者）。** `repro-report` 读 `results.md` 和运行日志，逐项对比论文数值；在相信任何一个数字之前，再让另一个执行者审一遍代码。
+
+执行者自己从不启动 GPU。计划写在文件里、结果也写回文件里，所以即使中途换人、换机器，下一个人照样知道做到了哪。
+
+### 发布：构建就是质检员
+
+`blog-publish` 把笔记变成文章时做三件转换：`[@citekey]` 变成编号引用，并用 Better BibTeX 从 Zotero 生成参考文献（带 DOI 链接）；笔记里的 `[[链接]]`，指向已发布文章的保留，其余变成纯文字；图片复制到文章自己的图片目录。
+
+然后跑一遍站点构建。构建就是质检员：图片路径写错、站内链接失效、分类写错，都会直接失败。构建通过后才到 C3，人看过预览和差异才提交。文章上线后，网址写回笔记的 `published_url`；人在 C3 说的那句 yes，也同时算作对这条笔记的核实。
+
+### 换班：交班本
+
+每个 skill 跑完都往 `ops/log.md` 追加一行，格式固定：
+
+```text
+时间 | 执行者 | skill | 动了哪些文件 | 状态与下一步
+2026-11-02 16:25 | claude-code | paper-similar | seed brown2020Language | PAUSED at C1: 3 candidates, none in Zotero; next: user yes -> add to Zotero
+```
+
+“下一步”这一栏是交班本的灵魂：它让接班的执行者不必重新问“做到哪了、哪些已经批准过”。第一次验收时就真实发生过一次额度耗尽、中途换人，过程见 [[#验收测试]]。
+
+## 六、协作原则：为什么这套系统能稳定地转
+
+把上面这些交接方式抽象一下，背后是几条反复出现的原则。它们和具体用哪个模型、哪个软件无关，换一套工具也同样适用。
+
+**1. 一样东西只有一个家。** 论文的家是 Zotero，知识的家是笔记库，课程资料的家是 NotebookLM，公开文字的家是博客仓库。任何东西都不在两处各存一份可修改的副本；需要“另一处也能看到”时，用链接、导出或同步，而不是复制粘贴。就像家里的钥匙只挂在门口那一个钩子上。
+
+**2. 交接靠文件，不靠记忆。** 聊天记录是一次性的，文件才是长期的。执行者之间靠日志，NotebookLM 与执行者之间靠桥头部，执行者与 Gemini 之间靠请求和回答文件，执行者与实验之间靠 `RUN.md` 和 `results.md`。任何一个端被换掉，只要它读写同样的文件，系统照常运转。
+
+**3. 每份文件都有“身份证”。** 笔记的头部属性写明 `source`（谁写的）、`verified`（人核实过没有）、`created`，科研笔记还有 `citekey`。随便翻开一条笔记，都能立刻知道它从哪来、能不能信。
+
+**4. 每一步都可以放心重做。** 论文入库用“已存在就只补分类”，Drive 拉取记着“拉过哪个版本”，回流永远改写同一份文档，该删的东西挪进 `archive/` 而不是真删。所以网络断了、额度用完了、跑到一半出错了，重来一遍不会产生重复，也不会丢东西。就像连按两次电梯按钮，也只会来一部电梯[^idem]。
+
+**5. 人只在不可逆的地方把关。** 注意力是最贵的资源，不能每一步都让人确认。所以检查点只设在四处：东西进文献库、东西公开发布、东西被删除或覆盖，以及“这条笔记可信”的标记。其余可以随时撤回的事，放手让执行者去做。
+
+**6. 权限给到刚好够用。** 执行者只能写工作区和博客仓库；在 Drive 里只碰导出文档和自己建的文档；不新建 Zotero 分类、不启动 GPU、不删除文件，这些都要先问人。笔记库还交给 Obsidian 的 Git 插件每 30 分钟自动提交一次，任何误改都能一键回滚。
+
+**7. 分工看“谁擅长”和“有没有接口”。** 需要判断的事（这篇论文值不值得读、这段讲解对不对、要不要发出去）留给人；没有接口的事（往 NotebookLM 上传、在 GPU 上盯实验）也留给人；剩下机械的检索、搬运、整理、排版交给执行者。
+
+**8. 让不同的“眼睛”互相检查。** 重要结果交给另一家厂商的模型复查，Gemini 作为第三个模型家族提供第二意见；评审自己的稿件时两个执行者都跑一遍，先处理两边都提到的问题。
+
+**9. 失败要说出来，并留一条手动的退路。** 规则里写得很直白：工具失败就说失败，绝不凭记忆补空。每条交接也都留了手动方案：Zotero 写不进去就打印标识符，Drive 不通就手动粘贴，Gemini 没回应就换成网页版。就像大楼停电时，总有一扇能手动打开的门。
+
+**10. 证据可以追溯。** 引用只能来自工具返回的、带 DOI 或 arXiv ID 的结果，并且必须已经在 Zotero 里；“论文说了什么”和“对它的解读”分开写，后者标上 Interpretation。读者顺着任何一句话，都能找回它的出处。
+
+## 七、它是怎么构建的
 
 ### 工作区结构
 
@@ -230,6 +349,20 @@ NotebookLM 没有面向个人账户的公开 API，所以上传、提问、导�
   YYYY-MM-DD HH:MM | codex|claude-code | <skill> | <files> | <status / next step>
 - On "resume", read the last 20 lines of LOG and the files they name, then continue.
 
+## Two loops
+- Papers live in Zotero. Never put course materials in Zotero.
+- If Zotero is closed or a Zotero write fails, say so and print the DOIs or arXiv IDs
+  one per line for Zotero's Add Item by Identifier; wait for my "done".
+- File each paper by ops/collections.md. If none fits, use 00 Inbox and tell me.
+  Never create a collection without asking.
+- Course content enters the vault only through BRIDGE/from-notebook/, with a bridge header.
+- In Google Drive, touch only NotebookLM exports and the living Docs you created.
+  Never delete anything in Drive.
+
+## Reproduction
+- I run experiments myself in Antigravity on Colab. You plan (repro-plan) and report
+  (repro-report). Never start a Colab runtime or spend compute units.
+
 ## Evidence
 - Never invent a citation. Every paper comes from a tool result (zotero, arxiv,
   openreview, openalex, semanticscholar) with a DOI or arXiv ID.
@@ -244,6 +377,34 @@ NotebookLM 没有面向个人账户的公开 API，所以上传、提问、导�
 :::
 
 其中“每次运行追加一行日志”和“resume 读日志”这两条，是两个执行者能接力的关键：Codex 额度用完时，在 Claude Code 里说一句 resume，它从日志里就知道做到了哪一步、哪些已经批准过。
+
+### 接入第二个执行者，并给够权限
+
+让 Claude Code 和 Codex 读同一份规则、同一套 skill，只需要三行：
+
+```bash
+cd ~/ResearchOS
+printf '@AGENTS.md\n' > CLAUDE.md                 # Claude Code 的导入语法：读 AGENTS.md
+mkdir -p .claude && ln -s ../.agents/skills .claude/skills
+```
+
+博客仓库在工作区之外，所以两个执行者都要单独获准写入它，除此之外哪儿也不能写：
+
+```toml
+# ~/ResearchOS/.codex/config.toml（Codex 只有在你信任这个项目后才会加载它）
+sandbox_mode = "workspace-write"
+[sandbox_workspace_write]
+writable_roots = ["/Users/<you>/GitHub/<blog>"]
+network_access = true          # 让 git push 能联网
+```
+
+Claude Code 的对应设置写在 `~/ResearchOS/.claude/settings.json`：
+
+```json
+{ "permissions": { "additionalDirectories": ["/Users/<you>/GitHub/<blog>"] } }
+```
+
+权限的边界就是协作原则里的“给到刚好够用”：执行者能在工作区和博客里干活，但碰不到电脑上的其他东西。
 
 ### Skill 的写法
 
@@ -317,7 +478,7 @@ published_url:                # blog-publish 回写
 ---
 ```
 
-## 六、从零搭起来的流水线
+## 八、从零搭起来的流水线
 
 ![搭建流水线 A 到 I](/images/research-os-workflow/build-pipeline.svg "搭建流水线：一份 Markdown 执行清单，交给 Codex 逐节执行")
 
@@ -357,7 +518,7 @@ run its checks and report pass or fail.
 
 第一次验收本身就成了一次真实的可互换性测试：Codex 在等待 C1 批准时额度耗尽，把它的进度贴给 Claude Code，后者读完日志直接从 C1 继续，把剩下的总结、综述和博客草稿做完[^pitfalls]。
 
-## 七、扩展到任意研究方向
+## 九、扩展到任意研究方向
 
 最初的分类树只有 `20 NeuroAI`。扩展到通用机器学习时，只需要做四件事，换成其他方向也是同样的步骤：
 
@@ -398,7 +559,7 @@ https://export.arxiv.org/api/query?search_query=co:NeurIPS+AND+co:accepted&sortB
 
 另外，`paper-summary` 加了一条：机器学习论文按机器学习的动机、数据集和指标来写，不硬扯神经科学联系。
 
-## 八、第一次搭建踩过的坑
+## 十、第一次搭建踩过的坑
 
 这些都是第一次完整运行时真实遇到的，现在已经写进执行清单的附录里：
 
@@ -410,7 +571,7 @@ https://export.arxiv.org/api/query?search_query=co:NeurIPS+AND+co:accepted&sortB
 - **文件名里不能有斜杠。** “E/I balance” 这样的概念名不能直接当笔记文件名，要写成全称再用别名链接。
 - **执行者额度会用完。** 这恰好证明了“状态全在文件里”的价值：换一个执行者说 resume 就能接着做。
 
-## 九、成本与局限
+## 十一、成本与局限
 
 按这套系统用到的订阅，每月大约 60 美元：ChatGPT Plus（Codex）、Claude Pro（Claude Code）和 Google AI Pro（NotebookLM、Gemini、Antigravity、Colab）。Zotero、Obsidian、MCP 服务器和博客都是免费的。
 
@@ -421,7 +582,7 @@ https://export.arxiv.org/api/query?search_query=co:NeurIPS+AND+co:accepted&sortB
 - **工具变化很快。** 文中好几个工具在 2026 年都改过名字或接口，出问题先查它们自己的文档。
 - **学术诚信。** AI 用来检索、学习、批评和写代码；想法、判断和最终文字由人负责。
 
-## 十、复现清单
+## 十二、复现清单
 
 如果想照着搭一套，按这个顺序就行：
 
@@ -445,4 +606,6 @@ https://export.arxiv.org/api/query?search_query=co:NeurIPS+AND+co:accepted&sortB
 [^doi]: 可选步骤：Rogue Scholar 会读取博客的 RSS，为科研文章注册 Crossref DOI，文章本身就能被引用和追踪。
 [^living]: NotebookLM 对上传的 PDF 只保存一份快照，只有原生 Google 文档会随 Drive 更新重新同步，所以送回去的必须是 Google 文档，而不是文件。
 [^bbt]: 开头嵌入的那篇 dopamine 综述，末尾的“参考文献”就是这样从 Zotero 生成的，每条都带 DOI 链接。
-[^pitfalls]: 这次运行中遇到的其他问题，集中整理在 [[#八、第一次搭建踩过的坑]]。
+[^pitfalls]: 这次运行中遇到的其他问题，集中整理在 [[#十、第一次搭建踩过的坑]]。
+[^gws]: 执行者通过 Google 的 Workspace 命令行工具 `gws` 访问 Drive。它用你自己 Google Cloud 项目里的 OAuth 客户端登录，只申请 Drive 权限；Google 标注它为 “not officially supported”。
+[^idem]: 这种“做一次和做多次结果一样”的性质，工程上叫幂等（idempotent）。它是让自动化流程可以放心重试的前提。

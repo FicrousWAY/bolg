@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="860" viewBox="0 0 1280 860" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#6b7280"/>
+    </marker>
+    <marker id="b" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M10 0 L0 5 L10 10 z" fill="#6b7280"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="860" fill="#ffffff"/>
+  <text x="40" y="46" font-size="24" font-weight="700" fill="#111827">交接：每一条线都是一个“约定好格式的文件”，而不是一段聊天</text>
+
+  <!-- hub -->
+  <rect x="430" y="250" width="420" height="360" rx="16" stroke="#2a6fdb" stroke-width="2.5" fill="#f3f7fe"/>
+  <text x="640" y="284" font-size="20" font-weight="700" fill="#111827" text-anchor="middle">工作区 ~/ResearchOS</text>
+  <g stroke="#e8603c" stroke-width="2" fill="#ffffff">
+    <rect x="470" y="302" width="150" height="40" rx="20"/>
+    <rect x="660" y="302" width="150" height="40" rx="20"/>
+  </g>
+  <g font-size="16" font-weight="700" fill="#111827" text-anchor="middle">
+    <text x="545" y="328">Codex</text>
+    <text x="735" y="328">Claude Code</text>
+  </g>
+  <path d="M622 322 H658" stroke="#e8603c" stroke-width="2.5" marker-start="url(#b)" marker-end="url(#a)"/>
+  <g stroke="#9ca3af" stroke-width="1.5" fill="#ffffff">
+    <rect x="460" y="362" width="175" height="100" rx="10"/>
+    <rect x="645" y="362" width="175" height="100" rx="10"/>
+    <rect x="460" y="474" width="175" height="110" rx="10"/>
+    <rect x="645" y="474" width="175" height="110" rx="10"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="547" y="392" font-size="16" font-weight="700" fill="#111827" font-family="Menlo, Consolas, monospace">ops/log.md</text>
+    <text x="547" y="416" font-size="14" fill="#4b5563">交班本：每次运行一行</text>
+    <text x="547" y="438" font-size="14" fill="#4b5563">“resume”从这里接着做</text>
+    <text x="732" y="392" font-size="16" font-weight="700" fill="#111827" font-family="Menlo, Consolas, monospace">bridge/</text>
+    <text x="732" y="416" font-size="14" fill="#4b5563">中转站：进出 NotebookLM</text>
+    <text x="732" y="438" font-size="14" fill="#4b5563">与 Gemini 的文件</text>
+    <text x="547" y="504" font-size="16" font-weight="700" fill="#111827" font-family="Menlo, Consolas, monospace">vault/</text>
+    <text x="547" y="528" font-size="14" fill="#4b5563">笔记库：唯一的“知识”</text>
+    <text x="547" y="550" font-size="14" fill="#4b5563">source · verified 标明来历</text>
+    <text x="732" y="504" font-size="16" font-weight="700" fill="#111827" font-family="Menlo, Consolas, monospace">repro/</text>
+    <text x="732" y="528" font-size="14" fill="#4b5563">每个复现一个 git 仓库</text>
+    <text x="732" y="550" font-size="14" fill="#4b5563">RUN.md · results.md</text>
+  </g>
+
+  <!-- left endpoints -->
+  <g stroke="#e8603c" stroke-width="2.5" fill="#fdebe5">
+    <rect x="40" y="110" width="250" height="100" rx="12"/>
+    <rect x="40" y="640" width="250" height="110" rx="12"/>
+  </g>
+  <rect x="40" y="380" width="250" height="100" rx="12" stroke="#9ca3af" stroke-width="2" fill="#ffffff"/>
+  <!-- right endpoints -->
+  <rect x="990" y="110" width="250" height="100" rx="12" stroke="#e8603c" stroke-width="2.5" fill="#fdebe5"/>
+  <rect x="990" y="380" width="250" height="100" rx="12" stroke="#9ca3af" stroke-width="2" fill="#ffffff"/>
+  <rect x="990" y="640" width="250" height="110" rx="12" stroke="#9ca3af" stroke-width="2" fill="#ffffff"/>
+  <g text-anchor="middle">
+    <text x="165" y="150" font-size="19" font-weight="700" fill="#111827">Zotero 10</text>
+    <text x="165" y="178" font-size="14" fill="#4b5563">论文 · PDF · 高亮 · 订阅源</text>
+    <text x="165" y="420" font-size="19" font-weight="700" fill="#111827">Gemini</text>
+    <text x="165" y="448" font-size="14" fill="#4b5563">命令行 agy -p</text>
+    <text x="165" y="680" font-size="19" font-weight="700" fill="#111827">Antigravity → Colab</text>
+    <text x="165" y="708" font-size="14" fill="#4b5563">人盯着智能体跑实验</text>
+    <text x="165" y="730" font-size="14" fill="#4b5563">最后一步永远 colab stop</text>
+    <text x="1115" y="150" font-size="19" font-weight="700" fill="#111827">NotebookLM</text>
+    <text x="1115" y="178" font-size="14" fill="#4b5563">每门课一个笔记本</text>
+    <text x="1115" y="420" font-size="19" font-weight="700" fill="#111827">Google Drive</text>
+    <text x="1115" y="448" font-size="14" fill="#4b5563">ResearchOS/&lt;课程&gt;/</text>
+    <text x="1115" y="680" font-size="19" font-weight="700" fill="#111827">博客仓库 → 网站</text>
+    <text x="1115" y="708" font-size="14" fill="#4b5563">推送到 main 即部署</text>
+  </g>
+
+  <!-- arrows -->
+  <g stroke="#6b7280" stroke-width="2" fill="none">
+    <path d="M290 160 C 370 160, 400 300, 428 320" marker-start="url(#b)" marker-end="url(#a)"/>
+    <path d="M290 430 H428" marker-start="url(#b)" marker-end="url(#a)"/>
+    <path d="M290 695 C 370 695, 400 580, 428 560" marker-start="url(#b)" marker-end="url(#a)"/>
+    <path d="M1115 210 V376" stroke-dasharray="7 5" marker-end="url(#a)"/>
+    <path d="M1060 376 V214" marker-end="url(#a)"/>
+    <path d="M988 412 H854" marker-end="url(#a)"/>
+    <path d="M852 452 H986" marker-end="url(#a)"/>
+    <path d="M852 560 C 900 580, 930 695, 986 695" marker-end="url(#a)"/>
+  </g>
+  <g font-size="13.5" fill="#374151">
+    <text x="44" y="236">MCP 读写 · C1</text>
+    <text x="44" y="256" fill="#6b7280">if_exists=file：不重复</text>
+    <text x="300" y="412" font-family="Menlo, Consolas, monospace">&lt;id&gt;-request.md</text>
+    <text x="300" y="456" font-family="Menlo, Consolas, monospace">&lt;id&gt;-answer.md</text>
+    <text x="44" y="606" font-family="Menlo, Consolas, monospace">RUN.md →</text>
+    <text x="44" y="626" font-family="Menlo, Consolas, monospace">runs/ · results.md</text>
+    <text x="1125" y="282">你：Export to Docs</text>
+    <text x="1125" y="302" fill="#6b7280">回答自带桥头部</text>
+    <text x="1050" y="282" text-anchor="end">自动同步</text>
+    <text x="1050" y="302" text-anchor="end" fill="#6b7280">活文档</text>
+    <text x="864" y="400" font-family="Menlo, Consolas, monospace">drive_pull.sh</text>
+    <text x="864" y="476" font-family="Menlo, Consolas, monospace">drive_push.sh</text>
+    <text x="864" y="496" fill="#6b7280">原地改写同一文档</text>
+    <text x="994" y="606" font-family="Menlo, Consolas, monospace">blog-publish</text>
+    <text x="994" y="626" fill="#6b7280">build 通过 → C3 → push</text>
+  </g>
+
+  <g font-size="15" fill="#4b5563">
+    <line x1="40" y1="822" x2="90" y2="822" stroke="#6b7280" stroke-width="2"/>
+    <text x="100" y="827">自动交接</text>
+    <line x1="200" y1="822" x2="250" y2="822" stroke="#6b7280" stroke-width="2" stroke-dasharray="7 5"/>
+    <text x="260" y="827">人手动完成</text>
+    <rect x="380" y="812" width="22" height="20" rx="4" stroke="#e8603c" stroke-width="2" fill="#fdebe5"/>
+    <text x="412" y="827">人亲自操作的端</text>
+  </g>
+</svg>
