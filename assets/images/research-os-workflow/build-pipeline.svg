@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#6b7280"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1280" height="520" fill="#ffffff"/>
+  <text x="40" y="46" font-size="24" font-weight="700" fill="#111827">搭建流水线：一份 Markdown 执行清单，由 Codex 逐节执行、逐项检查</text>
+
+  <!-- row 1: A-E -->
+  <g stroke="#2a6fdb" stroke-width="2" fill="#e6effc">
+    <rect x="40" y="90" width="210" height="150" rx="10"/>
+    <rect x="290" y="90" width="210" height="150" rx="10"/>
+    <rect x="540" y="90" width="210" height="150" rx="10"/>
+    <rect x="790" y="90" width="210" height="150" rx="10"/>
+    <rect x="1040" y="90" width="210" height="150" rx="10"/>
+  </g>
+  <!-- row 2: F-I -->
+  <g stroke="#2a6fdb" stroke-width="2" fill="#e6effc">
+    <rect x="1040" y="300" width="210" height="150" rx="10"/>
+    <rect x="790" y="300" width="210" height="150" rx="10"/>
+    <rect x="540" y="300" width="210" height="150" rx="10"/>
+  </g>
+  <rect x="290" y="300" width="210" height="150" rx="10" stroke="#059669" stroke-width="2" fill="#e7f6f0"/>
+
+  <g stroke="#6b7280" stroke-width="2" fill="none" marker-end="url(#a)">
+    <line x1="250" y1="165" x2="286" y2="165"/>
+    <line x1="500" y1="165" x2="536" y2="165"/>
+    <line x1="750" y1="165" x2="786" y2="165"/>
+    <line x1="1000" y1="165" x2="1036" y2="165"/>
+    <line x1="1145" y1="240" x2="1145" y2="296"/>
+    <line x1="1040" y1="375" x2="1004" y2="375"/>
+    <line x1="790" y1="375" x2="754" y2="375"/>
+    <line x1="540" y1="375" x2="504" y2="375"/>
+  </g>
+
+  <g font-size="19" font-weight="700" fill="#111827">
+    <text x="58" y="124">A 前置条件</text>
+    <text x="308" y="124">B Zotero + BBT</text>
+    <text x="558" y="124">C 工作区与规则</text>
+    <text x="808" y="124">D MCP 与 Google</text>
+    <text x="1058" y="124">E Skills 与脚本</text>
+    <text x="1058" y="334">F Obsidian</text>
+    <text x="808" y="334">G 博客仓库</text>
+    <text x="558" y="334">H 验收测试</text>
+    <text x="308" y="334">I 研究范围扩展</text>
+  </g>
+  <g font-size="14" fill="#374151">
+    <text x="58" y="154">git · node 22 · uv · gh</text>
+    <text x="58" y="176">gws · colab CLI · gcloud</text>
+    <text x="58" y="198">（你）登录 agy</text>
+
+    <text x="308" y="154">（你）开本地 API</text>
+    <text x="308" y="176">引用键规则 · 自动导出 .bib</text>
+    <text x="308" y="198">分类 · 订阅源 · 写入授权</text>
+
+    <text x="558" y="154">文件夹骨架 · ops/log.md</text>
+    <text x="558" y="176">AGENTS.md / CLAUDE.md</text>
+    <text x="558" y="198">两个执行者的写入权限</text>
+
+    <text x="808" y="154">5 个 MCP 服务器</text>
+    <text x="808" y="176">在 Codex 与 Claude 注册</text>
+    <text x="808" y="198">（你）Drive / Colab 登录</text>
+
+    <text x="1058" y="154">13 个 skill</text>
+    <text x="1058" y="176">4 个共享脚本</text>
+    <text x="1058" y="198">提示单 · 笔记模板</text>
+
+    <text x="1058" y="364">（你）打开笔记库</text>
+    <text x="1058" y="386">5 个社区插件</text>
+    <text x="1058" y="408">模板路径 · Git 自动提交</text>
+
+    <text x="808" y="364">读写作规范</text>
+    <text x="808" y="386">npm install · build 通过</text>
+    <text x="808" y="408">只读检查 GitHub 凭据</text>
+
+    <text x="558" y="364">科研 · 课程 · Gemini</text>
+    <text x="558" y="386">Drive · 复现 · 相似论文</text>
+    <text x="558" y="408">可互换 · 清理（C4）</text>
+
+    <text x="308" y="364">范围文件 · 新分类树</text>
+    <text x="308" y="386">验证订阅源 URL</text>
+    <text x="308" y="408">venue-scan 模式</text>
+  </g>
+  <g font-size="13" fill="#6b7280">
+    <text x="58" y="226">检查：版本号</text>
+    <text x="308" y="226">检查：api.ready · .bib 增长</text>
+    <text x="558" y="226">检查：git 提交 · 信任</text>
+    <text x="808" y="226">检查：mcp list · 冒烟</text>
+    <text x="1058" y="226">检查：两个客户端都可见</text>
+    <text x="1058" y="436">检查：插件已加载</text>
+    <text x="808" y="436">检查：exit 0 · 未推送</text>
+    <text x="558" y="436">检查：停在 C1 / C3</text>
+    <text x="308" y="436">检查：只读读取订阅表</text>
+  </g>
+
+  <g font-size="15" fill="#4b5563">
+    <rect x="40" y="476" width="22" height="20" rx="4" stroke="#2a6fdb" stroke-width="2" fill="#e6effc"/>
+    <text x="72" y="491">初始搭建（第 2 版清单）</text>
+    <rect x="300" y="476" width="22" height="20" rx="4" stroke="#059669" stroke-width="2" fill="#e7f6f0"/>
+    <text x="332" y="491">之后的扩展（第 3 版）</text>
+    <text x="560" y="491">“（你）”= 需要你在图形界面里点击，执行者会停下来等你说 done</text>
+  </g>
+</svg>

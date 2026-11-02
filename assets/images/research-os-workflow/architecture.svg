@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="780" viewBox="0 0 1280 780" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#6b7280"/>
+    </marker>
+    <marker id="b" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M10 0 L0 5 L10 10 z" fill="#6b7280"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1280" height="780" fill="#ffffff"/>
+
+  <text x="40" y="46" font-size="24" font-weight="700" fill="#111827">你负责投喂与审批；任一执行者负责归档、写作与发布</text>
+  <g font-size="16" fill="#6b7280" text-anchor="middle">
+    <text x="165" y="88">来源与算力</text>
+    <text x="465" y="88">你来操作</text>
+    <text x="790" y="88">执行者（按你的指令）</text>
+    <text x="1115" y="88">中枢与输出</text>
+  </g>
+  <g font-size="15" font-weight="700" fill="#9ca3af">
+    <text x="24" y="180" transform="rotate(-90 24 180)" text-anchor="middle">科研</text>
+    <text x="24" y="330" transform="rotate(-90 24 330)" text-anchor="middle">复现</text>
+    <text x="24" y="540" transform="rotate(-90 24 540)" text-anchor="middle">课程</text>
+  </g>
+
+  <!-- column 1: sources -->
+  <g stroke="#9ca3af" stroke-width="1.5" fill="#ffffff">
+    <rect x="40" y="110" width="250" height="140" rx="10"/>
+    <rect x="40" y="280" width="250" height="100" rx="10"/>
+    <rect x="40" y="430" width="250" height="130" rx="10"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="165" y="140" font-size="19" font-weight="700" fill="#111827">论文来源</text>
+    <text x="165" y="168" font-size="15" fill="#4b5563">arXiv · OpenReview</text>
+    <text x="165" y="192" font-size="15" fill="#4b5563">期刊与会议订阅源</text>
+    <text x="165" y="216" font-size="15" fill="#4b5563">OpenAlex · Semantic Scholar</text>
+    <text x="165" y="312" font-size="19" font-weight="700" fill="#111827">Colab GPU</text>
+    <text x="165" y="340" font-size="15" fill="#4b5563">T4 · L4 · A100</text>
+    <text x="165" y="462" font-size="19" font-weight="700" fill="#111827">课程资料</text>
+    <text x="165" y="490" font-size="15" fill="#4b5563">课件 · 录音</text>
+    <text x="165" y="514" font-size="15" fill="#4b5563">电子书 · 笔记 · 链接</text>
+  </g>
+
+  <!-- column 2: tools you operate -->
+  <g stroke="#e8603c" stroke-width="2.5" fill="#fdebe5">
+    <rect x="340" y="150" width="250" height="110" rx="10"/>
+    <rect x="340" y="280" width="250" height="100" rx="10"/>
+    <rect x="340" y="430" width="250" height="90" rx="10"/>
+  </g>
+  <rect x="340" y="610" width="250" height="100" rx="10" stroke="#9ca3af" stroke-width="1.5" fill="#ffffff"/>
+  <g text-anchor="middle">
+    <text x="465" y="180" font-size="19" font-weight="700" fill="#111827">Zotero + Better BibTeX</text>
+    <text x="465" y="208" font-size="15" fill="#4b5563">你用 Connector 或订阅保存</text>
+    <text x="465" y="232" font-size="15" fill="#4b5563">执行者按分类映射归档</text>
+    <text x="465" y="312" font-size="19" font-weight="700" fill="#111827">Antigravity</text>
+    <text x="465" y="340" font-size="15" fill="#4b5563">你驱动它的智能体</text>
+    <text x="465" y="362" font-size="15" fill="#4b5563">按 RUN.md 调用 colab CLI</text>
+    <text x="465" y="462" font-size="19" font-weight="700" fill="#111827">NotebookLM</text>
+    <text x="465" y="490" font-size="15" fill="#4b5563">每门课一个笔记本；你上传、提问</text>
+    <text x="465" y="642" font-size="19" font-weight="700" fill="#111827">Google Drive</text>
+    <text x="465" y="670" font-size="15" fill="#4b5563">导出的回答 · 活文档</text>
+  </g>
+
+  <!-- column 3: operators -->
+  <rect x="660" y="110" width="260" height="610" rx="12" stroke="#9ca3af" stroke-width="1.5" fill="#f9fafb"/>
+  <g stroke="#9ca3af" stroke-width="1.5" fill="#ffffff">
+    <rect x="690" y="125" width="200" height="44" rx="8"/>
+    <rect x="690" y="179" width="200" height="44" rx="8"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="790" y="154" font-size="18" font-weight="700" fill="#111827">Codex</text>
+    <text x="790" y="208" font-size="18" font-weight="700" fill="#111827">Claude Code</text>
+    <text x="790" y="248" font-size="14" fill="#4b5563">任选其一：同一套规则、skills、</text>
+    <text x="790" y="268" font-size="14" fill="#4b5563">MCP 与 ops/log.md</text>
+  </g>
+  <g text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="14" fill="#374151">
+    <text x="790" y="325">repro-plan · repro-report</text>
+    <text x="790" y="485">ask-gemini</text>
+    <text x="790" y="652">course-ingest</text>
+    <text x="790" y="674">notebook-pack · course-quiz</text>
+  </g>
+
+  <!-- column 4: hub and outputs -->
+  <rect x="990" y="125" width="250" height="100" rx="10" stroke="#2a6fdb" stroke-width="2.5" fill="#e6effc"/>
+  <g stroke="#9ca3af" stroke-width="1.5" fill="#ffffff">
+    <rect x="990" y="300" width="250" height="100" rx="10"/>
+    <rect x="990" y="440" width="250" height="90" rx="10"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="1115" y="160" font-size="19" font-weight="700" fill="#111827">Obsidian 笔记库</text>
+    <text x="1115" y="188" font-size="15" fill="#4b5563">文献笔记 · 综述 · 概念</text>
+    <text x="1115" y="210" font-size="15" fill="#4b5563">课程笔记 · 卡片</text>
+    <text x="1115" y="334" font-size="19" font-weight="700" fill="#111827">博客仓库</text>
+    <text x="1115" y="362" font-size="15" fill="#4b5563">推送到 main 即部署</text>
+    <text x="1115" y="472" font-size="19" font-weight="700" fill="#111827">Gemini</text>
+    <text x="1115" y="500" font-size="15" fill="#4b5563">agy -p：第二意见</text>
+  </g>
+
+  <!-- arrows: automatic (solid) -->
+  <g stroke="#6b7280" stroke-width="2" fill="none" marker-end="url(#a)">
+    <line x1="290" y1="128" x2="658" y2="128"/>
+    <line x1="920" y1="175" x2="988" y2="175"/>
+    <line x1="1115" y1="225" x2="1115" y2="298"/>
+    <line x1="290" y1="330" x2="338" y2="330" marker-start="url(#b)"/>
+    <line x1="590" y1="330" x2="658" y2="330" marker-start="url(#b)"/>
+    <line x1="590" y1="205" x2="658" y2="205" marker-start="url(#b)"/>
+    <line x1="920" y1="485" x2="988" y2="485" marker-start="url(#b)"/>
+    <line x1="590" y1="660" x2="658" y2="660" marker-start="url(#b)"/>
+    <line x1="530" y1="610" x2="530" y2="522"/>
+  </g>
+  <!-- arrows: manual (dashed) -->
+  <g stroke="#6b7280" stroke-width="2" fill="none" stroke-dasharray="7 5" marker-end="url(#a)">
+    <line x1="290" y1="205" x2="338" y2="205"/>
+    <line x1="290" y1="475" x2="338" y2="475"/>
+    <line x1="400" y1="520" x2="400" y2="608"/>
+  </g>
+  <g font-size="14" fill="#4b5563">
+    <text x="474" y="120" text-anchor="middle">MCP：检索、相似论文</text>
+    <text x="624" y="196" text-anchor="middle">MCP · C1</text>
+    <text x="624" y="321" text-anchor="middle">RUN.md</text>
+    <text x="624" y="651" text-anchor="middle">gws</text>
+    <text x="954" y="476" text-anchor="middle">CLI</text>
+    <text x="410" y="570">你导出</text>
+    <text x="540" y="570">自动同步</text>
+    <text x="1125" y="262">blog-publish · C3</text>
+  </g>
+
+  <!-- legend -->
+  <g font-size="15" fill="#4b5563">
+    <line x1="40" y1="750" x2="90" y2="750" stroke="#6b7280" stroke-width="2"/>
+    <text x="100" y="755">自动进行</text>
+    <line x1="200" y1="750" x2="250" y2="750" stroke="#6b7280" stroke-width="2" stroke-dasharray="7 5"/>
+    <text x="260" y="755">你手动完成</text>
+    <rect x="380" y="740" width="22" height="20" rx="4" stroke="#e8603c" stroke-width="2" fill="#fdebe5"/>
+    <text x="412" y="755">你操作的工具</text>
+    <rect x="540" y="740" width="22" height="20" rx="4" stroke="#2a6fdb" stroke-width="2" fill="#e6effc"/>
+    <text x="572" y="755">中枢</text>
+  </g>
+</svg>

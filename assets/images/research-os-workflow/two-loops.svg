@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif">
+  <defs>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#059669"/>
+    </marker>
+    <marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1280" height="560" fill="#ffffff"/>
+
+  <text x="265" y="48" font-size="24" font-weight="700" fill="#2563eb" text-anchor="middle">科研闭环</text>
+  <text x="1015" y="48" font-size="24" font-weight="700" fill="#059669" text-anchor="middle">课程闭环</text>
+
+  <!-- nodes -->
+  <g stroke-width="2.5">
+    <rect x="40" y="150" width="200" height="100" rx="12" stroke="#2563eb" fill="#eaf1fd"/>
+    <rect x="290" y="150" width="200" height="100" rx="12" stroke="#2563eb" fill="#eaf1fd"/>
+    <rect x="540" y="150" width="200" height="100" rx="12" stroke="#374151" fill="#ffffff"/>
+    <rect x="790" y="150" width="200" height="100" rx="12" stroke="#059669" fill="#e7f6f0"/>
+    <rect x="1040" y="150" width="200" height="100" rx="12" stroke="#059669" fill="#e7f6f0"/>
+    <rect x="540" y="360" width="200" height="110" rx="12" stroke="#374151" fill="#ffffff"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="140" y="188" font-size="20" font-weight="700" fill="#111827">数据库与订阅源</text>
+    <text x="140" y="214" font-size="14" fill="#4b5563">arXiv · OpenReview</text>
+    <text x="140" y="234" font-size="14" fill="#4b5563">OpenAlex · S2 · 期刊</text>
+    <text x="390" y="194" font-size="20" font-weight="700" fill="#111827">Zotero</text>
+    <text x="390" y="222" font-size="14" fill="#4b5563">+ Better BibTeX</text>
+    <text x="640" y="194" font-size="20" font-weight="700" fill="#111827">Obsidian</text>
+    <text x="640" y="222" font-size="14" fill="#4b5563">笔记库（中枢）</text>
+    <text x="890" y="194" font-size="20" font-weight="700" fill="#111827">Google Drive</text>
+    <text x="890" y="222" font-size="14" fill="#4b5563">导出的文档</text>
+    <text x="1140" y="194" font-size="20" font-weight="700" fill="#111827">NotebookLM</text>
+    <text x="1140" y="222" font-size="14" fill="#4b5563">每门课一个笔记本</text>
+    <text x="640" y="400" font-size="20" font-weight="700" fill="#111827">博客</text>
+    <text x="640" y="426" font-size="14" fill="#4b5563" font-family="Menlo, Consolas, monospace">posts/research</text>
+    <text x="640" y="448" font-size="14" fill="#4b5563" font-family="Menlo, Consolas, monospace">posts/courses</text>
+  </g>
+
+  <!-- research arrows -->
+  <g stroke="#2563eb" stroke-width="2.5" fill="none" marker-end="url(#r)">
+    <line x1="240" y1="200" x2="286" y2="200"/>
+    <line x1="490" y1="200" x2="536" y2="200"/>
+    <polyline points="540,415 140,415 140,254"/>
+  </g>
+  <!-- course arrows -->
+  <g stroke="#059669" stroke-width="2.5" fill="none">
+    <line x1="1040" y1="200" x2="994" y2="200" stroke-dasharray="7 5" marker-end="url(#c)"/>
+    <line x1="790" y1="200" x2="744" y2="200" marker-end="url(#c)"/>
+    <polyline points="740,415 1140,415 1140,254" marker-end="url(#c)"/>
+  </g>
+  <!-- hub to blog -->
+  <line x1="640" y1="250" x2="640" y2="356" stroke="#374151" stroke-width="2.5" marker-end="url(#k)"/>
+
+  <!-- labels -->
+  <g font-size="14" text-anchor="middle" font-family="Menlo, Consolas, monospace">
+    <text x="263" y="118" fill="#2563eb">paper-search</text>
+    <text x="263" y="138" fill="#2563eb">paper-similar · C1</text>
+    <text x="515" y="118" fill="#2563eb">paper-summary</text>
+    <text x="515" y="138" fill="#2563eb">lit-review</text>
+    <text x="765" y="138" fill="#059669">course-ingest</text>
+    <text x="1015" y="138" fill="#059669" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif">你：Export to Docs</text>
+    <text x="700" y="300" fill="#374151" text-anchor="start">blog-publish</text>
+  </g>
+  <g font-size="14" text-anchor="middle">
+    <text x="700" y="322" fill="#374151" text-anchor="start">C3：你确认后推送</text>
+    <text x="340" y="442" fill="#2563eb">文章 DOI · 施引论文回到检索</text>
+    <text x="940" y="442" fill="#059669">经 Drive 的活文档：已核实笔记、文章网址</text>
+    <text x="156" y="335" fill="#2563eb" text-anchor="start">“科研”文章</text>
+    <text x="1124" y="335" fill="#059669" text-anchor="end">“课程”文章；不经过 Zotero</text>
+  </g>
+
+  <text x="640" y="525" font-size="15" fill="#6b7280" text-anchor="middle">两个闭环在笔记库与博客交汇；Zotero 只参与科研闭环，课程资料只进 NotebookLM 与笔记库</text>
+</svg>
