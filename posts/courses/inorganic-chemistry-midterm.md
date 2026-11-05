@@ -8,7 +8,7 @@ tags:
   - 期中复习
   - 化学平衡
 description: "对照《简明无机化学》梳理期中前四章。逐步推导气体、热力学和溶液平衡公式，讲透反应级数判别，配例题卡片和七道闭卷自测。"
-aigcRate: 100
+aigcRate: 75
 aigcModels:
   - openai
 ---
