@@ -6,7 +6,7 @@ tags: [编译原理, 期中复习, LL(1)]
 description: "从推导、解析树与二义性出发，完整推演文法变换、Nullable、FIRST/FOLLOW、SELECT 与 LL(1) 表。"
 source: codex
 verified: true
-aigcRate: 100
+aigcRate: 80
 aigcModels: [openai]
 ---
 

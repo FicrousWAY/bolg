@@ -6,7 +6,7 @@ tags: [编译原理, 期中复习, 有限自动机]
 description: "逐步执行 Thompson 构造、子集构造与 DFA 最小化，补全边表、闭包、区分串和最长匹配。"
 source: codex
 verified: true
-aigcRate: 100
+aigcRate: 80
 aigcModels: [openai]
 ---
 

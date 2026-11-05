@@ -6,7 +6,7 @@ tags: [编译原理, 期中复习, LR(0)]
 description: "以完整十二状态实例讲清句柄、活前缀、closure/goto、LR(0) 表与双栈运行，并分析冲突边界。"
 source: codex
 verified: true
-aigcRate: 100
+aigcRate: 80
 aigcModels: [openai]
 ---
 

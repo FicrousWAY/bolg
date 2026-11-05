@@ -6,7 +6,7 @@ tags: [编译原理, 期中复习, 词法分析]
 description: "从编译器六阶段、Token 与词素开始，讲清字符串、正规式、DFA、NFA，以及有限状态的能力边界。"
 source: codex
 verified: true
-aigcRate: 100
+aigcRate: 80
 aigcModels: [openai]
 ---
 
