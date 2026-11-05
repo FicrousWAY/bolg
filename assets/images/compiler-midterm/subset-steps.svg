@@ -1,0 +1,526 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="883" height="1156" viewBox="0 0 883 1156" role="img" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTplOTZlYTRlMC0xMzJmLTQwM2YtOTA1MS03MDVlOTRkMGJmNzQAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaOKPhfiKAhKNyLZ+ThL/lgAAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo1ZmI5YWYzYy00NTljLTRkYjUtODg1Yi03Zjg0NmRjNGY5YjlscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNooy8uKZonJqqN+JwMWAnCZgAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggwB3pnSyDAe4x4nPf2aOztmCqKx+7AR2RL6tTVIac/9ykZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaOw8sy1bUIJmimWLPy2AiFUAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCBs+KaqNLEG0NgR3o8kwfXEpXaB3mm9Ak1Yy5F1DUy6EWRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBjOZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmU5NmVhNGUwLTEzMmYtNDAzZi05MDUxLTcwNWU5NGQwYmY3NC9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmNmODQyNTZkLWMzYjktNDlkYy05NTY4LWI5MjU5ZWI1Mjc5MnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDAHemdLIMB7jHic9/Zo7O2YKorH7sBHZEvq1NUhpz/3KJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFgg1/v4fI1vyzj9XSbfdbNiqdNM7W7UWiW+fAXiND267uyiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggNs7WpBtBvjRaGIw+vffCpSLV1fZoS0luOZa5tJrWnLZ0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQFIaUoFjgesE0FpuQwvM2aaFHKK79JnM/Qc88ITxZRTogVVEn/gdFEFTEL/y+zT1EBUs5it+khscmsEAfv8cIzc=</c2pa:manifest></metadata><title>子集构造：一个 DFA 状态 = 一组 NFA 状态（橙色）</title><rect width="100%" height="100%" rx="18" fill="#f5f2e9"/><text x="441.5" y="38" font-size="22" text-anchor="middle" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" fill="#203b48" font-weight="600">子集构造：一个 DFA 状态 = 一组 NFA 状态（橙色）</text><svg x="12.0" y="56" width="859.0" height="1088.0" viewBox="0 0 859 1088"><text x="429.5" y="22" font-size="17" text-anchor="middle" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" fill="#203b48" font-weight="600">第 1 步　A = E({0}) = {0,1,2,4,7,8}：还没读字符，只沿 ε 边扩展</text><svg x="0.0" y="34" width="859.0" height="322.0" viewBox="0.00 0.00 858.67 322.40">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 297.2)">
+<title>G</title>
+<rect x="-10000" y="-10000" width="0" height="0" fill="none"/>
+<g id="clust1" class="cluster">
+<title>cluster_star</title>
+<path fill="#f5f2e9" stroke="#6b7f8a" stroke-dasharray="5,2" d="M36.72,-8C36.72,-8 458.72,-8 458.72,-8 464.72,-8 470.72,-14 470.72,-20 470.72,-20 470.72,-252 470.72,-252 470.72,-258 464.72,-264 458.72,-264 458.72,-264 36.72,-264 36.72,-264 30.72,-264 24.72,-258 24.72,-252 24.72,-252 24.72,-20 24.72,-20 24.72,-14 30.72,-8 36.72,-8"/>
+<text text-anchor="middle" x="247.72" y="-15.6" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13.00" fill="#6b7f8a">(a|b)*：状态 0–7</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_alt</title>
+<path fill="#f5f2e9" stroke="#6b7f8a" stroke-dasharray="5,2" d="M114.72,-86C114.72,-86 380.72,-86 380.72,-86 386.72,-86 392.72,-92 392.72,-98 392.72,-98 392.72,-244 392.72,-244 392.72,-250 386.72,-256 380.72,-256 380.72,-256 114.72,-256 114.72,-256 108.72,-256 102.72,-250 102.72,-244 102.72,-244 102.72,-98 102.72,-98 102.72,-92 108.72,-86 114.72,-86"/>
+<text text-anchor="middle" x="247.72" y="-93.6" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13.00" fill="#6b7f8a">a|b：状态 1–6</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_a</title>
+<path fill="#f5f2e9" stroke="#6b7f8a" stroke-dasharray="5,2" d="M505.72,-28C505.72,-28 616.72,-28 616.72,-28 622.72,-28 628.72,-34 628.72,-40 628.72,-40 628.72,-94 628.72,-94 628.72,-100 622.72,-106 616.72,-106 616.72,-106 505.72,-106 505.72,-106 499.72,-106 493.72,-100 493.72,-94 493.72,-94 493.72,-40 493.72,-40 493.72,-34 499.72,-28 505.72,-28"/>
+<text text-anchor="middle" x="561.22" y="-35.6" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13.00" fill="#6b7f8a">a：8–9</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_b</title>
+<path fill="#f5f2e9" stroke="#6b7f8a" stroke-dasharray="5,2" d="M663.72,-23C663.72,-23 788.27,-23 788.27,-23 794.27,-23 800.27,-29 800.27,-35 800.27,-35 800.27,-99 800.27,-99 800.27,-105 794.27,-111 788.27,-111 788.27,-111 663.72,-111 663.72,-111 657.72,-111 651.72,-105 651.72,-99 651.72,-99 651.72,-35 651.72,-35 651.72,-29 657.72,-23 663.72,-23"/>
+<text text-anchor="middle" x="725.99" y="-30.6" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13.00" fill="#6b7f8a">b：10–11</text>
+</g>
+<g id="node2" class="node">
+<title>n0</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="52.72" cy="-90" rx="20" ry="20"/>
+<text text-anchor="middle" x="52.72" y="-86.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">0</text>
+</g>
+<g id="edge1" class="edge">
+<title>start&#45;&gt;n0</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" d="M0.87,-90C2.24,-90 13.06,-90 24.37,-90"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="24.57,-92.8 32.57,-90 24.57,-87.2 24.57,-92.8"/>
+</g>
+<g id="node3" class="node">
+<title>n7</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="442.72" cy="-78" rx="20" ry="20"/>
+<text text-anchor="middle" x="442.72" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">7</text>
+</g>
+<g id="edge3" class="edge">
+<title>n0&#45;&gt;n7</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M70.32,-80.4C85.33,-72.64 108.3,-63 129.72,-63 129.72,-63 129.72,-63 365.72,-63 382.47,-63 400.91,-66.55 415.44,-70.2"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="415.04,-72.99 423.49,-72.33 416.47,-67.58 415.04,-72.99"/>
+<text text-anchor="middle" x="247.72" y="-66.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node4" class="node">
+<title>n1</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="130.72" cy="-141" rx="20" ry="20"/>
+<text text-anchor="middle" x="130.72" y="-137.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">1</text>
+</g>
+<g id="edge2" class="edge">
+<title>n0&#45;&gt;n1</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M69.84,-100.82C80.62,-108.05 94.97,-117.68 106.91,-125.7"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="105.42,-128.07 113.63,-130.2 108.54,-123.42 105.42,-128.07"/>
+<text text-anchor="middle" x="91.22" y="-120.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node10" class="node">
+<title>n8</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="521.72" cy="-78" rx="20" ry="20"/>
+<text text-anchor="middle" x="521.72" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">8</text>
+</g>
+<g id="edge12" class="edge">
+<title>n7&#45;&gt;n8</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M462.75,-78C472.01,-78 483.3,-78 493.45,-78"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="493.64,-80.8 501.64,-78 493.64,-75.2 493.64,-80.8"/>
+<text text-anchor="middle" x="482.22" y="-81.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node5" class="node">
+<title>n2</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="207.72" cy="-136" rx="20" ry="20"/>
+<text text-anchor="middle" x="207.72" y="-132.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">2</text>
+</g>
+<g id="edge4" class="edge">
+<title>n1&#45;&gt;n2</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M151.03,-139.71C159.76,-139.13 170.22,-138.43 179.71,-137.8"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="179.93,-140.59 187.73,-137.27 179.56,-135 179.93,-140.59"/>
+<text text-anchor="middle" x="169.22" y="-141.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node7" class="node">
+<title>n4</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="207.72" cy="-201" rx="20" ry="20"/>
+<text text-anchor="middle" x="207.72" y="-197.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">4</text>
+</g>
+<g id="edge5" class="edge">
+<title>n1&#45;&gt;n4</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M146.9,-153.14C157.88,-161.93 172.87,-173.92 185.1,-183.7"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="183.57,-186.07 191.57,-188.88 187.07,-181.69 183.57,-186.07"/>
+<text text-anchor="middle" x="169.22" y="-175.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node6" class="node">
+<title>n3</title>
+<ellipse fill="#e2ebe6" stroke="#456579" stroke-width="1.6" cx="287.72" cy="-136" rx="20" ry="20"/>
+<text text-anchor="middle" x="287.72" y="-132.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">3</text>
+</g>
+<g id="edge6" class="edge">
+<title>n2&#45;&gt;n3</title>
+<path fill="none" stroke="#456579" stroke-width="2" d="M228,-136C237.54,-136 249.22,-136 259.64,-136"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="2" points="259.66,-138.8 267.66,-136 259.66,-133.2 259.66,-138.8"/>
+<text text-anchor="middle" x="247.72" y="-139.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">a</text>
+</g>
+<g id="node9" class="node">
+<title>n6</title>
+<ellipse fill="#e2ebe6" stroke="#456579" stroke-width="1.6" cx="364.72" cy="-141" rx="20" ry="20"/>
+<text text-anchor="middle" x="364.72" y="-137.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">6</text>
+</g>
+<g id="edge7" class="edge">
+<title>n3&#45;&gt;n6</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M308.03,-137.29C316.76,-137.87 327.22,-138.57 336.71,-139.2"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="336.56,-142 344.73,-139.73 336.93,-136.41 336.56,-142"/>
+<text text-anchor="middle" x="326.22" y="-141.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node8" class="node">
+<title>n5</title>
+<ellipse fill="#e2ebe6" stroke="#456579" stroke-width="1.6" cx="287.72" cy="-201" rx="20" ry="20"/>
+<text text-anchor="middle" x="287.72" y="-197.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">5</text>
+</g>
+<g id="edge8" class="edge">
+<title>n4&#45;&gt;n5</title>
+<path fill="none" stroke="#456579" stroke-width="2" d="M225.96,-192.38C231.21,-190.18 237.08,-188.11 242.72,-187 249.13,-185.73 255.93,-186.69 262.21,-188.59"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="2" points="261.35,-191.26 269.82,-191.4 263.28,-186 261.35,-191.26"/>
+<text text-anchor="middle" x="247.72" y="-190.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">b</text>
+</g>
+<g id="edge9" class="edge">
+<title>n5&#45;&gt;n6</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M303.9,-188.86C314.88,-180.07 329.87,-168.08 342.1,-158.3"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="344.07,-160.31 348.57,-153.12 340.57,-155.93 344.07,-160.31"/>
+<text text-anchor="middle" x="326.22" y="-175.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="edge11" class="edge">
+<title>n6&#45;&gt;n7</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M380.74,-128.55C392.08,-119.15 407.81,-106.11 420.45,-95.63"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="422.36,-97.68 426.74,-90.42 418.79,-93.37 422.36,-97.68"/>
+<text text-anchor="middle" x="404.22" y="-114.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="edge10" class="edge">
+<title>n6&#45;&gt;n1</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M358.45,-160.1C351.16,-182.4 335.61,-218.24 307.72,-234 261.29,-260.24 234.15,-260.24 187.72,-234 162.88,-219.96 147.83,-190 139.68,-167.86"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="142.26,-166.74 136.99,-160.1 136.97,-168.57 142.26,-166.74"/>
+<text text-anchor="middle" x="247.72" y="-256.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node11" class="node">
+<title>n9</title>
+<ellipse fill="#e2ebe6" stroke="#456579" stroke-width="1.6" cx="600.72" cy="-78" rx="20" ry="20"/>
+<text text-anchor="middle" x="600.72" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">9</text>
+</g>
+<g id="edge13" class="edge">
+<title>n8&#45;&gt;n9</title>
+<path fill="none" stroke="#456579" stroke-width="2" d="M541.75,-78C551.01,-78 562.3,-78 572.45,-78"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="2" points="572.64,-80.8 580.64,-78 572.64,-75.2 572.64,-80.8"/>
+<text text-anchor="middle" x="561.22" y="-81.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">a</text>
+</g>
+<g id="node12" class="node">
+<title>n10</title>
+<ellipse fill="#e2ebe6" stroke="#456579" stroke-width="1.6" cx="680.86" cy="-78" rx="21.27" ry="21.27"/>
+<text text-anchor="middle" x="680.86" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">10</text>
+</g>
+<g id="edge14" class="edge">
+<title>n9&#45;&gt;n10</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M621.03,-78C630.21,-78 641.37,-78 651.49,-78"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="651.67,-80.8 659.67,-78 651.67,-75.2 651.67,-80.8"/>
+<text text-anchor="middle" x="640.22" y="-81.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node13" class="node">
+<title>n11</title>
+<ellipse fill="#e2ebe6" stroke="#456579" stroke-width="1.6" cx="767.13" cy="-78" rx="21.25" ry="21.25"/>
+<ellipse fill="none" stroke="#456579" stroke-width="1.6" cx="767.13" cy="-78" rx="25.27" ry="25.27"/>
+<text text-anchor="middle" x="767.13" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">11</text>
+</g>
+<g id="edge15" class="edge">
+<title>n10&#45;&gt;n11</title>
+<path fill="none" stroke="#456579" stroke-width="2" d="M702.26,-78C711.64,-78 722.99,-78 733.51,-78"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="2" points="733.72,-80.8 741.72,-78 733.72,-75.2 733.72,-80.8"/>
+<text text-anchor="middle" x="721.99" y="-81.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">b</text>
+</g>
+</g>
+</svg><text x="429.5" y="388.0" font-size="17" text-anchor="middle" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" fill="#203b48" font-weight="600">第 2 步　move(A, a) = {3, 9}（蓝），再求闭包得 B = {1,2,3,4,6,7,8,9,10}</text><svg x="0.0" y="400.0" width="859.0" height="322.0" viewBox="0.00 0.00 858.67 322.40">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 297.2)">
+<title>G</title>
+<rect x="-10000" y="-10000" width="0" height="0" fill="none"/>
+<g id="clust1" class="cluster">
+<title>cluster_star</title>
+<path fill="#f5f2e9" stroke="#6b7f8a" stroke-dasharray="5,2" d="M36.72,-8C36.72,-8 458.72,-8 458.72,-8 464.72,-8 470.72,-14 470.72,-20 470.72,-20 470.72,-252 470.72,-252 470.72,-258 464.72,-264 458.72,-264 458.72,-264 36.72,-264 36.72,-264 30.72,-264 24.72,-258 24.72,-252 24.72,-252 24.72,-20 24.72,-20 24.72,-14 30.72,-8 36.72,-8"/>
+<text text-anchor="middle" x="247.72" y="-15.6" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13.00" fill="#6b7f8a">(a|b)*：状态 0–7</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_alt</title>
+<path fill="#f5f2e9" stroke="#6b7f8a" stroke-dasharray="5,2" d="M114.72,-86C114.72,-86 380.72,-86 380.72,-86 386.72,-86 392.72,-92 392.72,-98 392.72,-98 392.72,-244 392.72,-244 392.72,-250 386.72,-256 380.72,-256 380.72,-256 114.72,-256 114.72,-256 108.72,-256 102.72,-250 102.72,-244 102.72,-244 102.72,-98 102.72,-98 102.72,-92 108.72,-86 114.72,-86"/>
+<text text-anchor="middle" x="247.72" y="-93.6" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13.00" fill="#6b7f8a">a|b：状态 1–6</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_a</title>
+<path fill="#f5f2e9" stroke="#6b7f8a" stroke-dasharray="5,2" d="M505.72,-28C505.72,-28 616.72,-28 616.72,-28 622.72,-28 628.72,-34 628.72,-40 628.72,-40 628.72,-94 628.72,-94 628.72,-100 622.72,-106 616.72,-106 616.72,-106 505.72,-106 505.72,-106 499.72,-106 493.72,-100 493.72,-94 493.72,-94 493.72,-40 493.72,-40 493.72,-34 499.72,-28 505.72,-28"/>
+<text text-anchor="middle" x="561.22" y="-35.6" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13.00" fill="#6b7f8a">a：8–9</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_b</title>
+<path fill="#f5f2e9" stroke="#6b7f8a" stroke-dasharray="5,2" d="M663.72,-23C663.72,-23 788.27,-23 788.27,-23 794.27,-23 800.27,-29 800.27,-35 800.27,-35 800.27,-99 800.27,-99 800.27,-105 794.27,-111 788.27,-111 788.27,-111 663.72,-111 663.72,-111 657.72,-111 651.72,-105 651.72,-99 651.72,-99 651.72,-35 651.72,-35 651.72,-29 657.72,-23 663.72,-23"/>
+<text text-anchor="middle" x="725.99" y="-30.6" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13.00" fill="#6b7f8a">b：10–11</text>
+</g>
+<g id="node2" class="node">
+<title>n0</title>
+<ellipse fill="#e2ebe6" stroke="#456579" stroke-width="1.6" cx="52.72" cy="-90" rx="20" ry="20"/>
+<text text-anchor="middle" x="52.72" y="-86.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">0</text>
+</g>
+<g id="edge1" class="edge">
+<title>start&#45;&gt;n0</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" d="M0.87,-90C2.24,-90 13.06,-90 24.37,-90"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="24.57,-92.8 32.57,-90 24.57,-87.2 24.57,-92.8"/>
+</g>
+<g id="node3" class="node">
+<title>n7</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="442.72" cy="-78" rx="20" ry="20"/>
+<text text-anchor="middle" x="442.72" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">7</text>
+</g>
+<g id="edge3" class="edge">
+<title>n0&#45;&gt;n7</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M70.32,-80.4C85.33,-72.64 108.3,-63 129.72,-63 129.72,-63 129.72,-63 365.72,-63 382.47,-63 400.91,-66.55 415.44,-70.2"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="415.04,-72.99 423.49,-72.33 416.47,-67.58 415.04,-72.99"/>
+<text text-anchor="middle" x="247.72" y="-66.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node4" class="node">
+<title>n1</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="130.72" cy="-141" rx="20" ry="20"/>
+<text text-anchor="middle" x="130.72" y="-137.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">1</text>
+</g>
+<g id="edge2" class="edge">
+<title>n0&#45;&gt;n1</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M69.84,-100.82C80.62,-108.05 94.97,-117.68 106.91,-125.7"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="105.42,-128.07 113.63,-130.2 108.54,-123.42 105.42,-128.07"/>
+<text text-anchor="middle" x="91.22" y="-120.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node10" class="node">
+<title>n8</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="521.72" cy="-78" rx="20" ry="20"/>
+<text text-anchor="middle" x="521.72" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">8</text>
+</g>
+<g id="edge12" class="edge">
+<title>n7&#45;&gt;n8</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M462.75,-78C472.01,-78 483.3,-78 493.45,-78"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="493.64,-80.8 501.64,-78 493.64,-75.2 493.64,-80.8"/>
+<text text-anchor="middle" x="482.22" y="-81.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node5" class="node">
+<title>n2</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="207.72" cy="-136" rx="20" ry="20"/>
+<text text-anchor="middle" x="207.72" y="-132.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">2</text>
+</g>
+<g id="edge4" class="edge">
+<title>n1&#45;&gt;n2</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M151.03,-139.71C159.76,-139.13 170.22,-138.43 179.71,-137.8"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="179.93,-140.59 187.73,-137.27 179.56,-135 179.93,-140.59"/>
+<text text-anchor="middle" x="169.22" y="-141.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node7" class="node">
+<title>n4</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="207.72" cy="-201" rx="20" ry="20"/>
+<text text-anchor="middle" x="207.72" y="-197.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">4</text>
+</g>
+<g id="edge5" class="edge">
+<title>n1&#45;&gt;n4</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M146.9,-153.14C157.88,-161.93 172.87,-173.92 185.1,-183.7"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="183.57,-186.07 191.57,-188.88 187.07,-181.69 183.57,-186.07"/>
+<text text-anchor="middle" x="169.22" y="-175.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node6" class="node">
+<title>n3</title>
+<ellipse fill="#dbe7f2" stroke="#4a6f95" stroke-width="2.6" cx="287.72" cy="-136" rx="20" ry="20"/>
+<text text-anchor="middle" x="287.72" y="-132.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">3</text>
+</g>
+<g id="edge6" class="edge">
+<title>n2&#45;&gt;n3</title>
+<path fill="none" stroke="#4a6f95" stroke-width="3" d="M228,-136C237.54,-136 249.22,-136 259.64,-136"/>
+<polygon fill="#4a6f95" stroke="#4a6f95" stroke-width="3" points="259.66,-138.8 267.66,-136 259.66,-133.2 259.66,-138.8"/>
+<text text-anchor="middle" x="247.72" y="-139.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#4a6f95">a</text>
+</g>
+<g id="node9" class="node">
+<title>n6</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="364.72" cy="-141" rx="20" ry="20"/>
+<text text-anchor="middle" x="364.72" y="-137.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">6</text>
+</g>
+<g id="edge7" class="edge">
+<title>n3&#45;&gt;n6</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M308.03,-137.29C316.76,-137.87 327.22,-138.57 336.71,-139.2"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="336.56,-142 344.73,-139.73 336.93,-136.41 336.56,-142"/>
+<text text-anchor="middle" x="326.22" y="-141.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node8" class="node">
+<title>n5</title>
+<ellipse fill="#e2ebe6" stroke="#456579" stroke-width="1.6" cx="287.72" cy="-201" rx="20" ry="20"/>
+<text text-anchor="middle" x="287.72" y="-197.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">5</text>
+</g>
+<g id="edge8" class="edge">
+<title>n4&#45;&gt;n5</title>
+<path fill="none" stroke="#456579" stroke-width="2" d="M225.96,-192.38C231.21,-190.18 237.08,-188.11 242.72,-187 249.13,-185.73 255.93,-186.69 262.21,-188.59"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="2" points="261.35,-191.26 269.82,-191.4 263.28,-186 261.35,-191.26"/>
+<text text-anchor="middle" x="247.72" y="-190.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">b</text>
+</g>
+<g id="edge9" class="edge">
+<title>n5&#45;&gt;n6</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M303.9,-188.86C314.88,-180.07 329.87,-168.08 342.1,-158.3"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="344.07,-160.31 348.57,-153.12 340.57,-155.93 344.07,-160.31"/>
+<text text-anchor="middle" x="326.22" y="-175.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="edge11" class="edge">
+<title>n6&#45;&gt;n7</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M380.74,-128.55C392.08,-119.15 407.81,-106.11 420.45,-95.63"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="422.36,-97.68 426.74,-90.42 418.79,-93.37 422.36,-97.68"/>
+<text text-anchor="middle" x="404.22" y="-114.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="edge10" class="edge">
+<title>n6&#45;&gt;n1</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M358.45,-160.1C351.16,-182.4 335.61,-218.24 307.72,-234 261.29,-260.24 234.15,-260.24 187.72,-234 162.88,-219.96 147.83,-190 139.68,-167.86"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="142.26,-166.74 136.99,-160.1 136.97,-168.57 142.26,-166.74"/>
+<text text-anchor="middle" x="247.72" y="-256.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node11" class="node">
+<title>n9</title>
+<ellipse fill="#dbe7f2" stroke="#4a6f95" stroke-width="2.6" cx="600.72" cy="-78" rx="20" ry="20"/>
+<text text-anchor="middle" x="600.72" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">9</text>
+</g>
+<g id="edge13" class="edge">
+<title>n8&#45;&gt;n9</title>
+<path fill="none" stroke="#4a6f95" stroke-width="3" d="M541.75,-78C551.01,-78 562.3,-78 572.45,-78"/>
+<polygon fill="#4a6f95" stroke="#4a6f95" stroke-width="3" points="572.64,-80.8 580.64,-78 572.64,-75.2 572.64,-80.8"/>
+<text text-anchor="middle" x="561.22" y="-81.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#4a6f95">a</text>
+</g>
+<g id="node12" class="node">
+<title>n10</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="680.86" cy="-78" rx="21.27" ry="21.27"/>
+<text text-anchor="middle" x="680.86" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">10</text>
+</g>
+<g id="edge14" class="edge">
+<title>n9&#45;&gt;n10</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M621.03,-78C630.21,-78 641.37,-78 651.49,-78"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="651.67,-80.8 659.67,-78 651.67,-75.2 651.67,-80.8"/>
+<text text-anchor="middle" x="640.22" y="-81.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node13" class="node">
+<title>n11</title>
+<ellipse fill="#e2ebe6" stroke="#456579" stroke-width="1.6" cx="767.13" cy="-78" rx="21.25" ry="21.25"/>
+<ellipse fill="none" stroke="#456579" stroke-width="1.6" cx="767.13" cy="-78" rx="25.27" ry="25.27"/>
+<text text-anchor="middle" x="767.13" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">11</text>
+</g>
+<g id="edge15" class="edge">
+<title>n10&#45;&gt;n11</title>
+<path fill="none" stroke="#456579" stroke-width="2" d="M702.26,-78C711.64,-78 722.99,-78 733.51,-78"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="2" points="733.72,-80.8 741.72,-78 733.72,-75.2 733.72,-80.8"/>
+<text text-anchor="middle" x="721.99" y="-81.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">b</text>
+</g>
+</g>
+</svg><text x="429.5" y="754.0" font-size="17" text-anchor="middle" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" fill="#203b48" font-weight="600">第 3 步　move(B, b) = {5, 11}（蓝），闭包得 D = {1,2,4,5,6,7,8,11}，含终态 11 → D 接受</text><svg x="0.0" y="766.0" width="859.0" height="322.0" viewBox="0.00 0.00 858.67 322.40">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 297.2)">
+<title>G</title>
+<rect x="-10000" y="-10000" width="0" height="0" fill="none"/>
+<g id="clust1" class="cluster">
+<title>cluster_star</title>
+<path fill="#f5f2e9" stroke="#6b7f8a" stroke-dasharray="5,2" d="M36.72,-8C36.72,-8 458.72,-8 458.72,-8 464.72,-8 470.72,-14 470.72,-20 470.72,-20 470.72,-252 470.72,-252 470.72,-258 464.72,-264 458.72,-264 458.72,-264 36.72,-264 36.72,-264 30.72,-264 24.72,-258 24.72,-252 24.72,-252 24.72,-20 24.72,-20 24.72,-14 30.72,-8 36.72,-8"/>
+<text text-anchor="middle" x="247.72" y="-15.6" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13.00" fill="#6b7f8a">(a|b)*：状态 0–7</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_alt</title>
+<path fill="#f5f2e9" stroke="#6b7f8a" stroke-dasharray="5,2" d="M114.72,-86C114.72,-86 380.72,-86 380.72,-86 386.72,-86 392.72,-92 392.72,-98 392.72,-98 392.72,-244 392.72,-244 392.72,-250 386.72,-256 380.72,-256 380.72,-256 114.72,-256 114.72,-256 108.72,-256 102.72,-250 102.72,-244 102.72,-244 102.72,-98 102.72,-98 102.72,-92 108.72,-86 114.72,-86"/>
+<text text-anchor="middle" x="247.72" y="-93.6" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13.00" fill="#6b7f8a">a|b：状态 1–6</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_a</title>
+<path fill="#f5f2e9" stroke="#6b7f8a" stroke-dasharray="5,2" d="M505.72,-28C505.72,-28 616.72,-28 616.72,-28 622.72,-28 628.72,-34 628.72,-40 628.72,-40 628.72,-94 628.72,-94 628.72,-100 622.72,-106 616.72,-106 616.72,-106 505.72,-106 505.72,-106 499.72,-106 493.72,-100 493.72,-94 493.72,-94 493.72,-40 493.72,-40 493.72,-34 499.72,-28 505.72,-28"/>
+<text text-anchor="middle" x="561.22" y="-35.6" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13.00" fill="#6b7f8a">a：8–9</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_b</title>
+<path fill="#f5f2e9" stroke="#6b7f8a" stroke-dasharray="5,2" d="M663.72,-23C663.72,-23 788.27,-23 788.27,-23 794.27,-23 800.27,-29 800.27,-35 800.27,-35 800.27,-99 800.27,-99 800.27,-105 794.27,-111 788.27,-111 788.27,-111 663.72,-111 663.72,-111 657.72,-111 651.72,-105 651.72,-99 651.72,-99 651.72,-35 651.72,-35 651.72,-29 657.72,-23 663.72,-23"/>
+<text text-anchor="middle" x="725.99" y="-30.6" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="13.00" fill="#6b7f8a">b：10–11</text>
+</g>
+<g id="node2" class="node">
+<title>n0</title>
+<ellipse fill="#e2ebe6" stroke="#456579" stroke-width="1.6" cx="52.72" cy="-90" rx="20" ry="20"/>
+<text text-anchor="middle" x="52.72" y="-86.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">0</text>
+</g>
+<g id="edge1" class="edge">
+<title>start&#45;&gt;n0</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" d="M0.87,-90C2.24,-90 13.06,-90 24.37,-90"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="24.57,-92.8 32.57,-90 24.57,-87.2 24.57,-92.8"/>
+</g>
+<g id="node3" class="node">
+<title>n7</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="442.72" cy="-78" rx="20" ry="20"/>
+<text text-anchor="middle" x="442.72" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">7</text>
+</g>
+<g id="edge3" class="edge">
+<title>n0&#45;&gt;n7</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M70.32,-80.4C85.33,-72.64 108.3,-63 129.72,-63 129.72,-63 129.72,-63 365.72,-63 382.47,-63 400.91,-66.55 415.44,-70.2"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="415.04,-72.99 423.49,-72.33 416.47,-67.58 415.04,-72.99"/>
+<text text-anchor="middle" x="247.72" y="-66.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node4" class="node">
+<title>n1</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="130.72" cy="-141" rx="20" ry="20"/>
+<text text-anchor="middle" x="130.72" y="-137.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">1</text>
+</g>
+<g id="edge2" class="edge">
+<title>n0&#45;&gt;n1</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M69.84,-100.82C80.62,-108.05 94.97,-117.68 106.91,-125.7"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="105.42,-128.07 113.63,-130.2 108.54,-123.42 105.42,-128.07"/>
+<text text-anchor="middle" x="91.22" y="-120.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node10" class="node">
+<title>n8</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="521.72" cy="-78" rx="20" ry="20"/>
+<text text-anchor="middle" x="521.72" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">8</text>
+</g>
+<g id="edge12" class="edge">
+<title>n7&#45;&gt;n8</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M462.75,-78C472.01,-78 483.3,-78 493.45,-78"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="493.64,-80.8 501.64,-78 493.64,-75.2 493.64,-80.8"/>
+<text text-anchor="middle" x="482.22" y="-81.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node5" class="node">
+<title>n2</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="207.72" cy="-136" rx="20" ry="20"/>
+<text text-anchor="middle" x="207.72" y="-132.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">2</text>
+</g>
+<g id="edge4" class="edge">
+<title>n1&#45;&gt;n2</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M151.03,-139.71C159.76,-139.13 170.22,-138.43 179.71,-137.8"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="179.93,-140.59 187.73,-137.27 179.56,-135 179.93,-140.59"/>
+<text text-anchor="middle" x="169.22" y="-141.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node7" class="node">
+<title>n4</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="207.72" cy="-201" rx="20" ry="20"/>
+<text text-anchor="middle" x="207.72" y="-197.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">4</text>
+</g>
+<g id="edge5" class="edge">
+<title>n1&#45;&gt;n4</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M146.9,-153.14C157.88,-161.93 172.87,-173.92 185.1,-183.7"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="183.57,-186.07 191.57,-188.88 187.07,-181.69 183.57,-186.07"/>
+<text text-anchor="middle" x="169.22" y="-175.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node6" class="node">
+<title>n3</title>
+<ellipse fill="#e2ebe6" stroke="#456579" stroke-width="1.6" cx="287.72" cy="-136" rx="20" ry="20"/>
+<text text-anchor="middle" x="287.72" y="-132.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">3</text>
+</g>
+<g id="edge6" class="edge">
+<title>n2&#45;&gt;n3</title>
+<path fill="none" stroke="#456579" stroke-width="2" d="M228,-136C237.54,-136 249.22,-136 259.64,-136"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="2" points="259.66,-138.8 267.66,-136 259.66,-133.2 259.66,-138.8"/>
+<text text-anchor="middle" x="247.72" y="-139.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">a</text>
+</g>
+<g id="node9" class="node">
+<title>n6</title>
+<ellipse fill="#f0dfc1" stroke="#b07a2a" stroke-width="2.2" cx="364.72" cy="-141" rx="20" ry="20"/>
+<text text-anchor="middle" x="364.72" y="-137.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">6</text>
+</g>
+<g id="edge7" class="edge">
+<title>n3&#45;&gt;n6</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M308.03,-137.29C316.76,-137.87 327.22,-138.57 336.71,-139.2"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="336.56,-142 344.73,-139.73 336.93,-136.41 336.56,-142"/>
+<text text-anchor="middle" x="326.22" y="-141.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node8" class="node">
+<title>n5</title>
+<ellipse fill="#dbe7f2" stroke="#4a6f95" stroke-width="2.6" cx="287.72" cy="-201" rx="20" ry="20"/>
+<text text-anchor="middle" x="287.72" y="-197.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">5</text>
+</g>
+<g id="edge8" class="edge">
+<title>n4&#45;&gt;n5</title>
+<path fill="none" stroke="#4a6f95" stroke-width="3" d="M225.96,-192.38C231.21,-190.18 237.08,-188.11 242.72,-187 249.13,-185.73 255.93,-186.69 262.21,-188.59"/>
+<polygon fill="#4a6f95" stroke="#4a6f95" stroke-width="3" points="261.35,-191.26 269.82,-191.4 263.28,-186 261.35,-191.26"/>
+<text text-anchor="middle" x="247.72" y="-190.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#4a6f95">b</text>
+</g>
+<g id="edge9" class="edge">
+<title>n5&#45;&gt;n6</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M303.9,-188.86C314.88,-180.07 329.87,-168.08 342.1,-158.3"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="344.07,-160.31 348.57,-153.12 340.57,-155.93 344.07,-160.31"/>
+<text text-anchor="middle" x="326.22" y="-175.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="edge11" class="edge">
+<title>n6&#45;&gt;n7</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M380.74,-128.55C392.08,-119.15 407.81,-106.11 420.45,-95.63"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="422.36,-97.68 426.74,-90.42 418.79,-93.37 422.36,-97.68"/>
+<text text-anchor="middle" x="404.22" y="-114.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="edge10" class="edge">
+<title>n6&#45;&gt;n1</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M358.45,-160.1C351.16,-182.4 335.61,-218.24 307.72,-234 261.29,-260.24 234.15,-260.24 187.72,-234 162.88,-219.96 147.83,-190 139.68,-167.86"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="142.26,-166.74 136.99,-160.1 136.97,-168.57 142.26,-166.74"/>
+<text text-anchor="middle" x="247.72" y="-256.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node11" class="node">
+<title>n9</title>
+<ellipse fill="#e2ebe6" stroke="#456579" stroke-width="1.6" cx="600.72" cy="-78" rx="20" ry="20"/>
+<text text-anchor="middle" x="600.72" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">9</text>
+</g>
+<g id="edge13" class="edge">
+<title>n8&#45;&gt;n9</title>
+<path fill="none" stroke="#456579" stroke-width="2" d="M541.75,-78C551.01,-78 562.3,-78 572.45,-78"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="2" points="572.64,-80.8 580.64,-78 572.64,-75.2 572.64,-80.8"/>
+<text text-anchor="middle" x="561.22" y="-81.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">a</text>
+</g>
+<g id="node12" class="node">
+<title>n10</title>
+<ellipse fill="#e2ebe6" stroke="#456579" stroke-width="1.6" cx="680.86" cy="-78" rx="21.27" ry="21.27"/>
+<text text-anchor="middle" x="680.86" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">10</text>
+</g>
+<g id="edge14" class="edge">
+<title>n9&#45;&gt;n10</title>
+<path fill="none" stroke="#456579" stroke-width="1.5" stroke-dasharray="5,2" d="M621.03,-78C630.21,-78 641.37,-78 651.49,-78"/>
+<polygon fill="#456579" stroke="#456579" stroke-width="1.5" points="651.67,-80.8 659.67,-78 651.67,-75.2 651.67,-80.8"/>
+<text text-anchor="middle" x="640.22" y="-81.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#203b48">ε</text>
+</g>
+<g id="node13" class="node">
+<title>n11</title>
+<ellipse fill="#dbe7f2" stroke="#4a6f95" stroke-width="2.6" cx="767.13" cy="-78" rx="21.25" ry="21.25"/>
+<ellipse fill="none" stroke="#4a6f95" stroke-width="2.6" cx="767.13" cy="-78" rx="25.27" ry="25.27"/>
+<text text-anchor="middle" x="767.13" y="-74.5" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="15.00" fill="#203b48">11</text>
+</g>
+<g id="edge15" class="edge">
+<title>n10&#45;&gt;n11</title>
+<path fill="none" stroke="#4a6f95" stroke-width="3" d="M702.26,-78C711.64,-78 722.99,-78 733.51,-78"/>
+<polygon fill="#4a6f95" stroke="#4a6f95" stroke-width="3" points="733.72,-80.8 741.72,-78 733.72,-75.2 733.72,-80.8"/>
+<text text-anchor="middle" x="721.99" y="-81.8" font-family="PingFang SC, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif" font-size="14.00" fill="#4a6f95">b</text>
+</g>
+</g>
+</svg></svg></svg>
