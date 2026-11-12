@@ -12,7 +12,6 @@ description: "按期中范围（第 1 章至第 3.5 节）串联消元法、矩�
 aigcRate: 100
 aigcModels:
   - claude
-  - gemini
 source: claude-code
 verified: false
 ---
