@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="500" viewBox="0 0 960 500" role="img" aria-label="等厚干涉：同一个条件，不同的几何图样"><rect width="960" height="500" rx="18" fill="#ffffff"/><g font-family="LXGW WenKai, PingFang SC, sans-serif" fill="#6b7280">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#6b7280" stroke-width="1.3"/></marker></defs>
+<text x="32" y="36" font-size="24" fill="#6b7280" text-anchor="start">等厚干涉：同一个条件，不同的几何图样</text>
+<text x="32" y="65" font-size="16" fill="#6b7280" text-anchor="start">反射观察，膜的两反射恰有一次相位反转；暗纹满足 2nh = mλ₀。</text>
+<text x="65" y="115" font-size="22" fill="#2563eb" text-anchor="start">劈尖：h ≈ αx</text>
+<path d="M75,270 L435,270" fill="none" stroke="#6b7280" stroke-width="3"/>
+<path d="M75,270 L435,190" fill="none" stroke="#2563eb" stroke-width="3"/>
+<path d="M435,192 L435,268" fill="none" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="446" y="236" font-size="19" fill="#b91c1c" text-anchor="start">h</text>
+<path d="M120,320 L120,385" fill="none" stroke="#2563eb" stroke-width="3"/>
+<path d="M165,320 L165,385" fill="none" stroke="#2563eb" stroke-width="3"/>
+<path d="M210,320 L210,385" fill="none" stroke="#2563eb" stroke-width="3"/>
+<path d="M255,320 L255,385" fill="none" stroke="#2563eb" stroke-width="3"/>
+<path d="M300,320 L300,385" fill="none" stroke="#2563eb" stroke-width="3"/>
+<path d="M345,320 L345,385" fill="none" stroke="#2563eb" stroke-width="3"/>
+<path d="M390,320 L390,385" fill="none" stroke="#2563eb" stroke-width="3"/>
+<text x="90" y="420" font-size="18" fill="#6b7280" text-anchor="start">条纹间距相等：Δx = λ₀/(2nα)</text>
+<text x="535" y="115" font-size="22" fill="#2563eb" text-anchor="start">牛顿环：h ≈ r²/(2R)</text>
+<circle cx="720" cy="275" r="43.0" stroke="#2563eb" stroke-width="2" fill="none"/>
+<circle cx="720" cy="275" r="60.81118318204309" stroke="#2563eb" stroke-width="2" fill="none"/>
+<circle cx="720" cy="275" r="74.47818472546172" stroke="#2563eb" stroke-width="2" fill="none"/>
+<circle cx="720" cy="275" r="86.0" stroke="#2563eb" stroke-width="2" fill="none"/>
+<circle cx="720" cy="275" r="96.15092303249097" stroke="#2563eb" stroke-width="2" fill="none"/>
+<circle cx="720" cy="275" r="105.32805893967665" stroke="#2563eb" stroke-width="2" fill="none"/>
+<circle cx="720" cy="275" r="113.7673063757774" stroke="#2563eb" stroke-width="2" fill="none"/>
+<circle cx="720" cy="275" r="121.62236636408618" stroke="#2563eb" stroke-width="2" fill="none"/>
+<circle cx="720" cy="275" r="4" stroke="#6b7280" stroke-width="2" fill="#6b7280"/>
+<path d="M720,275 L816.1509230324909,275" fill="none" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="755" y="260" font-size="20" fill="#b91c1c" text-anchor="start">r</text>
+<text x="570" y="438" font-size="19" fill="#6b7280" text-anchor="start">平方半径等间隔，外侧环更密</text></g></svg>
