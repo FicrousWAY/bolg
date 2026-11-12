@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="470" viewBox="0 0 960 470" role="img" aria-label="矩阵的四个基本子空间及其维数">
+<rect width="960" height="470" rx="18" fill="#ffffff"/>
+<defs><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2563eb"/></marker>
+<marker id="ag" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6b7280"/></marker></defs>
+<g font-family="LXGW WenKai, PingFang SC, sans-serif" fill="#374151" text-anchor="middle">
+<text x="480" y="42" font-size="24" fill="#111827">A 是 m×n 矩阵，秩为 r</text>
+<rect x="50" y="70" width="330" height="350" rx="18" fill="#f9fafb" stroke="#9ca3af"/>
+<text x="215" y="104" font-size="21">ℝⁿ（未知数 x 所在空间）</text>
+<rect x="80" y="126" width="270" height="120" rx="14" fill="#eff6ff" stroke="#2563eb"/>
+<text x="215" y="166" font-size="20" fill="#1d4ed8">行空间 C(Aᵀ)</text>
+<text x="215" y="198" font-size="17">dim = r</text>
+<text x="215" y="226" font-size="14" fill="#6b7280">基：阶梯形 U 的非零行</text>
+<rect x="80" y="270" width="270" height="124" rx="14" fill="#f3f4f6" stroke="#6b7280"/>
+<text x="215" y="310" font-size="20">零空间 N(A)</text>
+<text x="215" y="342" font-size="17">dim = n − r</text>
+<text x="215" y="370" font-size="14" fill="#6b7280">基：基础解系（自由变量取单位向量）</text>
+<rect x="580" y="70" width="330" height="350" rx="18" fill="#f9fafb" stroke="#9ca3af"/>
+<text x="745" y="104" font-size="21">ℝᵐ（右端 b 所在空间）</text>
+<rect x="610" y="126" width="270" height="120" rx="14" fill="#eff6ff" stroke="#2563eb"/>
+<text x="745" y="166" font-size="20" fill="#1d4ed8">列空间 C(A)</text>
+<text x="745" y="198" font-size="17">dim = r</text>
+<text x="745" y="226" font-size="14" fill="#6b7280">基：原矩阵 A 的主元列</text>
+<rect x="610" y="270" width="270" height="124" rx="14" fill="#f3f4f6" stroke="#6b7280"/>
+<text x="745" y="310" font-size="20">左零空间 N(Aᵀ)</text>
+<text x="745" y="342" font-size="17">dim = m − r</text>
+<text x="745" y="370" font-size="14" fill="#6b7280">{y : Aᵀy = 0}</text>
+<line x1="352" y1="176" x2="606" y2="176" stroke="#2563eb" stroke-width="3" marker-end="url(#ar)"/>
+<text x="480" y="164" font-size="17" fill="#1d4ed8">x ↦ Ax</text>
+<text x="480" y="200" font-size="14" fill="#6b7280">Ax 总落在 C(A) 中</text>
+<line x1="352" y1="330" x2="470" y2="330" stroke="#6b7280" stroke-width="2" marker-end="url(#ag)"/>
+<circle cx="490" cy="330" r="16" fill="#ffffff" stroke="#6b7280" stroke-width="2"/>
+<text x="490" y="336" font-size="17">0</text>
+<text x="420" y="316" font-size="14" fill="#6b7280">Ax = 0</text>
+<text x="480" y="452" font-size="16" fill="#6b7280">两侧维数相加：r + (n − r) = n（秩-零度定理），r + (m − r) = m</text>
+</g>
+</svg>

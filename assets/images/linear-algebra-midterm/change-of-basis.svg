@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="460" viewBox="0 0 960 460" role="img" aria-label="基变换与坐标变换方向相反">
+<rect width="960" height="460" rx="18" fill="#ffffff"/>
+<defs>
+<marker id="ab" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2563eb"/></marker>
+<marker id="ao" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#c2410c"/></marker>
+</defs>
+<g font-family="LXGW WenKai, PingFang SC, sans-serif" fill="#374151" text-anchor="middle">
+<text x="480" y="44" font-size="24" fill="#111827">同一个 S：基向前走，坐标往回走</text>
+<rect x="60" y="120" width="260" height="170" rx="16" fill="#f3f4f6" stroke="#9ca3af"/>
+<text x="190" y="156" font-size="20">旧基 𝒰 = (u₁, …, uₙ)</text>
+<text x="190" y="196" font-size="16" fill="#6b7280">向量 w 的坐标</text>
+<text x="190" y="226" font-size="20" fill="#c2410c">x𝒰</text>
+<text x="190" y="264" font-size="15" fill="#6b7280">例：u₁=(1,1)ᵀ, u₂=(1,2)ᵀ</text>
+<rect x="640" y="120" width="260" height="170" rx="16" fill="#f3f4f6" stroke="#9ca3af"/>
+<text x="770" y="156" font-size="20">新基 𝒱 = (v₁, …, vₙ)</text>
+<text x="770" y="196" font-size="16" fill="#6b7280">同一个 w 的坐标</text>
+<text x="770" y="226" font-size="20" fill="#c2410c">x𝒱</text>
+<text x="770" y="264" font-size="15" fill="#6b7280">例：v₁=(2,3)ᵀ, v₂=(1,0)ᵀ</text>
+<line x1="330" y1="160" x2="628" y2="160" stroke="#2563eb" stroke-width="3" marker-end="url(#ab)"/>
+<text x="480" y="132" font-size="18" fill="#1d4ed8">基变换：(v₁,…,vₙ) = (u₁,…,uₙ) S</text>
+<text x="480" y="186" font-size="15" fill="#1d4ed8">S 的第 j 列 = v_j 在 𝒰 下的坐标</text>
+<line x1="628" y1="246" x2="330" y2="246" stroke="#c2410c" stroke-width="3" marker-end="url(#ao)"/>
+<text x="480" y="236" font-size="18" fill="#c2410c">坐标变换：x𝒰 = S x𝒱</text>
+<text x="480" y="274" font-size="15" fill="#c2410c">反过来 x𝒱 = S⁻¹ x𝒰</text>
+<rect x="160" y="320" width="640" height="104" rx="14" fill="#fff7ed" stroke="#fdba74"/>
+<text x="480" y="352" font-size="17">例：v₁ = u₁ + u₂，v₂ = 2u₁ − u₂，所以 S = [[1, 2], [1, −1]]</text>
+<text x="480" y="382" font-size="17">w = (3,3)ᵀ = v₁ + v₂，x𝒱 = (1,1)ᵀ</text>
+<text x="480" y="410" font-size="17">x𝒰 = S x𝒱 = (3,0)ᵀ，验证：3u₁ = (3,3)ᵀ ✓</text>
+</g>
+</svg>

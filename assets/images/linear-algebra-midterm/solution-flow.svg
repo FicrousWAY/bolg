@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" role="img" aria-label="由行阶梯形判定线性方程组解的情况">
+<rect width="960" height="520" rx="18" fill="#ffffff"/>
+<defs><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6b7280"/></marker></defs>
+<g font-family="LXGW WenKai, PingFang SC, sans-serif" fill="#374151" text-anchor="middle">
+<text x="480" y="44" font-size="24" fill="#111827">从增广矩阵读出解的情况</text>
+<rect x="330" y="72" width="300" height="64" rx="12" fill="#f3f4f6" stroke="#9ca3af"/>
+<text x="480" y="100" font-size="19">写出增广矩阵 (A | b)</text>
+<text x="480" y="124" font-size="15" fill="#6b7280">A 为 m×n，n 个未知数</text>
+<line x1="480" y1="136" x2="480" y2="168" stroke="#6b7280" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="330" y="172" width="300" height="56" rx="12" fill="#f3f4f6" stroke="#9ca3af"/>
+<text x="480" y="206" font-size="19">初等行变换化为阶梯形 (U | c)</text>
+<line x1="480" y1="228" x2="480" y2="258" stroke="#6b7280" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="290" y="262" width="380" height="60" rx="12" fill="#eff6ff" stroke="#2563eb"/>
+<text x="480" y="290" font-size="18">最后一列（常数列）有首元吗？</text>
+<text x="480" y="312" font-size="15" fill="#6b7280">即是否出现 (0 … 0 | d)，d ≠ 0</text>
+<line x1="290" y1="292" x2="170" y2="292" stroke="#6b7280" stroke-width="2"/>
+<line x1="170" y1="292" x2="170" y2="380" stroke="#6b7280" stroke-width="2" marker-end="url(#ar)"/>
+<text x="230" y="282" font-size="16" fill="#dc2626">有</text>
+<rect x="50" y="384" width="240" height="96" rx="12" fill="#fef2f2" stroke="#dc2626"/>
+<text x="170" y="418" font-size="20" fill="#b91c1c">无解</text>
+<text x="170" y="446" font-size="15">出现矛盾方程 0 = d</text>
+<text x="170" y="468" font-size="15">rank A &lt; rank (A | b)</text>
+<line x1="670" y1="292" x2="790" y2="292" stroke="#6b7280" stroke-width="2"/>
+<line x1="790" y1="292" x2="790" y2="330" stroke="#6b7280" stroke-width="2" marker-end="url(#ar)"/>
+<text x="730" y="282" font-size="16" fill="#15803d">没有：相容</text>
+<rect x="650" y="334" width="280" height="40" rx="10" fill="#f0fdf4" stroke="#16a34a"/>
+<text x="790" y="360" font-size="17">首元个数 r 等于 n 吗？</text>
+<line x1="720" y1="374" x2="560" y2="420" stroke="#6b7280" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="860" y1="374" x2="860" y2="400" stroke="#6b7280" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="400" y="400" width="250" height="88" rx="12" fill="#f0fdf4" stroke="#16a34a"/>
+<text x="525" y="430" font-size="20" fill="#15803d">r = n：唯一解</text>
+<text x="525" y="458" font-size="15">没有自由变量</text>
+<text x="525" y="478" font-size="15">齐次时只有零解</text>
+<rect x="680" y="404" width="250" height="88" rx="12" fill="#f0fdf4" stroke="#16a34a"/>
+<text x="805" y="434" font-size="20" fill="#15803d">r &lt; n：无穷多解</text>
+<text x="805" y="460" font-size="15">n − r 个自由变量</text>
+<text x="805" y="480" font-size="15">通解 = 特解 + N(A)</text>
+</g>
+</svg>
